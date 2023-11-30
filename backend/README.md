@@ -9,6 +9,7 @@
 <p><code>docker-compose run backend python manage.py createsuperuser</code></p>
 
 ### Main urls for test
+<p><code>http://127.0.0.1/admin</code> вход по тому логину который создавали как супер юзер</p>
 <p><code>http://127.0.0.1/api/v1/auth/ </code></p>
 <p><code>http://127.0.0.1/api/v1/userprofiles/ </code></p>
 <p><code>http://127.0.0.1/api/v1/userprofile/your_username </code></p>
