@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import UserProfileList, UserProfileDetail, PostListAPIView, \
-    PostDetail
+    PostDetail, PostCreateView
 
 urlpatterns = [
     path('auth/', include('rest_framework.urls')),
@@ -8,5 +8,6 @@ urlpatterns = [
     path('userprofile/<slug:slug>/', UserProfileDetail.as_view(),
          name='userprofile_detail'),
     path('posts/', PostListAPIView.as_view(), name='posts'),
-    path('post/<slug:slug>', PostDetail.as_view(), name='post_detail'),
+    path('post/<slug:slug>/', PostDetail.as_view(), name='post_detail'),
+    path('post/create/', PostCreateView.as_view(), name='post_create'),
 ]

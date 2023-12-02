@@ -1,24 +1,12 @@
 from django.shortcuts import get_object_or_404
-from rest_framework import status, permissions
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView, \
-    RetrieveAPIView
+    CreateAPIView
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
 from .models import UserProfile, Post
+from .permissions import IsOwnerOrReadOnly
 from .serializers import UserProfileSerializer, PostSerializer
-
-
-class IsOwnerOrReadOnly(permissions.BasePermission):
-    """
-    Класс для проверки разрешений на редактирование только собственного профиля
-    """
-
-    def has_permission(self, request, view):
-        if request.method == 'GET':
-            return True
-        return request.user and request.user == view.get_object().user
 
 
 class UserProfileList(ListAPIView):
@@ -57,6 +45,16 @@ class UserProfileDetail(RetrieveUpdateAPIView):
             super().perform_update(serializer)
 
 
+class PostCreateView(CreateAPIView):
+    name = 'Создать пост'
+    serializer_class = PostSerializer
+    # authentication_classes = (BasicAuthentication,)
+    queryset = Post.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save(authors=(self.request.user,))
+
+
 class PostListAPIView(ListAPIView):
     name = 'Список постов'
     description = 'Информация обо всех постах, размещенных на платформе'
@@ -69,7 +67,9 @@ class PostListAPIView(ListAPIView):
         return Post.objects.all()
 
 
-class PostDetail(RetrieveAPIView):
+class PostDetail(RetrieveUpdateAPIView):
+    name = 'Пост'
+    description = 'Получение поста по slug, переданному в URL'
     serializer_class = PostSerializer
     lookup_url_kwarg = 'slug'
 
