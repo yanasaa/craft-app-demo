@@ -3,7 +3,7 @@ version: '3.9'
 services:
   backend:
     build:
-      context: ..
+      context: .
       dockerfile: Dockerfile
       args:
         ENV_FILE: .env
@@ -18,7 +18,7 @@ services:
     networks:
       - django-network
     volumes:
-      - ./apps/:/code/
+      - ./app/:/code/
       - media:/code/media
       - static:/code/static
       - .env:/code/.env
@@ -38,10 +38,10 @@ services:
       - django-network
 
 networks:
-    django-network:
-        driver: bridge
+  django-network:
+    driver: bridge
+
 volumes:
   postgres_data:
   static:
   media:
-  entrypoint.sh:
