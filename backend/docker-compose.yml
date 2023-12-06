@@ -18,7 +18,7 @@ services:
     networks:
       - django-network
     volumes:
-      - ./app/:/code/
+      - ./apps/:/code/
       - media:/code/media
       - static:/code/static
       - .env:/code/.env
