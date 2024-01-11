@@ -1,0 +1,23 @@
+@import "../../../../sass/abstracts/constants";
+@import "../../../../sass/abstracts/mixins";
+@import "../../../../sass/abstracts/placeholders";
+
+.onboarding {
+  background-image: url("../../../../images/backgrounds/onboarding-bg.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.onboarding__wrapper {
+  padding: 45px;
+  height: 600px;
+  text-align: center;
+  margin-bottom: 200px;
+}
+
+.onboarding__text {
+  white-space: nowrap;
+  @include font(2.4rem, 3.2rem, 700);
+}

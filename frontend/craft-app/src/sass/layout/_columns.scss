@@ -1,0 +1,18 @@
+.layout-6-columns {
+    @include columns(15%);
+}
+.layout-5-columns {
+    @include columns(18%);
+}
+
+.layout-4-columns {
+    @include columns(22%);
+}
+
+.layout-3-columns {
+    @include columns(30%);
+}
+
+.layout-2-columns {
+    @include columns(45%);
+}

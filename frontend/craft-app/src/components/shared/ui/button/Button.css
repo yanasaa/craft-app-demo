@@ -1,0 +1,27 @@
+.button {
+  transition: all 0.3s ease-out;
+}
+
+.button {
+  width: 167px;
+  padding: 8px 26px;
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  font-weight: 700;
+  font-style: normal;
+  border-radius: 4px;
+}
+.button_bordered {
+  background-color: transparent;
+  border: 1px solid #ad2e95;
+  color: #ad2e95;
+}
+.button_colored {
+  background-color: #ad2e95;
+  color: white;
+  border: 1px solid #ad2e95;
+}
+.button_colored:hover {
+  background: rgba(173, 46, 149, 0.7);
+  border-color: rgba(173, 46, 149, 0.7);
+}/*# sourceMappingURL=Button.css.map */

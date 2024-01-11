@@ -1,0 +1,52 @@
+.contact-us {
+  background: rgba(161, 194, 209, 0.5);
+  display: flex;
+}
+
+.contact-us__wrapper {
+  text-align: left;
+  padding: 0 100px 0 140px;
+  flex-grow: 1;
+  justify-content: start;
+}
+
+.contact-us__content {
+  text-align: left;
+}
+
+.contact-us__title {
+  max-width: 570px;
+  padding-left: 0;
+  padding-top: 45px;
+}
+
+.contact-us__form input:focus,
+.contact-us__form textarea:focus {
+  outline: none;
+}
+
+.contact-us__input {
+  display: block;
+  width: 48%;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 140px;
+}
+
+.contact-us__line {
+  position: relative;
+  margin-bottom: 19px;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.contact-us__image {
+  text-align: right;
+}
+.contact-us__button {
+  padding: 50px 0;
+}/*# sourceMappingURL=ContactUs.css.map */

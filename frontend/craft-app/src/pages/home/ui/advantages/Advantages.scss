@@ -1,0 +1,40 @@
+@import '../../../../sass/abstracts/constants';
+@import '../../../../sass/abstracts/mixins';
+@import '../../../../sass/abstracts/placeholders';
+
+.advantages {
+ margin-bottom: 200px;
+}
+
+.advantages__wrapper {
+  background-image: url('../../../../images/backgrounds/advantages-bg.png');
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0 30px;
+ }
+
+ .advantage {
+  max-width: 32%;
+  padding: 80px 25px 45px;
+  text-align: center;
+  &_author {
+    background: $color-primary-light;
+  }
+  &_user {
+    background: $color-secondary;
+  }
+ }
+ 
+ .advantage__title {
+  @include font(2.4rem, 3.4rem, $weight: 400);
+  color: $color-text-dark;
+  margin-bottom: 30px;
+ }
+ .advantage__text {
+  
+  margin: 0;
+  padding: 20px 10px;
+  color: $color-light;
+  @include font(2.4rem, 3.4rem, $weight: 400);
+ }

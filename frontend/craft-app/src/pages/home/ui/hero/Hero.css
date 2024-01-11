@@ -1,0 +1,114 @@
+.tag {
+  transition: all 0.3s ease-out;
+}
+
+.search__input {
+  font-family: "Roboto", sans-serif;
+}
+
+.hero {
+  background-image: url("../../../../images/backgrounds/mainbg-1.png");
+  background-size: cover;
+  margin-bottom: 200px;
+}
+
+.hero__wrapper {
+  padding: 120px 0 150px;
+}
+
+.hero__glass {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.glass {
+  border-radius: 16px;
+  background: rgba(237, 220, 228, 0.25);
+  -webkit-backdrop-filter: blur(11.8754043579px);
+          backdrop-filter: blur(11.8754043579px);
+}
+
+.hero__content {
+  padding: 0 36px;
+  max-width: 563px;
+  text-align: left;
+}
+
+.search-bar_hero {
+  margin: 0 auto;
+  border: 1px solid #ad2e95;
+  background-color: #fff;
+  display: flex;
+  margin: 0 auto;
+  justify-content: flex-end;
+}
+
+.search__input {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  padding: 5px 10px;
+}
+
+.search__icons {
+  background-color: #ad2e95;
+  cursor: pointer;
+  text-align: center;
+}
+
+.search__icon {
+  display: block;
+  width: 15px;
+  height: 15px;
+  background-image: url("../../../../images/icons/Vector.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 15px;
+}
+
+.hero__title {
+  border-radius: 16px 16px 0 0;
+  padding: 10px 40px;
+  margin: 0;
+  color: #fff;
+  background: #ad2e95;
+  width: 100%;
+}
+
+.hero__text {
+  font-size: 2.4rem;
+  line-height: 3.2rem;
+  font-weight: 700;
+  font-style: normal;
+  color: white;
+  margin: 0;
+  padding: 15px 0 30px;
+}
+
+.hero__tags_layout {
+  gap: 30px;
+  padding: 50px 0 20px;
+}
+
+.tag {
+  display: flex;
+  cursor: pointer;
+  padding: 15px 20px;
+  color: #ad2e95;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 0px rgba(173, 46, 149, 0.25);
+  font-size: 1.8rem;
+  line-height: 1.8rem;
+  font-weight: 700;
+  font-style: normal;
+}
+.tag:hover {
+  background-color: #ad2e95;
+  color: #fff;
+}
+
+.tag__title {
+  margin: auto;
+}/*# sourceMappingURL=Hero.css.map */

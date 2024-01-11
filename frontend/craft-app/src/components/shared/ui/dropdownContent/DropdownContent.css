@@ -1,0 +1,24 @@
+.dropdown__content.navigation__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  background-color: #fff;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.dropdown__content.navigation__dropdown .dropdown-item {
+  display: block;
+  cursor: pointer;
+  color: #050002;
+  padding: 16px 16px 16px 72px;
+  text-decoration: none;
+}
+.dropdown__content.navigation__dropdown .dropdown-item:hover {
+  background-color: #EDDCE4;
+  color: #ad2e95;
+}/*# sourceMappingURL=DropdownContent.css.map */

@@ -1,0 +1,24 @@
+@import "../../../../sass/abstracts/mixins";
+@import "../../../../sass/abstracts/constants";
+
+.dropdown__content.navigation__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  text-align: left;
+  background-color: $color-bg-light;
+  @include font(1.4rem, 2.4rem, 400);
+}
+
+.dropdown__content.navigation__dropdown .dropdown-item {
+  display: block;
+  cursor: pointer;
+  color: $color-text-dark;
+  padding: 16px 16px 16px 72px;
+  text-decoration: none;
+  &:hover {
+    background-color: $color-primary-light-header;
+    color: $color-primary;
+  }
+}

@@ -1,0 +1,7 @@
+.article-preview .card-body .article__text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  background-color: red;
+}
