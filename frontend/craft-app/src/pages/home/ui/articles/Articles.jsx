@@ -2,9 +2,6 @@ import { Pagination } from "antd";
 import { useState } from "react";
 import data from "../../../../components/fortemtests/data";
 import "./Articles.scss";
-import article1 from "../../../../images/articles/article1.png";
-import Image from "../../../../components/shared/ui/image/Image";
-import second from "../../../../components/shared/ui/article/ArticleCard";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
 function Articles() {
