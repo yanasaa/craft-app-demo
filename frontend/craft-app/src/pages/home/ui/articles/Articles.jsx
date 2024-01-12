@@ -5,7 +5,7 @@ import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
 function Articles() {
-  const [articles, setArticles] = useState([data.cardData.slice(0, 50)]);
+  const [articles, setArticles] = useState(data.cardData.slice(0, 50));
   const [pageNumber, setPageNumber] = useState(0);
 
   const articlesPerPage = 6;
@@ -14,9 +14,9 @@ function Articles() {
   const displayArticles = articles
     .slice(pagesVisited, pagesVisited + articlesPerPage)
     .map((article) => {
-      <ArticleCard className="card" key={article.id} />;
+      return <ArticleCard className="article-preview" key={article.id} />;
     });
-
+  console.dir(displayArticles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
@@ -25,9 +25,8 @@ function Articles() {
           <div className="wrapper">
             <div className="slider">
               <div className="article-gallery layout-3-columns">
-                {data.cardData.map((item) => (
-                  <ArticleCard className="card" key={item.id} />
-                ))}
+                {displayArticles}
+               
               </div>
 
               <div className="slider__button slider__button_left">
