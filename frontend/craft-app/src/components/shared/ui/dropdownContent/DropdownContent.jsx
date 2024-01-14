@@ -7,14 +7,14 @@ const DropdownContent = ({ className }) => {
   return (
     <ul className={`dropdown__content ${className}`}>
       <li>
-        <a className="dropdown-item" href="/#hero">
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#hero`}>
           Виды ремесел
-        </a>
+        </HashLink>
       </li>
       <li>
-        <a className="dropdown-item" href="/#advantages">
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#advantages`}>
           Преимущества
-        </a>
+        </HashLink>
       </li>
       <li>
         <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#articles`}>
@@ -22,14 +22,14 @@ const DropdownContent = ({ className }) => {
         </HashLink>
       </li>
       <li>
-        <a className="dropdown-item" href="#onboarding">
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#onboarding`}>
           Как это работает
-        </a>
+        </HashLink>
       </li>
       <li>
-        <a className="dropdown-item" href="/#contact-us">
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#contacts`}>
           Контакты
-        </a>
+        </HashLink>
       </li>
       <li>
         <Link className="dropdown-item" to={"about"}>
