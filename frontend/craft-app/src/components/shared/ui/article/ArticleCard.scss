@@ -1,6 +1,17 @@
+.article-preview .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .article-preview .card-body .article__text {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 2;
+  flex-grow: 1;
+}
+
+.article__info {
+  vertical-align: bottom;
 }

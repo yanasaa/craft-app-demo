@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
-import "./Header.scss";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "./ui/navigation/Navigation";
 import SearchBar from "../../components/shared/ui/searchBar/SearchBar";
 import Button from "../../components/shared/ui/button/Button";
+import { ROUTES } from "../../components/shared/consts/routes";
+import "./Header.scss";
 
 function Header() {
+  let navigate = useNavigate();
+  function handleClick() {
+    navigate(ROUTES.ENTER);
+  }
   return (
     <header className="header">
       <div className="wrapper header__wrapper">
@@ -15,7 +20,7 @@ function Header() {
         <div className="header__buttons">
           {/* <button className="button button_bordered" disabled>Регистрация</button> */}
           <SearchBar className="search-bar" />
-          <Button btnText="Войти" />
+          <Button btnText="Войти" onClick={handleClick} />
         </div>
       </div>
     </header>

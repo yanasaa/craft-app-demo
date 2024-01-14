@@ -1,22 +1,61 @@
 import { Pagination } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import data from "../../../../components/fortemtests/data";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
 function Articles() {
-  const [articles, setArticles] = useState(data.cardData.slice(0, 50));
-  const [pageNumber, setPageNumber] = useState(0);
+  const [articles, setArticles] = useState([]);
+  const [total, setTotal] = useState("");
+  const [page, setPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(6);
 
-  const articlesPerPage = 6;
-  const pagesVisited = pageNumber * articlesPerPage;
+  useEffect(() => {
+    const getAllArticles = () => {
+      fetch("https://jsonplaceholder.typicode.com/posts")
+        .then((response) => response.json())
+        .then((json) => {
+          setArticles(json);
+          setTotal(json.length);
+        });
+    };
+    getAllArticles();
+  }, []);
 
-  const displayArticles = articles
-    .slice(pagesVisited, pagesVisited + articlesPerPage)
-    .map((article) => {
-      return <ArticleCard className="article-preview" key={article.id} />;
-    });
-  console.dir(displayArticles);
+  console.log(articles);
+  const indexOfLastPage = page + postsPerPage;
+  const indexOfFirstPage = indexOfLastPage - postsPerPage;
+  const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
+
+  const displayArticles = currentPosts.map((article) => {
+    return (
+      <ArticleCard
+        className="article-preview"
+        key={article.id}
+        title={article.title}
+        body={article.body}
+      />
+    );
+  });
+
+  const changePage = (value) => {
+    setPage(value);
+  };
+  const onShowSizeChange = (current, pageSize) => {
+    setPostsPerPage(pageSize);
+  };
+
+  // -----------Может пригодиться для слайдера
+  // const itemRender = (current, type, originalElement) => {
+  //   if (type === "prev") {
+  //     return <a>Previous</a>;
+  //   }
+  //   if (type === "next") {
+  //     return <a>Next</a>;
+  //   }
+  //   return originalElement;
+  // };
+
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
@@ -26,9 +65,7 @@ function Articles() {
             <div className="slider">
               <div className="article-gallery layout-3-columns">
                 {displayArticles}
-               
               </div>
-
               <div className="slider__button slider__button_left">
                 <span className="icon slider__icon_left slider__icon"></span>
               </div>
@@ -39,7 +76,17 @@ function Articles() {
           </div>
         </div>
         <div className="pagination">
-          <Pagination total={data.cardData.length} pageSize={6}></Pagination>
+          <Pagination
+            onChange={changePage}
+            total={total}
+            pageSize={postsPerPage}
+            current={page}
+            showSizeChanger
+            showQuickJumper
+            onShowSizeChange={onShowSizeChange}
+            pageSizeOptions={[6, 9, 30, 90]}
+            // itemRender={itemRender}
+          ></Pagination>
         </div>
       </div>
     </section>
