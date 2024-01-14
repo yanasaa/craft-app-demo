@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import "./DropdownContent.scss";
 import { ROUTES } from "../../consts/routes";
 
@@ -16,9 +17,9 @@ const DropdownContent = ({ className }) => {
         </a>
       </li>
       <li>
-        <a className="dropdown-item" href={`${ROUTES.MAIN}#articles`}>
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#articles`}>
           Статьи авторов
-        </a>
+        </HashLink>
       </li>
       <li>
         <a className="dropdown-item" href="#onboarding">

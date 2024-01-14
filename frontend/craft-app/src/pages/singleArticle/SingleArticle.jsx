@@ -1,9 +1,12 @@
-import ArticleCard from "../../components/shared/ui/article/ArticleCard"
+import ArticleCard from "../../components/shared/ui/article/ArticleCard";
 
 const singleArticle = () => {
   return (
-    <ArticleCard />
-  )
-}
+    <>
+      <h1>Single Article</h1>
+      {/* <ArticleCard className="singleArticle" /> */}
+    </>
+  );
+};
 
-export default singleArticle
+export default singleArticle;

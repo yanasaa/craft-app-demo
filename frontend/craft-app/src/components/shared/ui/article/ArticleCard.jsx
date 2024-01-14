@@ -5,7 +5,7 @@ import "./ArticleCard.scss";
 import Image from "../image/Image";
 
 function ArticleCard(props) {
-  const { className } = props;
+  const { className, title, body } = props;
   return (
     <div className={className}>
       <div className="card">
@@ -13,28 +13,18 @@ function ArticleCard(props) {
           <img src={article1} alt="Керамика" />
         </div>
         <div className="card-body">
-          <h3 className="article__title">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure, cum.
-          </h3>
-          <p className="article__text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-            veniam cupiditate itaque repellendus laborum animi consectetur modi
-            ea neque natus facere esse impedit eum quam quisquam, tempore nobis
-            dolorum officia veritatis nesciunt? Cupiditate nam, dolore, quasi
-            minus, ipsam voluptatibus recusandae minima repellat vitae soluta
-            libero laborum animi illum? Ratione, quas.
-          </p>
-          <div className="article__info">
-            <div className="likes">
-              <LikeTwoTone
-                twoToneColor="#eb2f96"
-                className="likes__icon icon"
-              />
-              156
-            </div>
-            <span className="article__date">10 Дек 2023</span>
-            <span className="article__author">Анна Попова</span>
+          <h3 className="article__title">{title}</h3>
+          <p className="article__text">{body}</p>
+        </div>
+        <div className="article__info">
+          <div className="likes">
+            <LikeTwoTone twoToneColor="#eb2f96" className="likes__icon icon" />
+            <span>{(Math.random() * 1000).toFixed(0)}</span>
           </div>
+          <span className="article__date">10 Дек 2023</span>
+          <span className="article__author">
+            {title.split(" ").slice(0, 2).join(" ")}
+          </span>
         </div>
       </div>
     </div>
