@@ -7,7 +7,7 @@ const DropdownContent = ({ className }) => {
   return (
     <ul className={`dropdown__content ${className}`}>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#hero`}>
+        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#`}>
           Виды ремесел
         </HashLink>
       </li>

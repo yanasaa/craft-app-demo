@@ -4,7 +4,6 @@ import { ROUTES } from "../components/shared/consts/routes";
 import Home from "./home/Home";
 import About from "./about/About";
 import SignIn from "./signIn/SignIn";
-import SingleArticle from "./singleArticle/SingleArticle";
 
 export default function Routes() {
   return (
@@ -14,10 +13,7 @@ export default function Routes() {
           <Route index element={<Home />} />
           <Route path={ROUTES.ABOUT} element={<About />} />
           <Route path={ROUTES.ENTER} element={<SignIn />} />
-          {/* <Route
-            path={`${ROUTES.ARTICLE}/:articleId`}
-            element={<SingleArticle />}
-          /> */}
+          
         </Route>
       </Routes>
     </BrowserRouter>

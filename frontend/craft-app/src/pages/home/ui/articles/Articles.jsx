@@ -12,7 +12,13 @@ function Articles() {
 
   useEffect(() => {
     const getAllArticles = () => {
-      fetch("https://jsonplaceholder.typicode.com/posts")
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-type": "application/json",
+        },
+      })
         .then((response) => response.json())
         .then((json) => {
           setArticles(json);
@@ -22,9 +28,8 @@ function Articles() {
     getAllArticles();
   }, []);
 
-  console.log(articles);
-  const indexOfLastPage = page + postsPerPage;
-  const indexOfFirstPage = indexOfLastPage - postsPerPage;
+  const indexOfFirstPage = page * postsPerPage - postsPerPage;
+  const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
 
   const displayArticles = currentPosts.map((article) => {
@@ -34,6 +39,7 @@ function Articles() {
         key={article.id}
         title={article.title}
         body={article.body}
+        id={article.id}
       />
     );
   });
@@ -41,20 +47,9 @@ function Articles() {
   const changePage = (value) => {
     setPage(value);
   };
-  const onShowSizeChange = (current, pageSize) => {
+  const onShowSizeChange = (curent, pageSize) => {
     setPostsPerPage(pageSize);
   };
-
-  // -----------Может пригодиться для слайдера
-  // const itemRender = (current, type, originalElement) => {
-  //   if (type === "prev") {
-  //     return <a>Previous</a>;
-  //   }
-  //   if (type === "next") {
-  //     return <a>Next</a>;
-  //   }
-  //   return originalElement;
-  // };
 
   return (
     <section className="articles" id="articles">
@@ -85,7 +80,6 @@ function Articles() {
             showQuickJumper
             onShowSizeChange={onShowSizeChange}
             pageSizeOptions={[6, 9, 30, 90]}
-            // itemRender={itemRender}
           ></Pagination>
         </div>
       </div>

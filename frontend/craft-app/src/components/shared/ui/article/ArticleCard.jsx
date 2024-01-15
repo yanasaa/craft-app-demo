@@ -5,7 +5,7 @@ import "./ArticleCard.scss";
 import Image from "../image/Image";
 
 function ArticleCard(props) {
-  const { className, title, body } = props;
+  const { className, title, body, id} = props;
   return (
     <div className={className}>
       <div className="card">
@@ -19,7 +19,7 @@ function ArticleCard(props) {
         <div className="article__info">
           <div className="likes">
             <LikeTwoTone twoToneColor="#eb2f96" className="likes__icon icon" />
-            <span>{(Math.random() * 1000).toFixed(0)}</span>
+            <span>{id}</span>
           </div>
           <span className="article__date">10 Дек 2023</span>
           <span className="article__author">
