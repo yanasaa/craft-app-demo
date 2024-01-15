@@ -17,7 +17,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path={ROUTES.ABOUT} element={<About />} />
           <Route path={ROUTES.ENTER} element={<SignIn />} />
-          <Route path="/:id" element={<SingleArticle />} />
+          <Route path="/:slug" element={<SingleArticle />} />
         </Route>
       </Routes>
     </BrowserRouter>

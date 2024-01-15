@@ -1,6 +1,5 @@
 import { Pagination } from "antd";
 import { useEffect, useState } from "react";
-import data from "../../../../components/fortemtests/data";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
@@ -12,10 +11,9 @@ function Articles() {
 
   useEffect(() => {
     const getAllArticles = () => {
-      fetch("https://jsonplaceholder.typicode.com/posts", {
+      fetch("http://84.38.183.195/api/v1/posts", {
         method: "GET",
         headers: {
-          "Access-Control-Allow-Origin": "*",
           "Content-type": "application/json",
         },
       })
@@ -33,13 +31,17 @@ function Articles() {
   const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
 
   const displayArticles = currentPosts.map((article) => {
+    console.log(article);
     return (
       <ArticleCard
         className="article-preview"
         key={article.id}
         title={article.title}
         body={article.body}
+        slug={article.slug}
         id={article.id}
+        likes={article.total_likes}
+        author={article.author_full_name}
       />
     );
   });
@@ -76,10 +78,10 @@ function Articles() {
             total={total}
             pageSize={postsPerPage}
             current={page}
-            showSizeChanger
+            showSizeChanger={false}
             showQuickJumper
             onShowSizeChange={onShowSizeChange}
-            pageSizeOptions={[6, 9, 30, 90]}
+            // pageSizeOptions={[6, 9, 30, 90]}
           ></Pagination>
         </div>
       </div>

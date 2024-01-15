@@ -1,11 +1,13 @@
-import data from "../../../fortemtests/data";
+import { Link } from "react-router-dom";
 import { LikeTwoTone } from "@ant-design/icons";
 import article1 from "../../../../images/articles/article1.png";
+import { ROUTES } from "../../consts/routes";
 import "./ArticleCard.scss";
-import Image from "../image/Image";
+
+
 
 function ArticleCard(props) {
-  const { className, title, body, id} = props;
+  const { className, title, body, id, slug, likes, author } = props;
   return (
     <div className={className}>
       <div className="card">
@@ -19,13 +21,14 @@ function ArticleCard(props) {
         <div className="article__info">
           <div className="likes">
             <LikeTwoTone twoToneColor="#eb2f96" className="likes__icon icon" />
-            <span>{id}</span>
+            <span>{likes}</span>
           </div>
           <span className="article__date">10 Дек 2023</span>
           <span className="article__author">
-            {title.split(" ").slice(0, 2).join(" ")}
+            {author}
           </span>
         </div>
+        <Link to={`${ROUTES.MAIN}${slug}`}>Читать статью</Link>
       </div>
     </div>
   );
