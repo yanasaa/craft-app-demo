@@ -14,7 +14,7 @@ function Hero() {
               Cервис для ремесленников и для тех, кто хочет научиться чему-то
               новому
             </p>
-            <SearchBar className="search-bar_hero" isActive={true} />
+            {/* <SearchBar className="search-bar_hero" isActive={true} /> */}
             <div className="hero__tags">
               <div className="layout-2-columns hero__tags_layout">
                 {unicTags.map(

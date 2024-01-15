@@ -66,12 +66,12 @@ function Articles() {
               <div className="article-gallery layout-3-columns">
                 {displayArticles}
               </div>
-              <div className="slider__button slider__button_left">
+              {/* <div className="slider__button slider__button_left">
                 <span className="icon slider__icon_left slider__icon"></span>
               </div>
               <div className="slider__button slider__button_right">
                 <span className="icon slider__icon_right slider__icon"></span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

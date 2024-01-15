@@ -3,31 +3,33 @@
 @import "../../../../sass/abstracts/placeholders";
 
 .search-bar {
-  border: 1px solid transparent;
-  border: 1px solid $color-primary-light-header;
   margin-right: 0;
   background-color: $color-primary-light-header;
-  margin: 0 auto;
-  width: 100%;
+  width: 70%;
   justify-content: flex-end;
   display: flex;
   margin: 0 auto;
   &_hero {
-    border: 1px solid $color-primary;
-    background-color: $color-primary;
     display: flex;
     margin: 0 auto;
+    border: 1px solid $color-primary;
+    background-color: $color-bg-light;
+    justify-content: flex-end;
+  }
+  &_header {
+    margin-left: 20px;
   }
 }
 
 .search__input {
-  background-color: $color-primary-light-header;
-  background-color: $color-bg-light;
-  width: 250px;
-  border: none;
   margin-right: 10px;
   border-radius: 5px;
-  @extend %transition;
+  background-color: $color-bg-light;
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  padding: 5px 10px;
+  @extend %font-sec;
   &_hero {
     background-color: $color-bg-light;
     border: none;
@@ -36,14 +38,18 @@
     padding: 5px 10px;
     @extend %font-sec;
   }
+  &_header {
+    margin-left: 20px;
+  }
+}
+
+.search-bar_header .search__icons {
+  border-radius: 4px;
 }
 
 .search__icons {
   cursor: pointer;
-  text-align: center;
   margin-right: 0;
-  background-color: $color-primary-light-header;
-  border: none;
   &_hero {
     background-color: $color-primary;
   }
@@ -51,11 +57,5 @@
 
 .search__icon {
   vertical-align: text-top;
-  border: none;
-  width: 32px;
-  height: 32px;
   display: inline-block;
-  background-size: 100%;
-  background-position: center;
-  margin: 0;
 }

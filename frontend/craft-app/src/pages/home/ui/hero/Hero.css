@@ -2,14 +2,10 @@
   transition: all 0.3s ease-out;
 }
 
-.search__input {
-  font-family: "Roboto", sans-serif;
-}
-
 .hero {
   background-image: url("../../../../images/backgrounds/mainbg-1.png");
   background-size: cover;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 }
 
 .hero__wrapper {
@@ -34,39 +30,6 @@
   text-align: left;
 }
 
-.search-bar_hero {
-  margin: 0 auto;
-  border: 1px solid #ad2e95;
-  background-color: #fff;
-  display: flex;
-  margin: 0 auto;
-  justify-content: flex-end;
-}
-
-.search__input {
-  background-color: #fff;
-  border: none;
-  outline: none;
-  flex-grow: 1;
-  padding: 5px 10px;
-}
-
-.search__icons {
-  background-color: #ad2e95;
-  cursor: pointer;
-  text-align: center;
-}
-
-.search__icon {
-  display: block;
-  width: 15px;
-  height: 15px;
-  background-image: url("../../../../images/icons/Vector.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin: 15px;
-}
-
 .hero__title {
   border-radius: 16px 16px 0 0;
   padding: 10px 40px;
@@ -88,7 +51,7 @@
 
 .hero__tags_layout {
   gap: 30px;
-  padding: 50px 0 20px;
+  padding-bottom: 20px;
 }
 
 .tag {
