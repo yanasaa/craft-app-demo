@@ -19,7 +19,7 @@ function Header() {
         </Link>
         <div className="header__buttons">
           {/* <button className="button button_bordered" disabled>Регистрация</button> */}
-          <SearchBar className="search-bar" />
+          <SearchBar className="search-bar search-bar_header" />
           <Button btnText="Войти" onClick={handleClick} />
         </div>
       </div>

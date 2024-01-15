@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .articles {
-  margin-bottom: 200px;
+  padding-top: 100px;
+  margin-bottom: 100px;
 }
 
 .articles__wrapper {
@@ -81,4 +82,9 @@
 .slider__button_right {
   transform: rotate(180deg);
   right: -100px;
+}
+
+.pagination {
+  margin: 20px auto;
+  text-align: center;
 }/*# sourceMappingURL=Articles.css.map */
