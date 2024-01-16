@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .articles {
   padding-top: 100px;
   margin-bottom: 100px;
@@ -11,59 +10,10 @@
   gap: 30px;
 }
 
-.card {
-  cursor: pointer;
-}
-
-.article-preview {
-  background-color: #fff;
-  text-align: left;
-  padding: 19px;
-  border-radius: 20px;
-  background: #EDDCE4;
-  box-shadow: 1px 1px 2px 0px rgba(255, 255, 255, 0.25);
-  -webkit-backdrop-filter: blur(12.5px);
-          backdrop-filter: blur(12.5px);
-  margin-bottom: 30px;
-}
-.article-preview:hover {
-  background: rgba(88, 64, 82, 0.25);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.article-preview__image img {
-  width: 100%;
-  padding: 0;
-}
-
-.article__title {
-  color: #050002;
-  text-align: left;
-  -webkit-line-clamp: 2; /* Число отображаемых строк */
-  display: -webkit-box; /* Включаем флексбоксы */
-  -webkit-box-orient: vertical; /* Вертикальная ориентация */
-  overflow: hidden;
-}
-
-.article__text {
-  height: 100%;
-  color: #333333;
-  font-size: 1.4rem;
-  line-height: 2.4rem;
-  font-weight: 400;
-  font-style: normal;
-  -webkit-line-clamp: 2; /* Число отображаемых строк */
-  display: -webkit-box; /* Включаем флексбоксы */
-  -webkit-box-orient: vertical; /* Вертикальная ориентация */
-  overflow: hidden;
-}
-
-.article__info {
+.article-gallery {
   display: flex;
-  justify-content: space-between;
-}
-.article__info > * {
-  color: #BFBFBF;
+  flex-wrap: wrap;
+  gap: 30px;
 }
 
 .slider {

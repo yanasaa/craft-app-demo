@@ -1,17 +1,57 @@
+@import "../../../../sass/abstracts/mixins";
+@import "../../../../sass/abstracts/constants";
+
+.article-preview {
+  background-color: #fff;
+  text-align: left;
+  padding: 19px;
+  border-radius: 20px;
+  background: $color-primary-light-header;
+  box-shadow: 1px 1px 2px 0px rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12.5px);
+  margin-bottom: 30px;
+  &:hover {
+    background: rgba(88, 64, 82, 0.25);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+}
 .article-preview .card {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 320px;
+  height: 420px;
+}
+.article-preview__image img {
+  width: 100%;
+  padding: 0;
 }
 
-.article-preview .card-body .article__text {
+.article-preview__title {
+  color: #050002;
+  text-align: left;
+  -webkit-line-clamp: 2; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+.article-preview__text {
+  overflow: hidden;
+  // text-overflow: ellipsis;
   display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+   color: #333333;
+  @include font(1.4rem, 2.4rem, 400);
   flex-grow: 1;
 }
 
-.article__info {
+.article-preview-card__info {
   vertical-align: bottom;
+  display: flex;
+  justify-content: space-between;
+  & > * {
+    color: $color-text-grey;
+  }
 }

@@ -42,6 +42,7 @@ function Articles() {
         id={article.id}
         likes={article.total_likes}
         author={article.author_full_name}
+        imgSrc={article.preview}
       />
     );
   });
@@ -60,9 +61,7 @@ function Articles() {
         <div className="articles__wrapper">
           <div className="wrapper">
             <div className="slider">
-              <div className="article-gallery layout-3-columns">
-                {displayArticles}
-              </div>
+              <div className="article-gallery">{displayArticles}</div>
               {/* <div className="slider__button slider__button_left">
                 <span className="icon slider__icon_left slider__icon"></span>
               </div>
