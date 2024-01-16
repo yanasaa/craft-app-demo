@@ -1,0 +1,52 @@
+@import "../../sass/abstracts/constants";
+
+.article {
+  padding-top: 100px;
+}
+.article__wrapper {
+  max-width: 764px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+img {
+  width: 100%;
+}
+.article__title {
+  color: $color-text-dark-grey;
+  text-align: left;
+  padding: 0;
+  margin-bottom: 50px;
+}
+.article__info {
+  display: flex;
+  align-items: center;
+}
+.article__author {
+  border-right: 1px solid $color-text-grey;
+  text-align: left;
+  padding-right: 12px;
+  margin-right: 12px;
+}
+
+.article__line {
+  border-bottom: 1px solid $color-text-grey;
+  margin-bottom: 50px;
+}
+
+.article__feedback,
+.article__share {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.article__feedback{
+  margin-bottom: 50px;
+  & >*{
+    cursor: pointer;
+  }
+}
+.share__icon {
+  margin-right: 12px;
+  
+}

@@ -1,6 +1,5 @@
 import { Pagination } from "antd";
 import { useEffect, useState } from "react";
-import data from "../../../../components/fortemtests/data";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
@@ -12,7 +11,12 @@ function Articles() {
 
   useEffect(() => {
     const getAllArticles = () => {
-      fetch("https://jsonplaceholder.typicode.com/posts")
+      fetch("http://84.38.183.195/api/v1/posts", {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
         .then((response) => response.json())
         .then((json) => {
           setArticles(json);
@@ -22,18 +26,23 @@ function Articles() {
     getAllArticles();
   }, []);
 
-  console.log(articles);
-  const indexOfLastPage = page + postsPerPage;
-  const indexOfFirstPage = indexOfLastPage - postsPerPage;
+  const indexOfFirstPage = page * postsPerPage - postsPerPage;
+  const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
 
   const displayArticles = currentPosts.map((article) => {
+    console.log(article);
     return (
       <ArticleCard
         className="article-preview"
         key={article.id}
         title={article.title}
         body={article.body}
+        slug={article.slug}
+        id={article.id}
+        likes={article.total_likes}
+        author={article.author_full_name}
+        imgSrc={article.preview}
       />
     );
   });
@@ -41,20 +50,9 @@ function Articles() {
   const changePage = (value) => {
     setPage(value);
   };
-  const onShowSizeChange = (current, pageSize) => {
+  const onShowSizeChange = (curent, pageSize) => {
     setPostsPerPage(pageSize);
   };
-
-  // -----------Может пригодиться для слайдера
-  // const itemRender = (current, type, originalElement) => {
-  //   if (type === "prev") {
-  //     return <a>Previous</a>;
-  //   }
-  //   if (type === "next") {
-  //     return <a>Next</a>;
-  //   }
-  //   return originalElement;
-  // };
 
   return (
     <section className="articles" id="articles">
@@ -63,9 +61,7 @@ function Articles() {
         <div className="articles__wrapper">
           <div className="wrapper">
             <div className="slider">
-              <div className="article-gallery layout-3-columns">
-                {displayArticles}
-              </div>
+              <div className="article-gallery">{displayArticles}</div>
               {/* <div className="slider__button slider__button_left">
                 <span className="icon slider__icon_left slider__icon"></span>
               </div>
@@ -81,11 +77,10 @@ function Articles() {
             total={total}
             pageSize={postsPerPage}
             current={page}
-            showSizeChanger
+            showSizeChanger={false}
             showQuickJumper
             onShowSizeChange={onShowSizeChange}
-            pageSizeOptions={[6, 9, 30, 90]}
-            // itemRender={itemRender}
+            // pageSizeOptions={[6, 9, 30, 90]}
           ></Pagination>
         </div>
       </div>

@@ -1,34 +1,34 @@
-import data from "../../../fortemtests/data";
+import { Link } from "react-router-dom";
 import { LikeTwoTone } from "@ant-design/icons";
 import article1 from "../../../../images/articles/article1.png";
+import { ROUTES } from "../../consts/routes";
 import "./ArticleCard.scss";
-import Image from "../image/Image";
 
-function ArticleCard(props) {
-  const { className, title, body } = props;
+function articleCard(props) {
+  const { className, title, body, id, slug, likes, author, imgSrc } = props;
   return (
     <div className={className}>
       <div className="card">
         <div className="article-preview__image">
-          <img src={article1} alt="Керамика" />
+          <img src={imgSrc ? imgSrc : article1} alt={title} />
         </div>
         <div className="card-body">
-          <h3 className="article__title">{title}</h3>
-          <p className="article__text">{body}</p>
+          <h3 className="article-preview__title">{title}</h3>
+          {/* <p className="article-preview__text" dangerouslySetInnerHTML={{ __html: body }}></p> */}
+          <p className="article-preview__text">{body}</p>
         </div>
-        <div className="article__info">
+        <div className="article-preview-preview__info">
           <div className="likes">
             <LikeTwoTone twoToneColor="#eb2f96" className="likes__icon icon" />
-            <span>{(Math.random() * 1000).toFixed(0)}</span>
+            <span>{likes}</span>
           </div>
-          <span className="article__date">10 Дек 2023</span>
-          <span className="article__author">
-            {title.split(" ").slice(0, 2).join(" ")}
-          </span>
+          <span className="article-preview__date">10 Дек 2023</span>
+          <span className="article-preview__author">{author}</span>
         </div>
+        <Link to={`${ROUTES.MAIN}${slug}`}>Читать статью</Link>
       </div>
     </div>
   );
 }
 
-export default ArticleCard;
+export default articleCard;
