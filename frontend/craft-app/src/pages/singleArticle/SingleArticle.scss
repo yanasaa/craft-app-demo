@@ -1,0 +1,9 @@
+@import "../../sass/abstracts/constants";
+
+.article__title {
+  color: $color-text-dark-grey;
+}
+
+.article__line {
+    border-bottom: 1px solid $color-text-grey;
+}
