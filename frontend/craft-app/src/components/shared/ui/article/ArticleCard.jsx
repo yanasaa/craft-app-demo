@@ -1,16 +1,20 @@
-import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { LikeTwoTone } from "@ant-design/icons";
-import article1 from "../../../../images/articles/article1.png";
 import { ROUTES } from "../../consts/routes";
 import "./ArticleCard.scss";
 
-function articleCard(props) {
+function ArticleCard(props) {
   const { className, title, body, id, slug, likes, author, imgSrc } = props;
+  let navigate = useNavigate();
+  function handleClick() {
+    navigate(`${ROUTES.MAIN}${slug}`);
+    window.scrollTo(0, 0);
+  }
   return (
-    <div className={className}>
+    <div className={className} onClick={handleClick}>
       <div className="card">
         <div className="article-preview__image">
-          <img src={imgSrc ? imgSrc : article1} alt={title} />
+          <img src={imgSrc ? imgSrc : 'https://uploads.dailydot.com/2018/10/olli-the-polite-cat.jpg?q=65&auto=format&w=2270&ar=2:1&fit=crop'} alt={title} />
         </div>
         <div className="card-body">
           <h3 className="article-preview__title">{title}</h3>
@@ -25,10 +29,9 @@ function articleCard(props) {
           <span className="article-preview__date">10 Дек 2023</span>
           <span className="article-preview__author">{author}</span>
         </div>
-        <Link to={`${ROUTES.MAIN}${slug}`}>Читать статью</Link>
       </div>
     </div>
   );
 }
 
-export default articleCard;
+export default ArticleCard;
