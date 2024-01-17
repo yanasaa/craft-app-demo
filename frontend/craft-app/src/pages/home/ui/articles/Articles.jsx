@@ -29,9 +29,7 @@ function Articles() {
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
-
   const displayArticles = currentPosts.map((article) => {
-    console.log(article);
     return (
       <ArticleCard
         className="article-preview"
@@ -43,6 +41,7 @@ function Articles() {
         likes={article.total_likes}
         author={article.author_full_name}
         imgSrc={article.preview}
+        publish={article.publish}
       />
     );
   });

@@ -22,7 +22,7 @@ const DropdownContent = ({ className }) => {
         </HashLink>
       </li>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#onboarding`}>
+        <HashLink className="dropdown-item" href={`${ROUTES.MAIN}#onboarding`}>
           Как это работает
         </HashLink>
       </li>

@@ -8,6 +8,10 @@
   text-align: left;
 }
 
+img {
+  width: 100%;
+}
+
 .article__title {
   color: #1E212C;
   text-align: left;
@@ -24,9 +28,28 @@
   border-right: 1px solid #BFBFBF;
   text-align: left;
   padding-right: 12px;
+  margin-right: 12px;
 }
 
 .article__line {
   border-bottom: 1px solid #BFBFBF;
   margin-bottom: 50px;
+}
+
+.article__feedback,
+.article__share {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article__feedback {
+  margin-bottom: 50px;
+}
+.article__feedback > * {
+  cursor: pointer;
+}
+
+.share__icon {
+  margin-right: 12px;
 }/*# sourceMappingURL=SingleArticle.css.map */

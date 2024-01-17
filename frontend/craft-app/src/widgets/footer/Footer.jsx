@@ -8,7 +8,7 @@ function Footer() {
         <div className="footer__layout-4-columns layout-4-columns">
           <div className="home-links">
             <h3 className="footer__title">Главная</h3>
-            <DropdownContent />
+            <DropdownContent className="footer__home-links"/>
           </div>
           <div className="about-us-links">
             <h3 className="footer__title">О нас</h3>
