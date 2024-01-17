@@ -2,5 +2,6 @@ export const ROUTES = {
   MAIN: "/",
   ABOUT: "/about",
   ENTER: "/enter",
-  ARTICLE: '/article'
+  ARTICLE: "/article",
+  CREATE: "/create",
 };
