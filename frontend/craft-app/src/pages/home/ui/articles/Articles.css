@@ -1,7 +1,6 @@
 .articles {
   padding-top: 100px;
   margin-bottom: 100px;
-  min-height: 1400px;
 }
 
 .articles__wrapper {
@@ -9,6 +8,7 @@
   background-size: cover;
   padding: 50px 50px 15px;
   gap: 30px;
+  min-height: 1100px;
 }
 
 .article-gallery {

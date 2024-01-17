@@ -19,13 +19,14 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   max-width: 320px;
   height: 420px;
 }
 
 .article-preview__image {
 height: 220px;
+margin-bottom: 10px;
 }
 .article-preview__image img {
   width: 100%;
@@ -54,11 +55,13 @@ height: 220px;
   flex-grow: 1;
 }
 
-.article-preview-card__info {
-  vertical-align: bottom;
+.article-preview__info {
   display: flex;
   justify-content: space-between;
-  & > * {
+  flex-wrap: wrap;
+   & > * {
     color: $color-text-grey;
+    padding: 0;
+    margin: 0;
   }
 }

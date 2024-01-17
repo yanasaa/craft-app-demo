@@ -4,11 +4,21 @@ import { ROUTES } from "../../consts/routes";
 import "./ArticleCard.scss";
 
 function ArticleCard(props) {
-  const { className, title, body, id, slug, likes, author, imgSrc } = props;
+  const { className, title, body, slug, likes, author, imgSrc, publish } = props;
   let navigate = useNavigate();
   function handleClick() {
     navigate(`${ROUTES.MAIN}${slug}`);
     window.scrollTo(0, 0);
+  }
+
+  function getDate(date) {
+    let myDate = new Date(date);
+    const options = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    };
+    return myDate.toLocaleString("ru-RU", options);
   }
   return (
     <div className={className} onClick={handleClick}>
@@ -21,13 +31,13 @@ function ArticleCard(props) {
           {/* <p className="article-preview__text" dangerouslySetInnerHTML={{ __html: body }}></p> */}
           <p className="article-preview__text">{body}</p>
         </div>
-        <div className="article-preview-preview__info">
+        <div className="article-preview__info">
           <div className="likes">
             <LikeTwoTone twoToneColor="#eb2f96" className="likes__icon icon" />
             <span>{likes}</span>
           </div>
-          <span className="article-preview__date">10 Дек 2023</span>
-          <span className="article-preview__author">{author}</span>
+          <span className="article-preview__date">{publish ? getDate(publish) : ""}</span>
+          <p className="article-preview__author">{author}</p>
         </div>
       </div>
     </div>

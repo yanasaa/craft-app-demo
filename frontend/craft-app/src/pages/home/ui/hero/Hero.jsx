@@ -12,7 +12,7 @@ function Hero() {
     getAllTags();
   });
 
-  function getUnicTags(tags) {
+  function getUniqTags(tags) {
     return Array.from(new Set(tags.map((el) => el.tag)));
   }
 
@@ -29,7 +29,7 @@ function Hero() {
             {/* <SearchBar className="search-bar_hero" isActive={true} /> */}
             <div className="hero__tags">
               <div className="layout-2-columns hero__tags_layout">
-                {(tags ? tags : getUnicTags(tags)).slice(0, 8).map((el) => (
+                {(tags ? tags : getUniqTags(tags)).slice(0, 8).map((el) => (
                   <div className="tag" key={el.id}>
                     <h3 className="tag__title">{el.name}</h3>
                   </div>

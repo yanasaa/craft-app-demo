@@ -17,13 +17,13 @@ function SingleArticle() {
   }, [slug]);
 
   function getDate(date) {
-    date = new Date();
+    let myDate = new Date(date);
     const options = {
       year: "numeric",
       month: "long",
       day: "numeric",
     };
-    return date.toLocaleString("ru-RU", options);
+    return myDate.toLocaleString("ru-RU", options);
   }
 
   console.log(article);
@@ -34,7 +34,7 @@ function SingleArticle() {
         <div className="article__info">
           <h3 className="article__author">{article.author_full_name}</h3>
           <p className="article__date">
-            {article.publish ? getDate(article.publish) : ""}
+            {article.publish && getDate(article.publish)}
           </p>
         </div>
       </div>
