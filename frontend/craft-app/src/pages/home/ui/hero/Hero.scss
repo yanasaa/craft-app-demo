@@ -26,10 +26,8 @@
   padding: 0 36px;
   max-width: 563px;
   text-align: left;
+  margin: 0 auto;
 }
-
-
-
 .hero__title {
   border-radius: 16px 16px 0 0;
   padding: 10px 40px;
@@ -42,7 +40,6 @@
 .hero__text {
   @include font(2.4rem, 3.2rem, $weight: 700);
   color: $color-light;
-  margin: 0;
   padding: 15px 0 30px;
 }
 
@@ -52,6 +49,7 @@
 }
 
 .tag {
+  height: 80px;
   display: flex;
   cursor: pointer;
   padding: 15px 20px;
