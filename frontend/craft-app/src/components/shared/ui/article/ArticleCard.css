@@ -19,8 +19,8 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  max-width: 320px;
+  justify-content: space-between;
+  width: 320px;
   height: 420px;
 }
 
@@ -45,6 +45,7 @@
   display: -webkit-box; /* Включаем флексбоксы */
   -webkit-box-orient: vertical; /* Вертикальная ориентация */
   overflow: hidden;
+  height: 4.8rem;
 }
 
 .article-preview__text {
@@ -57,7 +58,7 @@
   line-height: 2.4rem;
   font-weight: 400;
   font-style: normal;
-  flex-grow: 1;
+  height: 4.8rem;
 }
 
 .article-preview__info {

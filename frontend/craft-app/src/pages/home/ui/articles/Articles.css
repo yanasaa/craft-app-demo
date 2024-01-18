@@ -1,6 +1,7 @@
 .articles {
   padding-top: 100px;
   margin-bottom: 100px;
+  position: relative;
 }
 
 .articles__wrapper {
@@ -8,7 +9,7 @@
   background-size: cover;
   padding: 50px 50px 15px;
   gap: 30px;
-  min-height: 1100px;
+  min-height: 1000px;
 }
 
 .article-gallery {
@@ -38,4 +39,11 @@
 .pagination {
   margin: 20px auto;
   text-align: center;
+}
+
+.button.button_colored.articles__filter-btn {
+  position: absolute;
+  padding: 0;
+  font-size: 1rem;
+  margin-left: 10%;
 }/*# sourceMappingURL=Articles.css.map */
