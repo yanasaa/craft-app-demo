@@ -14,9 +14,6 @@ function Header() {
     <header className="header">
       <div className="wrapper header__wrapper">
         <Navigation />
-        <Link to={ROUTES.CREATE}>
-          <span >Создать статью</span>
-        </Link>
         <Link to={"."} reloadDocument>
           <span className="logo header__logo"></span>
         </Link>
