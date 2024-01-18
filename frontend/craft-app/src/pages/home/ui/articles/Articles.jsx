@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
-function Articles() {
+function Articles({categoryId}) {
   const [articles, setArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
@@ -28,7 +28,10 @@ function Articles() {
     getAllArticles();
   }, []);
 
-  console.log(articles);
+  console.log(articles)
+
+// const filterUrl = `http://84.38.183.195/api/v1/category/${2}/`
+// const searchUrl = `http://84.38.183.195/api/v1/posts/?search=${param}`
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;

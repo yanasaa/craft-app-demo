@@ -1,7 +1,7 @@
 import "./Hero.scss";
 import { useEffect, useState } from "react";
 
-function Hero() {
+function Hero({categoryId, onClickCategory}) {
   const [tags, setTags] = useState([]);
   useEffect(() => {
     const getAllTags = () => {
@@ -29,8 +29,8 @@ function Hero() {
             {/* <SearchBar className="search-bar_hero" isActive={true} /> */}
             <div className="hero__tags">
               <div className="layout-2-columns hero__tags_layout">
-                {(tags ? tags : getUniqTags(tags)).slice(0, 8).map((el) => (
-                  <div className="tag" key={el.id}>
+                {(tags ? tags : getUniqTags(tags)).slice(0, 8).map((el, i) => (
+                  <div className="tag" key={el.id} onClick={() => onClickCategory(el.id)}>
                     <h3 className="tag__title">{el.name}</h3>
                   </div>
                 ))}
