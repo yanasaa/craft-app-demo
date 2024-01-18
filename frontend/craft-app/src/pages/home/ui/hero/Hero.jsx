@@ -10,7 +10,7 @@ function Hero() {
         .then((json) => setTags(json));
     };
     getAllTags();
-  });
+  }, []);
 
   function getUniqTags(tags) {
     return Array.from(new Set(tags.map((el) => el.tag)));

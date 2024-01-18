@@ -32,7 +32,7 @@ function SingleArticle() {
       <div className="article__wrapper">
         <h2 className="article__title">{article.title}</h2>
         <div className="article__info">
-          <h3 className="article__author">{article.author_full_name}</h3>
+          <h3 className="article__author">{article.author_username}</h3>
           <p className="article__date">
             {article.publish && getDate(article.publish)}
           </p>
