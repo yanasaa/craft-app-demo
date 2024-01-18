@@ -1,13 +1,14 @@
-import { Pagination } from "antd";
+import { Pagination, Spin } from "antd";
 import { useEffect, useState } from "react";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 
-function Articles() {
+function Articles({categoryId}) {
   const [articles, setArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const getAllArticles = () => {
@@ -21,10 +22,16 @@ function Articles() {
         .then((json) => {
           setArticles(json);
           setTotal(json.length);
+          setIsLoaded(true);
         });
     };
     getAllArticles();
   }, []);
+
+  console.log(articles)
+
+// const filterUrl = `http://84.38.183.195/api/v1/category/${2}/`
+// const searchUrl = `http://84.38.183.195/api/v1/posts/?search=${param}`
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -35,11 +42,11 @@ function Articles() {
         className="article-preview"
         key={article.id}
         title={article.title}
-        body={article.body}
+        body={article.post_preview}
         slug={article.slug}
         id={article.id}
         likes={article.total_likes}
-        author={article.author_full_name}
+        author={article.author_username}
         imgSrc={article.preview}
         publish={article.publish}
       />
