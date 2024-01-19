@@ -4,14 +4,21 @@ import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 import Button from "../../../../components/shared/ui/button/Button";
 
-function Articles({ categoryId, onClickCategory }) {
+function Articles({
+  categoryId,
+  onClickCategory,
+  searchValue,
+  setSearchValue,
+}) {
+  console.log(searchValue, "articles");
   const [articles, setArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const url = categoryId
     ? `http://84.38.183.195/api/v1/category/${categoryId}`
-    : `http://84.38.183.195/api/v1/posts`;
+    : `http://84.38.183.195/api/v1/posts/?search=${searchValue}`;
+
   useEffect(() => {
     const getAllArticles = () => {
       fetch(url, {
@@ -27,12 +34,9 @@ function Articles({ categoryId, onClickCategory }) {
         });
     };
     getAllArticles();
-  }, [categoryId]);
+  }, [categoryId, searchValue, url]);
 
-  console.log(articles);
-
-  // const filterUrl = `http://84.38.183.195/api/v1/category/${2}/`
-  // const searchUrl = `http://84.38.183.195/api/v1/posts/?search=${param}`
+  const filteredArticles = articles.filter((post) => post.status === "PB");
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -64,7 +68,13 @@ function Articles({ categoryId, onClickCategory }) {
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
-      {!!categoryId && <Button className="articles__filter-btn" btnText="Сбросить фильтры" onClick={() => onClickCategory(0)}/>}
+      {!!categoryId && (
+        <Button
+          className="articles__filter-btn"
+          btnText="Сбросить фильтры"
+          onClick={() => onClickCategory(0)}
+        />
+      )}
       <div className="slider__wrapper">
         <div className="articles__wrapper">
           <div className="wrapper">

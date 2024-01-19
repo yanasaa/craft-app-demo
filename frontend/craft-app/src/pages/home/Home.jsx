@@ -7,19 +7,25 @@ import Onboarding from "./ui/onboarding/Onboarding";
 
 function Home() {
   const [categoryId, setCategoryId] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+
   return (
     <>
       <Hero
         categoryId={categoryId}
         onClickCategory={(id) => {
           setCategoryId(id);
-          window.scrollTo(0, 2000);
+          window.scrollTo(0, 2150);
         }}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       <Advantages />
       <Articles
         categoryId={categoryId}
         onClickCategory={(id) => setCategoryId(id)}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
       />
       <Onboarding />
       <ContactUs />

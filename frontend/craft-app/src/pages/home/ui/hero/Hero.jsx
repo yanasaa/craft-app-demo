@@ -1,7 +1,8 @@
+import SearchBar from "../../../../components/shared/ui/searchBar/SearchBar";
 import "./Hero.scss";
 import { useEffect, useState } from "react";
 
-function Hero({categoryId, onClickCategory}) {
+function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
   const [tags, setTags] = useState([]);
   useEffect(() => {
     const getAllTags = () => {
@@ -26,11 +27,19 @@ function Hero({categoryId, onClickCategory}) {
               Cервис для ремесленников и для тех, кто хочет научиться чему-то
               новому
             </p>
-            {/* <SearchBar className="search-bar_hero" isActive={true} /> */}
+            <SearchBar
+              className="search-bar_hero"
+              searchValue={searchValue}
+              setSearchValue={setSearchValue}
+            />
             <div className="hero__tags">
               <div className="layout-2-columns hero__tags_layout">
                 {(tags ? tags : getUniqTags(tags)).slice(0, 8).map((el, i) => (
-                  <div className="tag" key={el.id} onClick={() => onClickCategory(el.id)}>
+                  <div
+                    className="tag"
+                    key={el.id}
+                    onClick={() => onClickCategory(el.id)}
+                  >
                     <h3 className="tag__title">{el.name}</h3>
                   </div>
                 ))}
