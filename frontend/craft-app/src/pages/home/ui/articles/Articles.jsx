@@ -36,8 +36,6 @@ function Articles({
     getAllArticles();
   }, [categoryId, searchValue, url]);
 
-  const filteredArticles = articles.filter((post) => post.status === "PB");
-
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
@@ -70,7 +68,7 @@ function Articles({
       <h2 className="articles__title">Статьи Авторов</h2>
       {!!categoryId && (
         <Button
-          className="articles__filter-btn"
+          className="button button_colored articles__filter-btn"
           btnText="Сбросить фильтры"
           onClick={() => onClickCategory(0)}
         />
@@ -97,8 +95,9 @@ function Articles({
             current={page}
             showSizeChanger={false}
             showQuickJumper
+            locale={{ jump_to: "Перейти на", page: "стр" }}
             onShowSizeChange={onShowSizeChange}
-            // pageSizeOptions={[6, 9, 30, 90]}
+            hideOnSinglePage
           ></Pagination>
         </div>
       </div>

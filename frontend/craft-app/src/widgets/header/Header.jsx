@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "./ui/navigation/Navigation";
-import SearchBar from "../../components/shared/ui/searchBar/SearchBar";
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTES } from "../../components/shared/consts/routes";
 import "./Header.scss";
@@ -18,9 +17,8 @@ function Header() {
           <span className="logo header__logo"></span>
         </Link>
         <div className="header__buttons">
-          {/* <button className="button button_bordered" disabled>Регистрация</button> */}
-          <SearchBar className="search-bar search-bar_header" />
-          <Button btnText="Войти" onClick={handleClick} />
+          {/* <SearchBar className="search-bar search-bar_header" /> */}
+          <Button className="button button_colored" btnText="Войти" onClick={handleClick} />
         </div>
       </div>
     </header>
