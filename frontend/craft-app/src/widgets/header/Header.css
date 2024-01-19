@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   background-color: #EDDCE4;
-  padding: 0 40PX;
+  padding: 0 40px;
   box-shadow: 0px 2px 4px 0px rgba(236, 179, 217, 0.5);
   z-index: 1;
 }
@@ -19,13 +19,9 @@
 
 .logo {
   display: block;
-  background-image: url("../../images/icons/logo.svg");
+  background-image: url("../../components/shared/assets/img/logo.svg");
   width: 67px;
   height: 87px;
-}
-
-.logo-color {
-  fill: #ad2e95;
 }
 
 .logo.header__logo {
@@ -34,7 +30,7 @@
 }
 
 .header__buttons {
-  width: 50%;
+  width: 45%;
   display: flex;
   gap: 30px;
   justify-content: flex-end;

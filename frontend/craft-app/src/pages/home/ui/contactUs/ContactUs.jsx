@@ -1,5 +1,5 @@
 import Button from "../../../../components/shared/ui/button/Button";
-import contactus from "../../../../images/backgrounds/contactus.png";
+import contactus from "../../../../components/shared/assets/img/ui/contactus.png";
 import "./ContactUs.scss";
 import Image from "../../../../components/shared/ui/image/Image";
 import Input from "../../../../components/shared/ui/input/Input";

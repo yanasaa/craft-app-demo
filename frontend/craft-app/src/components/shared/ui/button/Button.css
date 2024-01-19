@@ -15,6 +15,7 @@
   background-color: transparent;
   border: 1px solid #ad2e95;
   color: #ad2e95;
+  cursor: default;
 }
 .button_colored {
   background-color: #ad2e95;

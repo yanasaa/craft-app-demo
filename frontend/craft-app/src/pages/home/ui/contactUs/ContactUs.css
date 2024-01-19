@@ -51,6 +51,9 @@ textarea {
 .contact-us__image {
   text-align: right;
 }
-.contact-us__button {
-  padding: 50px 0;
+.contact-us__image > img {
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  vertical-align: bottom;
 }/*# sourceMappingURL=ContactUs.css.map */

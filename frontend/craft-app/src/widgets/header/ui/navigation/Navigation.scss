@@ -1,29 +1,37 @@
 @import "../../../../sass/abstracts/mixins";
 @import "../../../../sass/abstracts/constants";
-@import '../../../../sass/abstracts/placeholders';
+@import "../../../../sass/abstracts/placeholders";
 
 .navigation {
-    display: flex; 
-    gap: 40px;
- }
- 
- .navigation__link {
-    width: fit-content;
-     text-align: left;
-     padding: 30px 0;
-     @include font(1.8rem, 2.4rem );
-     cursor: pointer;
-     color: $color-primary;
-     @extend %transition;
-     &:hover {
-         text-shadow: 0px 4px 4px $color-primary-light;
-     }
- }
- 
- .dropdown {
-     width: 240px;
-     position: relative;
-     
- }
- 
- 
+  display: flex;
+  gap: 40px;
+}
+
+.navigation__link {
+  width: fit-content;
+  text-align: left;
+  padding: 30px 0;
+  @include font(1.8rem, 2.4rem);
+  cursor: pointer;
+  color: $color-primary;
+  @extend %transition;
+  &:hover {
+    text-shadow: 0px 4px 4px $color-primary-light;
+  }
+}
+
+.dropdown {
+  width: 240px;
+  position: relative;
+}
+
+.navigation__icon {
+  width: 12px;
+  height: 12px;
+  background-image: url("../../../../components/shared/assets/img/icons/navIcon.svg");
+  margin-left: 20px;
+
+  &_opened {
+    transform: rotate(-180deg);
+  }
+}
