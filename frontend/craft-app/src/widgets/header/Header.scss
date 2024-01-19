@@ -1,12 +1,12 @@
 @import "../../sass/abstracts/mixins";
 @import "../../sass/abstracts/constants";
-@import '../../sass/abstracts/placeholders';
+@import "../../sass/abstracts/placeholders";
 
 .header {
   position: sticky;
   top: 0;
   background-color: $color-primary-light-header;
-  padding: 0 40PX;
+  padding: 0 40px;
   box-shadow: 0px 2px 4px 0px rgba(236, 179, 217, 0.5);
   z-index: 1;
 }
@@ -14,32 +14,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
-
 .header__navigation {
   margin-right: auto;
 }
-
 .logo {
   display: block;
-  background-image: url('../../images/icons/logo.svg');
+  background-image: url("../../components/shared/assets/img/logo.svg");
   width: 67px;
   height: 87px;
 }
-
-.logo-color {
-  fill: $color-primary;
-}
-
 .logo.header__logo {
   margin: 15px 0 10px auto;
   flex-grow: 1;
 }
-
 .header__buttons {
-  
-  width: 50%;
+  width: 45%;
   display: flex;
   gap: 30px;
   justify-content: flex-end;

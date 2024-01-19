@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import Input from "../input/Input";
 import "./SearchBar.scss";
 
 function SearchBar(props) {
@@ -26,6 +24,7 @@ function SearchBar(props) {
           className="icon search__icon"
           title="Найти"
           style={{ fontSize: "32px", color: "#ad2e95" }}
+          onClick={() => window.scrollTo(0, 2150)}
         />
       </div>
     </div>

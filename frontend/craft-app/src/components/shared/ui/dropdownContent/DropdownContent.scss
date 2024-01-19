@@ -10,7 +10,6 @@
   background-color: $color-bg-light;
   @include font(1.4rem, 2.4rem, 400);
 }
-
 .dropdown__content.navigation__dropdown .dropdown-item {
   display: block;
   cursor: pointer;
@@ -20,5 +19,6 @@
   &:hover {
     background-color: $color-primary-light-header;
     color: $color-primary;
+    border-right: 3px solid $color-primary;
   }
 }

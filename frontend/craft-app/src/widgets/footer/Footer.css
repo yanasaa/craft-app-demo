@@ -37,13 +37,34 @@
   justify-content: space-between;
   padding: 16px 0;
 }
-.social-icons > * {
-  vertical-align: text-top;
-  background-color: rgba(173, 46, 149, 0.7);
+
+.mobile-app__icon {
+  width: 162px;
+  height: 48px;
+  background-image: url("../../components/shared/assets/img/icons/google-play.svg");
+}
+
+.social-icon {
   border-radius: 5px;
   width: 32px;
   height: 32px;
-  padding: 8px;
+  padding: 5px;
+  border: 1px solid #ad2e95;
+  background-size: fill;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.social-icon_facebook {
+  background-image: url("../../components/shared/assets/img/icons/facebook.svg");
+}
+.social-icon_instagram {
+  background-image: url("../../components/shared/assets/img/icons/instagram.svg");
+}
+.social-icon_telegram {
+  background-image: url("../../components/shared/assets/img/icons/telegram.svg");
+}
+.social-icon_youtube {
+  background-image: url("../../components/shared/assets/img/icons/youtube.svg");
 }
 
 .footer__home-links li > a {

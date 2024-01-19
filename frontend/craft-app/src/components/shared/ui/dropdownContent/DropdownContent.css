@@ -21,4 +21,5 @@
 .dropdown__content.navigation__dropdown .dropdown-item:hover {
   background-color: #EDDCE4;
   color: #ad2e95;
+  border-right: 3px solid #ad2e95;
 }/*# sourceMappingURL=DropdownContent.css.map */

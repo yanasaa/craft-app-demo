@@ -1,5 +1,5 @@
 import Button from "../../../../components/shared/ui/button/Button";
-import contactus from "../../../../images/backgrounds/contactus.png";
+import contactus from "../../../../components/shared/assets/img/ui/contactus.png";
 import "./ContactUs.scss";
 import Image from "../../../../components/shared/ui/image/Image";
 import Input from "../../../../components/shared/ui/input/Input";
@@ -17,12 +17,14 @@ function ContactUS() {
             <form>
               <div className="layout-2-columns contact-us__line">
                 <Input
+                  disabled={true}
                   className="input contact-us__input"
                   type="text"
                   name="name"
                   placeholder="Имя"
                 />
                 <Input
+                  disabled={true}
                   className="input contact-us__input"
                   type="email"
                   name="email"
@@ -30,15 +32,18 @@ function ContactUS() {
                 />
               </div>
               <textarea
+                disabled
                 name="question"
                 placeholder="Текст сообщения"
                 className="input contact-us__line"
               ></textarea>
               <div className="contact-us__button ">
                 <Button
+                  onClick={(e) => e.preventDefault()}
                   btnText="Отправить"
                   type="submit"
-                  className="button button_bordered"
+                  className="button button_bordered footer__btn"
+                  disabled
                 />
               </div>
             </form>

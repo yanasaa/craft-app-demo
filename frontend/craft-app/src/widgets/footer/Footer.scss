@@ -36,13 +36,34 @@
   display: flex;
   justify-content: space-between;
   padding: 16px 0;
-  & > * {
-    vertical-align: text-top;
-    background-color: $color-hovered-primary;
-    border-radius: 5px;
-    width: 32px;
-    height: 32px;
-    padding: 8px;
+}
+
+.mobile-app__icon {
+  width: 162px;
+  height: 48px;
+  background-image: url("../../components/shared/assets/img/icons/google-play.svg");
+}
+.social-icon {
+  border-radius: 5px;
+  width: 32px;
+  height: 32px;
+  padding: 5px;
+  border: 1px solid $color-primary;
+  background-size: fill;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  &_facebook {
+    background-image: url("../../components/shared/assets/img/icons/facebook.svg");
+  }
+  &_instagram {
+    background-image: url("../../components/shared/assets/img/icons/instagram.svg");
+  }
+  &_telegram {
+    background-image: url("../../components/shared/assets/img/icons/telegram.svg");
+  }
+  &_youtube {
+    background-image: url("../../components/shared/assets/img/icons/youtube.svg");
   }
 }
 

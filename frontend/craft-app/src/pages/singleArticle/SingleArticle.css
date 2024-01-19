@@ -52,4 +52,11 @@ img {
 
 .share__icon {
   margin-right: 12px;
+}
+
+.likes__icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: baseline;
 }/*# sourceMappingURL=SingleArticle.css.map */

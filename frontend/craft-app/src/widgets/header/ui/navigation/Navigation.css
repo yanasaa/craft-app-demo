@@ -26,4 +26,14 @@
 .dropdown {
   width: 240px;
   position: relative;
+}
+
+.navigation__icon {
+  width: 12px;
+  height: 12px;
+  background-image: url("../../../../components/shared/assets/img/icons/navIcon.svg");
+  margin-left: 20px;
+}
+.navigation__icon_opened {
+  transform: rotate(-180deg);
 }/*# sourceMappingURL=Navigation.css.map */

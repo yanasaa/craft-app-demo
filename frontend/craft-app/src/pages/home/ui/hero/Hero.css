@@ -3,7 +3,7 @@
 }
 
 .hero {
-  background-image: url("../../../../images/backgrounds/mainbg-1.png");
+  background-image: url("../../../../components/shared/assets/img/ui/mainbg-1.png");
   background-size: cover;
   margin-bottom: 100px;
 }
@@ -22,7 +22,6 @@
   background: rgba(237, 220, 228, 0.25);
   -webkit-backdrop-filter: blur(11.8754043579px);
           backdrop-filter: blur(11.8754043579px);
-  min-height: 690px;
 }
 
 .hero__content {
@@ -53,6 +52,7 @@
 .hero__tags_layout {
   gap: 30px;
   padding-bottom: 20px;
+  min-height: 490px;
 }
 
 .tag {
