@@ -1,0 +1,45 @@
+@import "../../sass/abstracts/constants";
+
+.new-article {
+  background-image: url("../../components/shared/assets/img/ui/articlebg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 0 90px;
+  text-align: left;
+}
+
+.new-article_wrapper > * {
+  text-align: left;
+  padding-left: 0;
+}
+
+.new-article__form * {
+  text-align: left;
+  color: $color-primary;
+  margin-bottom: 2rem;
+}
+
+.input_new-article {
+  background-color: $color-bg-light;
+  color: $color-text-dark;
+  width: 100%;
+  min-height: 10rem;
+  vertical-align: text-top;
+  margin-bottom: 3rem;
+}
+
+.textarea__new-article {
+  min-height: 80rem;
+}
+.new-article__load-img {
+  width: 39rem;
+  margin: 0 auto;
+  & > * {
+    text-align: center;
+  }
+}
+.img-loader {
+  background-color: $color-bg-light;
+  margin: 0 auto;
+  padding: 4rem;
+}
