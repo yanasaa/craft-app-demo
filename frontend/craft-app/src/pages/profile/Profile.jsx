@@ -37,7 +37,6 @@ const Profile = () => {
         });
     };
     getUserProfile();
-    
   }, []);
   useEffect(() => {
     const getUserArticles = () => {
@@ -55,8 +54,6 @@ const Profile = () => {
     };
     getUserArticles();
   }, []);
-
-  
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -87,7 +84,7 @@ const Profile = () => {
 
   return (
     <section className="profile">
-      {console.log(userArticles)}
+      {console.log(userProfile)}
       <div className="profile__wrapper">
         <div className="wrapper">
           <div className="profile__info">
@@ -128,7 +125,7 @@ const Profile = () => {
               <div className="user-info__text">
                 <h2 className="user-info__name">{`${userProfile.first_name} ${userProfile.last_name}`}</h2>
                 <div className="user-info__data">
-                  <h3>NO LOGIN</h3>
+                  <h3>{userProfile.user}</h3>
                   <h3>{userProfile.gender}</h3>
                   <h3>{userProfile.email}</h3>
                 </div>
@@ -139,30 +136,27 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          </div>
-          <h2>Мои статьи</h2>
-          <div className="profile__articles">
-            <div className="wrapper">
-            <div className="article-gallery">{displayArticles}</div>
-            </div>
-            
-          </div>
-        
         </div>
-      
+        <h2>Мои статьи</h2>
+        <div className="profile__articles">
+          <div className="wrapper">
+            <div className="article-gallery">{displayArticles}</div>
+          </div>
+        </div>
+      </div>
+
       <div className="pagination">
-              <Pagination
-                onChange={changePage}
-                total={total}
-                pageSize={postsPerPage}
-                current={page}
-                showSizeChanger={false}
-                showQuickJumper
-                locale={{ jump_to: "Перейти на", page: "стр" }}
-                onShowSizeChange={onShowSizeChange}
-                
-              ></Pagination>
-            </div>
+        <Pagination
+          onChange={changePage}
+          total={total}
+          pageSize={postsPerPage}
+          current={page}
+          showSizeChanger={false}
+          showQuickJumper
+          locale={{ jump_to: "Перейти на", page: "стр" }}
+          onShowSizeChange={onShowSizeChange}
+        ></Pagination>
+      </div>
     </section>
   );
 };
