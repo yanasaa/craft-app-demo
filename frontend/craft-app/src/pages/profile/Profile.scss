@@ -1,0 +1,92 @@
+@import "../../sass/abstracts/_constants.scss";
+
+.profile {
+  margin-bottom: 15rem;
+}
+.profile__wrapper {
+  background-image: url("../../components/shared/assets/img/ui/profilebg.png");
+  background-repeat: no-repeat;
+  background-color: $color-secondary;
+}
+.profile__info {
+  padding-top: 5rem;
+  display: flex;
+  align-items: flex-end;
+}
+.profile__user-card {
+  background-color: $color-bg-light;
+  padding: 3rem;
+  width: 32rem;
+}
+.user-card__img {
+  width: 26rem;
+  margin-bottom: 3.5rem;
+  & > img {
+    width: 100%;
+    object-fit: cover;
+  }
+}
+.user-card__info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.item__number {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  & > * {
+    color: $color-primary;
+  }
+}
+
+.user-card__info .item__text {
+  margin: 0;
+}
+
+.user-card_btn {
+  display: inline-block;
+  font-weight: normal;
+  padding: 8px;
+  margin: 0;
+  white-space: nowrap;
+}
+.user-info {
+  flex-basis: 100;
+  flex-grow: 1;
+  padding: 5rem 0 0 4rem;
+  color: $color-primary;
+}
+.user-info__text {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 5rem;
+}
+.user-info__name {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+.user-info__data > h3 {
+  text-align: left;
+  margin-bottom: 2rem;
+}
+.user-info__story {
+  & > * {
+    text-align: left;
+  }
+}
+.story__text {
+  margin: 0;
+}
+
+.profile__articles {
+  background-image: url('../../components/shared/assets/img/ui/articlebg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 30px;
+} 
