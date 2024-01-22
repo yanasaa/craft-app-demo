@@ -8,6 +8,7 @@ import SignIn from "./pages/signIn/SignIn";
 import { ROUTES } from "./components/shared/consts/routes";
 import { SingleArticle } from "./pages/singleArticle/SingleArticle";
 import CreateArticle from "./pages/createArticle/CreateArticle";
+import Profile from "./pages/profile/Profile";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path={ROUTES.ENTER} element={<SignIn />} />
           <Route path={ROUTES.CREATE} element={<CreateArticle />} />
           <Route path="/:slug" element={<SingleArticle />} />
+          <Route path={ROUTES.PROFILE} element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

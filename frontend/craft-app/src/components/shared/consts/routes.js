@@ -4,4 +4,5 @@ export const ROUTES = {
   ENTER: "/enter",
   ARTICLE: "/article",
   CREATE: "/create",
+  PROFILE: "/profile",
 };

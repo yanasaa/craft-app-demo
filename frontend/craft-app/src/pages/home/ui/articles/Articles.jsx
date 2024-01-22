@@ -10,7 +10,7 @@ function Articles({
   searchValue,
   setSearchValue,
 }) {
-  console.log(searchValue, "articles");
+  
   const [articles, setArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
