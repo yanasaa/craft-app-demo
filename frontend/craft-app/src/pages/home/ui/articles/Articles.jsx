@@ -69,7 +69,7 @@ function Articles({
       {!!categoryId && (
         <Button
           className="button button_colored articles__filter-btn"
-          btnText="Сбросить фильтры"
+          btnText="Все статьи"
           onClick={() => onClickCategory(0)}
         />
       )}

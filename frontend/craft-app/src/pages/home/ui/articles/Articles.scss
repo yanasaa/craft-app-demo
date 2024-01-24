@@ -46,9 +46,11 @@
 
 .button.button_colored.articles__filter-btn {
   position: absolute;
-  padding: 0;
-  font-size: 1rem;
-  margin-left: 10%;
+  top: 220px;
+  right: 140px;
+  &:hover {
+    background-color: $color-primary;
+  }
 }
 
 .slider__icon {
