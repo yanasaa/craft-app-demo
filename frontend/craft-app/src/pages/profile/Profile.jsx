@@ -12,6 +12,10 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
 
 const Profile = () => {
+  const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+  const [user, setUser] = useState({});
+  const [isUserUpdated, setIsUserUpdated] = useState(false);
+
   let navigate = useNavigate();
   function handleClick() {
     navigate(ROUTES.CREATE);
@@ -25,9 +29,10 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserProfile = () => {
-      fetch("http://84.38.183.195/api/v1/userprofile/8/", {
+      fetch(`http://84.38.183.195/api/v1/userprofile/eva4568`, {
         method: "GET",
         headers: {
+          Authorization: `Bearer ${ACCESS_TOKEN}`,
           "Content-type": "application/json",
         },
       })
@@ -38,9 +43,10 @@ const Profile = () => {
     };
     getUserProfile();
   }, []);
+
   useEffect(() => {
     const getUserArticles = () => {
-      fetch("http://84.38.183.195/api/v1/posts/?search=inno", {
+      fetch("http://84.38.183.195/api/v1/posts/?search=eva4568", {
         method: "GET",
         headers: {
           "Content-type": "application/json",

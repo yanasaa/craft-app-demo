@@ -16,3 +16,4 @@ export function createArticle(data) {
     });
   return res;
 }
+
