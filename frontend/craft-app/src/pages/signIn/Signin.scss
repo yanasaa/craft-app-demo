@@ -1,0 +1,74 @@
+@import "../../sass/abstracts/constants";
+@import "../../sass/abstracts/mixins";
+@import "../../sass/abstracts/placeholders";
+
+// .input {
+//   border: 1px solid $color-primary;
+//   background-color: transparent;
+//   padding: 8px 12px;
+//   border-radius: 5px;
+// }
+
+.sign-in__wrap {
+  background-color: #f1ebf5;
+  padding-top: 85px;
+  padding-bottom: 85px;
+}
+.sign-in__wrap {
+  width: 100%;
+}
+
+.sign-in__wrap {
+  display: flex;
+  background-clip: content-box;
+}
+
+.sign-in__image {
+  & > img {
+    width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
+  }
+  text-align: left;
+}
+
+.sign-in__form {
+  width: 603px;
+  padding: 85px 30px 240px 200px;
+  flex: 1;
+  margin: 0;
+}
+
+.login-form-button {
+  background-color: $color-primary;
+  color: white;
+  border: 1px solid $color-primary;
+  width: 100%;
+  &:hover {
+    background-color: $color-hovered-primary;
+  }
+}
+
+.login-form-button:hover {
+  background-color: $color-primary;
+}
+
+.login-form {
+  max-width: 300px;
+}
+.login-form-forgot {
+  float: right;
+  color: $color-primary;
+}
+.ant-col-rtl .login-form-forgot {
+  float: left;
+}
+
+.login-form-registre {
+  color: $color-primary;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: $color-primary;
+  border-color: $color-primary;
+}
