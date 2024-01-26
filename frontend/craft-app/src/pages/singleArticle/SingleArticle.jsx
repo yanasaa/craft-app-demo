@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./SingleArticle.scss";
-import { LikeTwoTone, ShareAltOutlined } from "@ant-design/icons";
-
+import { LikeFilled, LikeTwoTone, ShareAltOutlined } from "@ant-design/icons";
+const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
 function SingleArticle() {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
+  const [like, setLike] = useState([]);
+  const [id, setId] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const getArticle = () => {
       fetch(`http://84.38.183.195/api/v1/post/${slug}`)
         .then((response) => response.json())
-        .then((json) => setArticle(json));
+        .then((json) => {
+          setArticle(json);
+          setLike(json.likes);
+          setId(json.id);
+        });
     };
     getArticle();
-  }, [slug]);
+  }, [slug, isLiked]);
 
   function getDate(date) {
     let myDate = new Date(date);
@@ -25,8 +32,46 @@ function SingleArticle() {
     };
     return myDate.toLocaleString("ru-RU", options);
   }
+  function onLikeButtonClick() {
+    const res = fetch(`http://84.38.183.195/api/v1/like/unlike/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify(),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log(error);
+      });
+    setIsLiked(!isLiked);
+    console.log(like);
+    return res;
+  }
 
-  console.log(article);
+  function logout() {
+    const res = fetch(`/api/v1/account/logout/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify(),
+    })
+      .then((response) => response.json())
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return res;
+  }
+
+  const copyLink = () => {
+    const link = window.location.href;
+    navigator.clipboard.writeText(link);
+    alert(link);
+  };
   return (
     <section className="article">
       <div className="article__wrapper">
@@ -44,19 +89,32 @@ function SingleArticle() {
           <img src={article.preview} alt={article.title} />
         </div>
         {/* !!! STUDY INFORMATION ABOUT dangerouslySetInnerHTML */}
-        <article className="article__text_full " dangerouslySetInnerHTML={{ __html: article.body }} ></article>
+        <article
+          className="article__text_full "
+          dangerouslySetInnerHTML={{ __html: article.body }}
+        ></article>
         <div className="article__feedback">
           <div className="article__likes">
-            <LikeTwoTone
-              twoToneColor="#eb2f96"
-              className="likes__icon icon likes__icon_liked"
-            />
+            {isLiked ? (
+              <LikeFilled
+                className="likes__icon icon likes__icon_liked"
+                style={{ color: "#ad2e95" }}
+                onClick={onLikeButtonClick}
+              />
+            ) : (
+              <LikeTwoTone
+                twoToneColor="#eb2f96"
+                className="likes__icon icon likes__icon_liked"
+                onClick={onLikeButtonClick}
+              />
+            )}{" "}
             <span>{article.total_likes}</span>
           </div>
           <div className="article__share">
             <ShareAltOutlined
               className="share__icon"
               style={{ fontSize: "26px", color: "#ad2e95" }}
+              onClick={copyLink}
             />
             <p className="share__text">Поделиться</p>
           </div>

@@ -23,11 +23,24 @@
   background-color: $color-bg-light;
   color: $color-text-dark;
   width: 100%;
-  min-height: 10rem;
   vertical-align: text-top;
   margin-bottom: 3rem;
 }
-
+.new-article__select {
+  outline: none;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid $color-primary;
+}
+.select__option {
+  padding: 6px;
+  margin: 6px;
+  display: block;
+  &:hover {
+    border-right: 1px solid $color-primary;
+    background-color: aqua;
+  }
+}
 .textarea__new-article {
   min-height: 80rem;
 }
@@ -42,4 +55,8 @@
   background-color: $color-bg-light;
   margin: 0 auto;
   padding: 4rem;
+}
+
+.hidden {
+  display: none;
 }
