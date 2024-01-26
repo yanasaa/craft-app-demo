@@ -1,7 +1,7 @@
 import "./Input.scss";
 
-function Input(props) {
-  const { className, type, name, placeholder, disabled } = props;
+function Input({className, type, name, placeholder, disabled, onChange, value}) {
+  
   return (
     <input
       className={className}
@@ -9,6 +9,8 @@ function Input(props) {
       name={name}
       placeholder={placeholder}
       disabled={disabled}
+      onChange={onChange}
+      value={value}
     />
   );
 }

@@ -68,8 +68,8 @@ function Articles({
       <h2 className="articles__title">Статьи Авторов</h2>
       {!!categoryId && (
         <Button
-          className="button button_colored articles__filter-btn"
-          btnText="Все статьи"
+          className="articles__filter-btn"
+          btnText="Отменить фильтр"
           onClick={() => onClickCategory(0)}
         />
       )}
