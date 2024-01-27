@@ -53,8 +53,6 @@ const SignIn = ({ setIsLoggedIn }) => {
           setErrorMessage(data.detail);
         }
       });
-
-    // message.success("Next step.");
   }
 
   return (
