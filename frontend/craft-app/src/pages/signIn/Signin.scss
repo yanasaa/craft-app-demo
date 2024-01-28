@@ -2,73 +2,56 @@
 @import "../../sass/abstracts/mixins";
 @import "../../sass/abstracts/placeholders";
 
-// .input {
-//   border: 1px solid $color-primary;
-//   background-color: transparent;
-//   padding: 8px 12px;
-//   border-radius: 5px;
-// }
-
-.sign-in__wrap {
-  background-color: #f1ebf5;
-  padding-top: 85px;
-  padding-bottom: 85px;
+.sign-in {
+  background-color: $color-primary-light-header;
 }
 .sign-in__wrap {
-  width: 100%;
-}
-
-.sign-in__wrap {
+  padding: 85px 45px;
   display: flex;
-  background-clip: content-box;
 }
+.sign-in__preview {
+  padding-top: 45px;
+  padding-bottom: 180px;
+  background-image: url("../../components/shared/assets/img/ui/sign-n-bg.png");
 
-.sign-in__image {
-  & > img {
-    width: 100%;
-    object-fit: cover;
-    vertical-align: bottom;
-  }
-  text-align: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
-
+.sign-in__preview_text {
+  padding: 70px 43px;
+  color: $color-text-dark-grey;
+}
 .sign-in__form {
-  width: 603px;
-  padding: 85px 30px 240px 200px;
-  flex: 1;
-  margin: 0;
+  padding: 45px;
+  flex-grow: 1;
 }
-
-.login-form-button {
-  background-color: $color-primary;
-  color: white;
-  border: 1px solid $color-primary;
-  width: 100%;
-  &:hover {
-    background-color: $color-hovered-primary;
+.sif__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+.sif__register-link {
+  display: flex;
+  gap: 40px;
+  @include font(18px, 28px, 400);
+  & > * {
+    color: $color-text-dark-grey;
+    white-space: nowrap;
+  }
+  & > a {
+    cursor: pointer;
   }
 }
-
-.login-form-button:hover {
-  background-color: $color-primary;
+.sif__input {
+  background-color: $color-bg-light;
+  margin-left: 15px;
+  width: 360px;
+}
+.sif__button {
+  margin: 0 auto;
 }
 
-.login-form {
-  max-width: 300px;
-}
-.login-form-forgot {
-  float: right;
-  color: $color-primary;
-}
-.ant-col-rtl .login-form-forgot {
-  float: left;
-}
-
-.login-form-registre {
-  color: $color-primary;
-}
-
-.ant-checkbox-checked .ant-checkbox-inner {
-  background-color: $color-primary;
-  border-color: $color-primary;
+.sif__error-msg {
+  color: red;
 }
