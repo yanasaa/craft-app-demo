@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./SingleArticle.scss";
+import { message } from "antd";
 import { LikeFilled, LikeTwoTone, ShareAltOutlined } from "@ant-design/icons";
+import "./SingleArticle.scss";
+
 const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+
 function SingleArticle() {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [like, setLike] = useState([]);
   const [id, setId] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const getArticle = () => {
@@ -32,6 +37,9 @@ function SingleArticle() {
     };
     return myDate.toLocaleString("ru-RU", options);
   }
+
+  //TODO ПЕРЕПИСАТЬ ФУНКЦИЮ ПОСТАВИТЬ ЛАЙК, КОГДА БУДЕТ ГОТОВА АВТОРИЗАЦИЯ /
+
   function onLikeButtonClick() {
     const res = fetch(`http://84.38.183.195/api/v1/like/unlike/${id}`, {
       method: "POST",
@@ -43,35 +51,24 @@ function SingleArticle() {
     })
       .then((response) => response.json())
       .catch((error) => {
-        console.log(error);
+        setError(error.detail);
       });
     setIsLiked(!isLiked);
     console.log(like);
     return res;
   }
 
-  function logout() {
-    const res = fetch(`/api/v1/account/logout/`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json; charset=utf-8",
-        Authorization: `Bearer ${ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify(),
-    })
-      .then((response) => response.json())
-      .catch((error) => {
-        console.log(error);
-      });
-
-    return res;
-  }
-
   const copyLink = () => {
     const link = window.location.href;
     navigator.clipboard.writeText(link);
-    alert(link);
   };
+  const success = () => {
+    messageApi.open({
+      type: "success",
+      content: "Ссылка на статью скопирована в буфер обмена",
+    });
+  };
+  console.log(error, "myMessage");
   return (
     <section className="article">
       <div className="article__wrapper">
@@ -107,14 +104,20 @@ function SingleArticle() {
                 className="likes__icon icon likes__icon_liked"
                 onClick={onLikeButtonClick}
               />
-            )}{" "}
+            )}
             <span>{article.total_likes}</span>
           </div>
-          <div className="article__share">
+          <div
+            className="article__share"
+            onClick={() => {
+              success();
+              copyLink();
+            }}
+          >
+            {contextHolder}
             <ShareAltOutlined
               className="share__icon"
               style={{ fontSize: "26px", color: "#ad2e95" }}
-              onClick={copyLink}
             />
             <p className="share__text">Поделиться</p>
           </div>
