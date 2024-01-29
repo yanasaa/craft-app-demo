@@ -10,7 +10,6 @@ function Articles({
   searchValue,
   setSearchValue,
 }) {
-  
   const [articles, setArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
@@ -29,8 +28,9 @@ function Articles({
       })
         .then((response) => response.json())
         .then((json) => {
-          setArticles(json);
+          setArticles(json.reverse());
           setTotal(json.length);
+          setPage(1);
         });
     };
     getAllArticles();

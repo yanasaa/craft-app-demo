@@ -9,7 +9,6 @@ function Navigation() {
     let handler = (e) => {
       if (!menuRef.current.contains(e.target)) {
         setIsActive(false);
-        console.log(menuRef)
       }
     };
     document.addEventListener("mousedown", handler);

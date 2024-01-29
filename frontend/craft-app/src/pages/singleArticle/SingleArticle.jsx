@@ -13,7 +13,7 @@ function SingleArticle() {
   const [id, setId] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
-  const [error, setError] = useState("");
+
 
   useEffect(() => {
     const getArticle = () => {
@@ -51,7 +51,7 @@ function SingleArticle() {
     })
       .then((response) => response.json())
       .catch((error) => {
-        setError(error.detail);
+        console.log(error);
       });
     setIsLiked(!isLiked);
     console.log(like);
@@ -68,7 +68,7 @@ function SingleArticle() {
       content: "Ссылка на статью скопирована в буфер обмена",
     });
   };
-  console.log(error, "myMessage");
+ 
   return (
     <section className="article">
       <div className="article__wrapper">
@@ -85,14 +85,13 @@ function SingleArticle() {
         <div className="article__img">
           <img src={article.preview} alt={article.title} />
         </div>
-        {/* !!! STUDY INFORMATION ABOUT dangerouslySetInnerHTML */}
         <article
           className="article__text_full "
           dangerouslySetInnerHTML={{ __html: article.body }}
         ></article>
         <div className="article__feedback">
           <div className="article__likes">
-            {isLiked ? (
+            {like.includes() ? (
               <LikeFilled
                 className="likes__icon icon likes__icon_liked"
                 style={{ color: "#ad2e95" }}
