@@ -9,6 +9,7 @@ function Navigation() {
     let handler = (e) => {
       if (!menuRef.current.contains(e.target)) {
         setIsActive(false);
+        console.log(menuRef)
       }
     };
     document.addEventListener("mousedown", handler);
@@ -30,7 +31,12 @@ function Navigation() {
             <span className="icon navigation__icon navigation__icon_open_closed"></span>
           )}
         </div>
-        {isActive && <DropdownContent className="navigation__dropdown" />}
+        {isActive && (
+          <DropdownContent
+            className="navigation__dropdown"
+            onClick={() => setIsActive(!isActive)}
+          />
+        )}
       </div>
     </nav>
   );

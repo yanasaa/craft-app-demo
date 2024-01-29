@@ -34,3 +34,44 @@
   gap: 30px;
   justify-content: flex-end;
 }
+.header__profile-link {
+  position: relative;
+  width: 240px;
+  justify-content: flex-end;
+  text-align: right;
+  padding: 16px 0;
+}
+.profile-link__icon {
+  display: inline-block;
+  background-color: $color-primary;
+  color: $color-bg-light;
+  font-size: 32px;
+  padding: 10px;
+  border-radius: 50%;
+}
+.profile-link__dropdown {
+  display: inline-block;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  text-align: left;
+  background-color: $color-bg-light;
+  @include font(1.4rem, 2.4rem, 400);
+}
+.profile-link__dropdown .dropdown-item {
+  display: block;
+  cursor: pointer;
+  color: $color-text-dark;
+  padding: 16px 16px 16px 72px;
+  border-right: 3px solid transparent;
+  text-decoration: none;
+  width: 100%;
+  &:hover {
+    background-color: $color-primary-light-header;
+    color: $color-primary;
+    border-right: 3px solid $color-primary;
+  }
+  & > * {
+    text-decoration: none;
+  }
+}

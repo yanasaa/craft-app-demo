@@ -1,23 +1,25 @@
-import './Onboarding.scss';
+import "./Onboarding.scss";
 
 function Onboarding() {
-    return (
-        <section className="onboarding" id="onboarding">
+  return (
+    <section className="onboarding" id="onboarding">
       <h2 className="onboarding__title">Как это работает?</h2>
-      <div className="wrapper onboarding__wrapper layout-3-columns">
-        <div className="onboarding__text">размести статью</div>
-        <div></div>
-        <div className="onboarding__text">собирай аудиторию</div>
-
-        <div></div>
-        <div className="onboarding__text">делись опытом</div>
-        <div></div>
-        <div className="onboarding__text">собирай лайки</div>
-        <div></div>
-        <div></div>
+      <div className="wrapper onboarding__wrapper">
+        <div className="onboarding__text onboarding__text_article">
+          размести статью
+        </div>
+        <div className="onboarding__text onboarding__text_audience">
+          собирай аудиторию
+        </div>
+        <div className="onboarding__text onboarding__text_experience">
+          делись опытом
+        </div>
+        <div className="onboarding__text onboarding__text_likes">
+          собирай лайки
+        </div>
       </div>
     </section>
-    )
+  );
 }
 
 export default Onboarding;

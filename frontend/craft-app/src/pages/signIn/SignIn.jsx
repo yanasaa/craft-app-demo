@@ -117,9 +117,9 @@ const SignIn = ({ setIsLoggedIn }) => {
                     type="password"
                   />
                 </label>
-                {errors.password && touched.password && (
+                {/* {errors.password && touched.password && (
                   <div>{errors.password}</div>
-                )}
+                )} */}
 
                 <Button
                   className="button button_colored sif__button"

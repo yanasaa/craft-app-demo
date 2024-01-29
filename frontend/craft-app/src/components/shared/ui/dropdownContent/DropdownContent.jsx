@@ -3,9 +3,9 @@ import { HashLink } from "react-router-hash-link";
 import "./DropdownContent.scss";
 import { ROUTES } from "../../consts/routes";
 
-const DropdownContent = ({ className }) => {
+const DropdownContent = ({ className, onClick }) => {
   return (
-    <ul className={`dropdown__content ${className}`}>
+    <ul className={`dropdown__content ${className}`} onClick={onClick}>
       <li>
         <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#`}>
           Виды ремесел
