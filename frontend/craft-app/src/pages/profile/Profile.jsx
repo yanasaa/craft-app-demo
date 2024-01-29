@@ -29,7 +29,7 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserProfile = () => {
-      fetch(`http://84.38.183.195/api/v1/userprofile/eva4568`, {
+      fetch(`http://84.38.183.195/api/v1/userprofile/me/`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -46,7 +46,7 @@ const Profile = () => {
 
   useEffect(() => {
     const getUserArticles = () => {
-      fetch("http://84.38.183.195/api/v1/posts/?search=eva4568", {
+      fetch(`http://84.38.183.195/api/v1/posts/?username=${userProfile.slug}`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",
@@ -54,12 +54,12 @@ const Profile = () => {
       })
         .then((response) => response.json())
         .then((json) => {
-          setUserArticles(json);
+          setUserArticles(json.reverse());
           setTotal(json.length);
         });
     };
     getUserArticles();
-  }, []);
+  }, [userProfile]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -96,7 +96,10 @@ const Profile = () => {
           <div className="profile__info">
             <div className="profile__user-card">
               <div className="user-card__img">
-                <img src={userProfile.avatar} alt="user" />
+                <img
+                  src={`http://84.38.183.195/${userProfile.avatar}`}
+                  alt="user"
+                />
               </div>
               <div className="user-card__info">
                 <div className="user-card__item">
@@ -131,7 +134,7 @@ const Profile = () => {
               <div className="user-info__text">
                 <h2 className="user-info__name">{`${userProfile.first_name} ${userProfile.last_name}`}</h2>
                 <div className="user-info__data">
-                  <h3>{userProfile.user}</h3>
+                  <h3>{userProfile.username}</h3>
                   <h3>{userProfile.gender}</h3>
                   <h3>{userProfile.email}</h3>
                 </div>
@@ -161,6 +164,7 @@ const Profile = () => {
           showQuickJumper
           locale={{ jump_to: "Перейти на", page: "стр" }}
           onShowSizeChange={onShowSizeChange}
+          hideOnSinglePage
         ></Pagination>
       </div>
     </section>

@@ -30,6 +30,7 @@ function Articles({
         .then((json) => {
           setArticles(json.reverse());
           setTotal(json.length);
+          setPage(1);
         });
     };
     getAllArticles();

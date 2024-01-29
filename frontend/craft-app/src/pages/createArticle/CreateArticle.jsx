@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./CreateArticle.scss";
 import { createArticle } from "../../api/api";
-import Input from "../../components/shared/ui/input/Input";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, message, Select, Space, Upload } from "antd";
+
 function CreateArticle() {
+  const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+  const filePicker = useRef(null);
+  const [categories, setCategories] = useState([]);
+  const [selectedFile, setSelectedFile] = useState();
   const [data, setData] = useState({
     title: "",
     post_preview: "",
@@ -14,7 +16,6 @@ function CreateArticle() {
     likes: [],
   });
 
-  const [categories, setCategories] = useState([]);
   useEffect(() => {
     const getAllTags = () => {
       fetch("http://84.38.183.195/api/v1/categories/")
@@ -30,6 +31,14 @@ function CreateArticle() {
     setData(newData);
     console.log(newData);
   }
+  function handleChange(e) {
+    console.log(e.target.files[0]);
+    setSelectedFile(e.target.files[0]);
+  }
+
+  function handlePick() {
+    filePicker.current.click();
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -37,13 +46,37 @@ function CreateArticle() {
     const res = createArticle(data);
     console.log(res);
   }
-  console.log(categories);
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    if (!selectedFile) {
+      alert("Картинка не загружена");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("title", "Тестовое описание");
+    formData.append("post_preview", "Тестовое описание");
+    formData.append("body", "Тестовое описание");
+    formData.append("status", "PB");
+    formData.append("category", "1");
+    formData.append("preview", selectedFile);
+
+    const res = await fetch("http://84.38.183.195/api/v1/post/create/", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
+      body: formData,
+    });
+    const mydata = await res.json();
+    console.log(mydata);
+  };
 
   return (
     <section className="new-article">
       <div className="wrapper new-article_wrapper">
         <h2>Новая статья</h2>
-        <form onSubmit={(e) => submit(e)} className="new-article__form">
+        <form onSubmit={(e) => handleUpload(e)} className="new-article__form">
           <label htmlFor="title">
             <h3>Название статьи</h3>
           </label>
@@ -70,8 +103,8 @@ function CreateArticle() {
                 disabled
               ></option>
               {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  <span className="select__option">{cat.name}</span>
+                <option key={cat.id} value={cat.id} className="select__option">
+                  {cat.name}
                 </option>
               ))}
             </select>
@@ -106,12 +139,17 @@ function CreateArticle() {
               <label htmlFor="img-loader__btn">
                 <span className="img-loader__text">загрузите фото</span>
               </label> */}
-              {/* <input
+              <button onClick={handlePick} type="button">
+                Загрузить
+              </button>
+              <input
+                className="hidden"
                 type="file"
                 id="preview"
-                value={data.preview}
-                onChange={(event) => handle(event)}
-              /> */}
+                ref={filePicker}
+                onChange={handleChange}
+                accept="image/*"
+              />
             </div>
           </div>
           <button type="Submit">Опубликовать</button>
