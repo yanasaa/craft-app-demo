@@ -12,6 +12,16 @@
   padding-top: 5rem;
   display: flex;
   align-items: flex-end;
+  position: relative;
+}
+
+.icon__edit-profile {
+  position: absolute;
+  right: 0;
+  top: 40%;
+  font-size: 30px;
+  color: $color-text-dark-grey;
+  cursor: pointer;
 }
 .profile__user-card {
   background-color: $color-bg-light;
@@ -54,10 +64,12 @@
   white-space: nowrap;
 }
 .user-info {
-  flex-basis: 100;
-  flex-grow: 1;
   padding: 5rem 0 0 4rem;
   color: $color-primary;
+  display: grid;
+  justify-items: start;
+  gap: 20px;
+  grid-template-columns: repeat(2, auto);
 }
 .user-info__text {
   display: flex;
@@ -69,24 +81,22 @@
   padding: 0;
   margin: 0;
   text-align: left;
+  line-height: 3rem;
 }
 .user-info__data > h3 {
   text-align: left;
   margin-bottom: 2rem;
 }
-.user-info__story {
-  & > * {
-    text-align: left;
-  }
-}
+
 .story__text {
   margin: 0;
+  text-align: left;
 }
 
 .profile__articles {
-  background-image: url('../../components/shared/assets/img/ui/articlebg.png');
+  background-image: url("../../components/shared/assets/img/ui/articlebg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   padding: 30px;
-} 
+}
