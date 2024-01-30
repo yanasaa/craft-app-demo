@@ -1,20 +1,25 @@
 import React, { useEffect, useState, useRef } from "react";
+import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./CreateArticle.scss";
 import { createArticle } from "../../api/api";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../components/shared/consts/routes";
 
 function CreateArticle() {
   const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
   const filePicker = useRef(null);
   const [categories, setCategories] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
-  const [data, setData] = useState({
+  let navigate = useNavigate();
+  const initialData = {
     title: "",
     post_preview: "",
     body: "",
     status: "PB",
     category: 0,
     likes: [],
-  });
+  };
+  const [data, setData] = useState({ ...initialData });
 
   useEffect(() => {
     const getAllTags = () => {
@@ -32,7 +37,6 @@ function CreateArticle() {
     console.log(newData);
   }
   function handleChange(e) {
-    console.log(e.target.files[0]);
     setSelectedFile(e.target.files[0]);
   }
 
@@ -49,16 +53,22 @@ function CreateArticle() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (!selectedFile) {
-      alert("Картинка не загружена");
+    if (
+      !selectedFile ||
+      !data.title ||
+      !data.post_preview ||
+      !data.body ||
+      !data.category
+    ) {
+      alert("Все поля обязательны для заполнения");
       return;
     }
     const formData = new FormData();
-    formData.append("title", "Тестовое описание");
-    formData.append("post_preview", "Тестовое описание");
-    formData.append("body", "Тестовое описание");
-    formData.append("status", "PB");
-    formData.append("category", "1");
+    formData.append("title", data.title);
+    formData.append("post_preview", data.post_preview);
+    formData.append("body", data.body);
+    formData.append("status", data.status);
+    formData.append("category", data.category);
     formData.append("preview", selectedFile);
 
     const res = await fetch("http://84.38.183.195/api/v1/post/create/", {
@@ -69,7 +79,9 @@ function CreateArticle() {
       body: formData,
     });
     const mydata = await res.json();
-    console.log(mydata);
+    setData(initialData);
+    window.scrollTo(0, 0);
+    navigate(ROUTES.PROFILE);
   };
 
   return (
@@ -81,6 +93,7 @@ function CreateArticle() {
             <h3>Название статьи</h3>
           </label>
           <input
+            name="title"
             className="input input_new-article"
             type="text"
             placeholder="Название статьи"
@@ -134,25 +147,50 @@ function CreateArticle() {
           <div className="new-article__load-img">
             <h3>Загрузить изображение</h3>
             <div className="img-loader">
-              {/* <span className="img-loader__icon"></span>
-              <input type="file" id="img-loader__btn" />
-              <label htmlFor="img-loader__btn">
-                <span className="img-loader__text">загрузите фото</span>
-              </label> */}
-              <button onClick={handlePick} type="button">
-                Загрузить
-              </button>
+              {!selectedFile ? (
+                <>
+                  <PlusOutlined
+                    className="icon icon__load-img"
+                    onClick={handlePick}
+                  />
+                  <p>Загрузите фото</p>
+                </>
+              ) : (
+                <>
+                  <span>{selectedFile.name}</span>
+                  <DeleteOutlined
+                    className="icon__delete-img"
+                    onClick={() => setSelectedFile()}
+                  />
+                  <p>Фото загружено</p>
+                </>
+              )}
+
               <input
                 className="hidden"
                 type="file"
                 id="preview"
                 ref={filePicker}
                 onChange={handleChange}
-                accept="image/*"
+                accept="image/* .png, .jpg, .jpeg"
               />
             </div>
           </div>
-          <button type="Submit">Опубликовать</button>
+          <div className="new-article__buttons">
+            <button
+              className="button button_bordered new-article__button"
+              type="Submit"
+            >
+              Сохранить черновик
+            </button>
+
+            <button
+              className="button button_colored new-article__button"
+              type="Submit"
+            >
+              Опубликовать
+            </button>
+          </div>
         </form>
       </div>
     </section>

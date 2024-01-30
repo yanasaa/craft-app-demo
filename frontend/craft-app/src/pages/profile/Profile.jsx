@@ -3,22 +3,23 @@ import {
   AuditOutlined,
   FileTextOutlined,
   SmileOutlined,
+  EditOutlined,
 } from "@ant-design/icons";
 import "./Profile.scss";
 import Button from "../../components/shared/ui/button/Button";
-import ArticleCard from "../../components/shared/ui/article/ArticleCard";
+
 import { Pagination } from "antd";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
+import UserArticleCard from "./ui/userArticleCard/UserArticleCard";
 
 const Profile = () => {
   const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
-  const [user, setUser] = useState({});
-  const [isUserUpdated, setIsUserUpdated] = useState(false);
 
   let navigate = useNavigate();
   function handleClick() {
     navigate(ROUTES.CREATE);
+    window.scrollTo(0, 0);
   }
 
   const [userProfile, setUserProfile] = useState({});
@@ -59,14 +60,14 @@ const Profile = () => {
         });
     };
     getUserArticles();
-  }, [userProfile]);
+  }, [userProfile, total]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = userArticles.slice(indexOfFirstPage, indexOfLastPage);
   const displayArticles = currentPosts.map((article) => {
     return (
-      <ArticleCard
+      <UserArticleCard
         className="article-preview"
         key={article.id}
         title={article.title}
@@ -87,13 +88,14 @@ const Profile = () => {
   const onShowSizeChange = (curent, pageSize) => {
     setPostsPerPage(pageSize);
   };
-
+  console.log(userArticles);
   return (
     <section className="profile">
       {console.log(userProfile)}
       <div className="profile__wrapper">
         <div className="wrapper">
           <div className="profile__info">
+            <EditOutlined className="icon__edit-profile" />
             <div className="profile__user-card">
               <div className="user-card__img">
                 <img
@@ -131,18 +133,18 @@ const Profile = () => {
               </div>
             </div>
             <div className="user-info">
-              <div className="user-info__text">
-                <h2 className="user-info__name">{`${userProfile.first_name} ${userProfile.last_name}`}</h2>
-                <div className="user-info__data">
-                  <h3>{userProfile.username}</h3>
-                  <h3>{userProfile.gender}</h3>
-                  <h3>{userProfile.email}</h3>
-                </div>
-              </div>
-              <div className="user-info__story">
-                <h3>О себе:</h3>
-                <p className="story__text">{userProfile.bio}</p>
-              </div>
+              <h3>Имя</h3>
+              <h2 className="user-info__name">{userProfile.first_name}</h2>
+              <h3>Фамилия</h3>
+              <h2 className="user-info__name">{userProfile.last_name}</h2>
+              <h3>Email</h3>
+              <h3>{userProfile.email}</h3>
+              <h3>Логин</h3>
+              <h3>{userProfile.username}</h3>
+              <h3>Пол</h3>
+              <h3>{userProfile.gender}</h3>
+              <h3>О себе:</h3>
+              <p className="story__text">{userProfile.bio}</p>
             </div>
           </div>
         </div>
