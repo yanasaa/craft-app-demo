@@ -11,7 +11,7 @@
 .profile__info {
   padding-top: 5rem;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   position: relative;
 }
 
@@ -22,6 +22,10 @@
   font-size: 30px;
   color: $color-text-dark-grey;
   cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+    transition: all 0.3s ease-in-out;
+  }
 }
 .profile__user-card {
   background-color: $color-bg-light;
@@ -64,6 +68,7 @@
   white-space: nowrap;
 }
 .user-info {
+  margin-top: 100px;
   padding: 5rem 0 0 4rem;
   color: $color-primary;
   display: grid;
