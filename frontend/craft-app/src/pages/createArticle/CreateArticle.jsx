@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createArticle } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
