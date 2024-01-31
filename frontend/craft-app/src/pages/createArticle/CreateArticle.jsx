@@ -86,8 +86,6 @@ function CreateArticle() {
     navigate(ROUTES.PROFILE);
   };
 
-  
-
   return (
     <section className="new-article">
       <div className="wrapper new-article_wrapper">
@@ -135,11 +133,11 @@ function CreateArticle() {
             id="post_preview"
             value={data.post_preview}
           />
-          <Editor
+          {/* <Editor
             // editorState={editorState}
             // onEditorStateChange={this.onEditorStateChange}
-          />
-          ;
+          /> */}
+
           <label htmlFor="body">
             <h3>Содержание статьи</h3>
           </label>

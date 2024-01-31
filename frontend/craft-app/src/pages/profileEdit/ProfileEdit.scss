@@ -1,0 +1,59 @@
+@import "../../sass/abstracts/_constants.scss";
+
+.user-card__img_edit {
+  position: relative;
+}
+.user-avatar__icons {
+  position: absolute;
+  color: $color-bg-light;
+  top: 50%;
+  left: 30%;
+  & > * {
+    margin-right: 50px;
+    font-size: 25px;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.2);
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+.profile-edit__info {
+  display: flex;
+  padding-top: 50px;
+  align-items: flex-start;
+}
+
+.user-info.profile-edit {
+  margin-top: 100px;
+  color: $color-text-dark-grey;
+  & > p {
+    padding: 0;
+    margin: 0;
+  }
+}
+.profile-edit__title {
+  padding: 0;
+}
+.input__profile-edit {
+  background-color: $color-bg-light;
+  width: 710px;
+  padding: 5px 12px;
+}
+
+.radio__profile-edit {
+  accent-color: $color-primary;
+  margin-right: 8px;
+  cursor: pointer;
+}
+.radio__label {
+  margin-right: 15px;
+  cursor: pointer;
+}
+.profile-edit__buttons {
+  padding: 20px;
+  & > * {
+    margin-left: 20px;
+    cursor: pointer;
+  }
+}

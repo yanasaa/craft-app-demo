@@ -96,7 +96,14 @@ const Profile = () => {
       <div className="profile__wrapper">
         <div className="wrapper">
           <div className="profile__info">
-            <EditOutlined className="icon__edit-profile" />
+            <EditOutlined
+              className="icon__edit-profile"
+              title="редактировать профиль"
+              onClick={() => {
+                navigate(ROUTES.PROFILEEDIT);
+                window.scrollTo(0, 0);
+              }}
+            />
             <div className="profile__user-card">
               <div className="user-card__img">
                 <img
@@ -144,7 +151,7 @@ const Profile = () => {
               <h3>{userProfile.username}</h3>
               <h3>Пол</h3>
               <h3>{userProfile.gender}</h3>
-              <h3>О себе:</h3>
+              <h3>О себе</h3>
               <p className="story__text">{userProfile.bio}</p>
             </div>
           </div>

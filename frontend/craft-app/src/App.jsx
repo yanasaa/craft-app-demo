@@ -1,15 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import "../src/sass/style.css";
+import { ROUTES } from "./components/shared/consts/routes";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import SignIn from "./pages/signIn/SignIn";
-
-import { ROUTES } from "./components/shared/consts/routes";
 import { SingleArticle } from "./pages/singleArticle/SingleArticle";
 import CreateArticle from "./pages/createArticle/CreateArticle";
 import Profile from "./pages/profile/Profile";
-import { useState } from "react";
+
+import ProfileEdit from "./pages/profileEdit/ProfileEdit";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           <Route path={ROUTES.CREATE} element={<CreateArticle />} />
           <Route path="/:slug" element={<SingleArticle />} />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
+          <Route path={ROUTES.PROFILEEDIT} element={<ProfileEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>
