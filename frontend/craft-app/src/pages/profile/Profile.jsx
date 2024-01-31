@@ -78,6 +78,7 @@ const Profile = () => {
         author={article.author_username}
         imgSrc={article.preview}
         publish={article.publish}
+        setTotal={setTotal}
       />
     );
   });
@@ -88,7 +89,7 @@ const Profile = () => {
   const onShowSizeChange = (curent, pageSize) => {
     setPostsPerPage(pageSize);
   };
-  console.log(userArticles);
+
   return (
     <section className="profile">
       {console.log(userProfile)}
@@ -148,6 +149,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
+        {/* {!!total && <h2>Мои статьи</h2>} */}
         <h2>Мои статьи</h2>
         <div className="profile__articles">
           <div className="wrapper">

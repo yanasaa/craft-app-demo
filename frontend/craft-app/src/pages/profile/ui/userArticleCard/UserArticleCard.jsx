@@ -5,7 +5,7 @@ import "./UserArticleCard.scss";
 import { ROUTES } from "../../../../components/shared/consts/routes";
 
 function UserArticleCard(props) {
-  const { className, title, body, slug, likes, imgSrc } = props;
+  const { className, title, body, slug, likes, imgSrc, setTotal } = props;
   let navigate = useNavigate();
   function handleClick() {
     navigate(`${ROUTES.MAIN}${slug}`);
@@ -21,10 +21,11 @@ function UserArticleCard(props) {
       body: JSON.stringify(),
     })
       .then((response) => response.json())
+
       .catch((error) => {
         console.log(error);
       });
-    
+    setTotal();
   }
 
   return (

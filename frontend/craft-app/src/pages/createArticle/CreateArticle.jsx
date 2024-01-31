@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import "./CreateArticle.scss";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createArticle } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
+import "./CreateArticle.scss";
 
 function CreateArticle() {
   const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
@@ -84,6 +86,8 @@ function CreateArticle() {
     navigate(ROUTES.PROFILE);
   };
 
+  
+
   return (
     <section className="new-article">
       <div className="wrapper new-article_wrapper">
@@ -101,7 +105,6 @@ function CreateArticle() {
             id="title"
             value={data.title}
           />
-
           <label htmlFor="">
             <h3>Вид ремесла</h3>
             <select
@@ -122,7 +125,6 @@ function CreateArticle() {
               ))}
             </select>
           </label>
-
           <label htmlFor="post_preview">
             <h3>Резюме статьи</h3>
           </label>
@@ -133,7 +135,11 @@ function CreateArticle() {
             id="post_preview"
             value={data.post_preview}
           />
-
+          <Editor
+            // editorState={editorState}
+            // onEditorStateChange={this.onEditorStateChange}
+          />
+          ;
           <label htmlFor="body">
             <h3>Содержание статьи</h3>
           </label>
