@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EditOutlined, DeleteOutlined, UndoOutlined } from "@ant-design/icons";
+import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./ProfileEdit.scss";
 import { ROUTES } from "../../components/shared/consts/routes";
 
@@ -55,7 +55,6 @@ const ProfileEdit = () => {
 
     newData[e.target.id] = e.target.value || "";
     setUserProfile(newData);
-    console.log(newData);
   }
 
   const handleUpload = async (e) => {
@@ -81,7 +80,8 @@ const ProfileEdit = () => {
       }
     );
     const mydata = await res.json();
-    if (mydata.email[0] === "Введите правильный адрес электронной почты.") {
+    console.log(mydata);
+    if (mydata.email === "Введите правильный адрес электронной почты.") {
       alert(mydata.email[0]);
       return;
     }
@@ -154,11 +154,10 @@ const ProfileEdit = () => {
                   />
                   <p className="profile-edit__text">Email:</p>
                   <input
-                    className="input input__profile-edit input__profile-edit_disabled"
+                    className="input input__profile-edit"
                     value={userProfile.email}
                     id="email"
                     onChange={(event) => handle(event)}
-                    disabled={true}
                   />
                   <p>О себе:</p>
                   <textarea
