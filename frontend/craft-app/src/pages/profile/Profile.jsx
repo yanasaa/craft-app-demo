@@ -150,7 +150,7 @@ const Profile = () => {
               <h3>Логин</h3>
               <h3>{userProfile.username}</h3>
               <h3>Пол</h3>
-              <h3>{userProfile.gender}</h3>
+              <h3>{userProfile.gender === "F" ? "Ж" : "М"}</h3>
               <h3>О себе</h3>
               <p className="story__text">{userProfile.bio}</p>
             </div>
