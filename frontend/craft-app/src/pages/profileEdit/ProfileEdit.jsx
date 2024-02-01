@@ -56,6 +56,7 @@ const ProfileEdit = () => {
     newData[e.target.id] = e.target.value || "";
     setUserProfile(newData);
   }
+  const url = "http://84.38.183.195";
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -69,19 +70,19 @@ const ProfileEdit = () => {
     formData.append("gender", userProfile.gender);
     selectedFile && formData.append("avatar", selectedFile);
 
-    const res = await fetch(
-      `http://84.38.183.195/api/v1/userprofile/${userProfile.id}/`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        },
-        body: formData,
-      }
-    );
+    const res = await fetch(`${url}/api/v1/userprofile/${userProfile.id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${ACCESS_TOKEN}`,
+      },
+      body: formData,
+    });
     const mydata = await res.json();
     console.log(mydata);
-    if (mydata.email === "Введите правильный адрес электронной почты.") {
+    if (
+      mydata.email &&
+      mydata.email[0] === "Введите правильный адрес электронной почты."
+    ) {
       alert(mydata.email[0]);
       return;
     }
