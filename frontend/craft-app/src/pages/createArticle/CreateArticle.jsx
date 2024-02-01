@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import { createArticle } from "../../api/api";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
 import "./CreateArticle.scss";
@@ -44,13 +43,6 @@ function CreateArticle() {
     filePicker.current.click();
   }
 
-  function submit(e) {
-    e.preventDefault();
-
-    const res = createArticle(data);
-    console.log(res);
-  }
-
   const handleUpload = async (e) => {
     e.preventDefault();
     if (
@@ -79,6 +71,7 @@ function CreateArticle() {
       body: formData,
     });
     const mydata = await res.json();
+    console.log(mydata);
     setData(initialData);
     window.scrollTo(0, 0);
     navigate(ROUTES.PROFILE);
@@ -164,7 +157,7 @@ function CreateArticle() {
                     className="icon__delete-img"
                     onClick={() => setSelectedFile()}
                   />
-                  <p>Фото загружено</p>
+                  
                 </>
               )}
 

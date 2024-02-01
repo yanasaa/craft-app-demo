@@ -4,12 +4,10 @@
   position: relative;
 }
 .user-avatar__icons {
-  position: absolute;
-  color: $color-bg-light;
-  top: 50%;
-  left: 30%;
+  display: flex;
+  padding-top: 30px;
+  justify-content: space-around;
   & > * {
-    margin-right: 50px;
     font-size: 25px;
     cursor: pointer;
     &:hover {
@@ -39,6 +37,9 @@
   background-color: $color-bg-light;
   width: 710px;
   padding: 5px 12px;
+  &_disabled {
+    background-color: transparent;
+  }
 }
 
 .radio__profile-edit {
@@ -48,7 +49,6 @@
 }
 .radio__label {
   margin-right: 15px;
-  cursor: pointer;
 }
 .profile-edit__buttons {
   padding: 20px;
