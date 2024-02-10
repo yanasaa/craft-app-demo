@@ -3,6 +3,7 @@ import { useState } from "react";
 import "../src/sass/style.css";
 import { ROUTES } from "./components/shared/consts/routes";
 import MainLayout from "./layouts/MainLayout";
+import StoreContext from "./api/context/StoreProvider";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
 import SignIn from "./pages/signIn/SignIn";
