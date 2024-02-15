@@ -1,19 +1,16 @@
-import { useNavigate, useLocation } from "react-router-dom";
-import { useRef, useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 
 import * as yup from "yup";
 import { Formik, Form, Field } from "formik";
 import { UserOutlined } from "@ant-design/icons";
-import axios from "../../api/axios";
 
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTES } from "../../components/shared/consts/routes";
-import StoreContext from "../../api/context/StoreProvider";
 import "./Signin.scss";
-import useAuth from "../../components/shared/hooks/useAuth";
+import { useAuth } from "../../components/shared/hooks/useAuth";
 
-// const END_POINT = "http://84.38.183.195/api/v1/account/login/";
-const END_POINT = "account/login/";
+const END_POINT = "http://84.38.183.195/api/v1/account/login/";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Введите Ваш логин!"),
@@ -24,87 +21,42 @@ const SignIn = () =>
   /*{ setIsLoggedIn }*/
   {
     const { setIsLoggedIn } = useAuth();
-    const userRef = useRef();
-    const errRef = useRef();
+
     const navigate = useNavigate();
-    const location = useLocation();
+
     const [errorMessage, setErrorMessage] = useState("");
-
-    // useEffect(() => {
-    //   userRef.current.focus();
-    // }, []);
-
-    useEffect(
-      () => {
-        setErrorMessage("");
-      },
-      [
-        /*{?}*/
-      ]
-    );
 
     async function handleLogin(values) {
       console.log(values);
       const username = values.username;
       const password = values.password;
-      try {
-        const response = await axios.post(
-          END_POINT,
-          JSON.stringify({
-            username,
-            password,
-          }),
-          {
-            headers: { "Content-type": "application/json; charset=UTF-8" },
-            withCredentials: true,
+
+      const options = {
+        method: "post",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      };
+
+      fetch(END_POINT, options)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.access && data.refresh) {
+            localStorage.setItem("ACCESS_TOKEN", data.access);
+            console.log(data.refresh);
+            localStorage.setItem("REFRESH_TOKEN", data.refresh);
+            localStorage.setItem("USERNAME", values.username);
+            setIsLoggedIn(true);
+
+            navigate(ROUTES.MAIN);
+          } else {
+            setErrorMessage(data.detail);
           }
-        );
-        console.log(JSON.stringify(response?.data));
-        const accessToken = response?.data?.accessToken;
-        setIsLoggedIn({ username, password, accessToken });
-        // navigate(ROUTES.MAIN);
-        navigate(location.state?.from?.pathname || ROUTES.MAIN, {
-          replace: true,
         });
-      } catch (err) {
-        if (!err?.response) {
-          setErrorMessage("No Server Response");
-        } else if (err.response?.status === 400) {
-          setErrorMessage("Missing Username or Password");
-        } else if (err.response?.status === 401) {
-          setErrorMessage("Unauthorized");
-        } else {
-          setErrorMessage("Login Failed");
-        }
-        // errRef.current.focus();
-      }
-
-      //   const options = {
-      //     method: "post",
-      //     headers: {
-      //       "Content-type": "application/json; charset=UTF-8",
-      //     },
-      //     body: JSON.stringify({
-      //       username,
-      //       password,
-      //     }),
-      //   };
-
-      //   fetch(END_POINT, options)
-      //     .then((response) => response.json())
-      //     .then((data) => {
-      //       if (data.access && data.refresh) {
-      //         localStorage.setItem("ACCESS_TOKEN", data.access);
-      //         console.log(data.refresh);
-      //         localStorage.setItem("REFRESH_TOKEN", data.refresh);
-      //         localStorage.setItem("USERNAME", values.username);
-      //         setIsLoggedIn(true);
-
-      //         navigate(ROUTES.MAIN);
-      //       } else {
-      //         setErrorMessage(data.detail);
-      //       }
-      //     });
     }
 
     return (
@@ -129,17 +81,9 @@ const SignIn = () =>
               }}
             >
               {({ errors, touched }) => (
-                <Form
-                  className="sif__wrapper"
-                  // name="username"  label="Имя пользователя"
-                  // rules={[ {     type: "username",        message: "The input is not valid Login!",     },  { required: true,    message: "Введите Ваш логин!",   }, ]}
-                >
+                <Form className="sif__wrapper">
                   {errorMessage && (
-                    <div
-                      ref={errRef}
-                      className="sif__error-msg"
-                      aria-live="assertive"
-                    >
+                    <div className="sif__error-msg" aria-live="assertive">
                       {errorMessage}
                     </div>
                   )}
@@ -149,16 +93,13 @@ const SignIn = () =>
                       Зарегистрироваться
                     </a>
                   </div>
-                  <label /*htmlFor="username"*/>
+                  <label>
                     Логин:
                     <Field
                       className="input sif__input"
                       prefix={<UserOutlined className="site-form-item-icon" />}
                       placeholder="Введите имя пользователя"
                       name="username"
-                      ref={userRef}
-
-                      // rules={[ {     type: "username",        message: "The input is not valid Login!",     },  { required: true,    message: "Введите Ваш логин!",   }, ]}
                     />
                   </label>
                   {errors.username && touched.username && (

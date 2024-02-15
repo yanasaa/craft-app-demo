@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./sass/style.css";
 import App from "./App";
-import StoreContext from "./api/context/StoreProvider";
 import reportWebVitals from "./reportWebVitals";
+import StoreProvider from "./api/context/StoreProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <StoreContext>
+    <StoreProvider>
       <App />
-    </StoreContext>
+    </StoreProvider>
   </React.StrictMode>
 );
 
