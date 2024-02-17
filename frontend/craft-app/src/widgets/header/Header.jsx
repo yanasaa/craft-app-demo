@@ -5,13 +5,15 @@ import { ROUTES } from "../../components/shared/consts/routes";
 import "./Header.scss";
 import { useState, useEffect, useRef } from "react";
 import { UserOutlined } from "@ant-design/icons";
+import { useAuth } from "../../components/shared/hooks/useAuth";
 
 function Header() {
   let navigate = useNavigate();
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
   const [profileActive, setProfileActive] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
 
   useEffect(() => {
     const storedUsername = localStorage.getItem("USERNAME");

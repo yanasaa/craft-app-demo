@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { message } from "antd";
 import { LikeFilled, LikeTwoTone, ShareAltOutlined } from "@ant-design/icons";
 import "./SingleArticle.scss";
 
+import { ROUTES } from "../../components/shared/consts/routes";
+import { useAuth } from "../../components/shared/hooks/useAuth";
+
 const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
 
 function SingleArticle() {
+  const { isLoggedIn } = useAuth();
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [like, setLike] = useState([]);
@@ -14,6 +18,7 @@ function SingleArticle() {
   const [isLiked, setIsLiked] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
+  let navigate = useNavigate();
 
   useEffect(() => {
     const getArticle = () => {
@@ -68,7 +73,10 @@ function SingleArticle() {
       content: "Ссылка на статью скопирована в буфер обмена",
     });
   };
- 
+
+  // if (!isLoggedIn) {
+  //   navigate(ROUTES.ENTER);
+  // } else
   return (
     <section className="article">
       <div className="article__wrapper">

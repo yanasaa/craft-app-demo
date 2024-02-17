@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { generatePath, useNavigate } from "react-router-dom";
 import { LikeTwoTone, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import "./UserArticleCard.scss";
@@ -57,6 +57,12 @@ function UserArticleCard(props) {
             <EditOutlined
               className="icon__user-card_action"
               title="редактировать"
+              onClick={() => {
+                navigate(
+                  generatePath(ROUTES.ARTICLEEDIT, { id: String(slug) })
+                );
+                window.scrollTo(0, 0);
+              }}
             />
             <DeleteOutlined
               onClick={deleteArticle}
