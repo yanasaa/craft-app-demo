@@ -6,7 +6,7 @@
   position: sticky;
   top: 0;
   background-color: $color-primary-light-header;
-  padding: 0 40px;
+  padding: 10px 40px;
   box-shadow: 0px 2px 4px 0px rgba(236, 179, 217, 0.5);
   z-index: 1;
 }
@@ -14,19 +14,22 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
-.header__navigation {
-  margin-right: auto;
-}
+// .header__navigation {
+//   margin-right: auto;
+// }
 .logo {
+position: absolute;
+left: calc(50% - 34px);
+top: 0;
   display: block;
   background-image: url("../../components/shared/assets/img/logo.svg");
   width: 67px;
   height: 87px;
 }
 .logo.header__logo {
-  margin: 15px 0 10px auto;
-  flex-grow: 1;
+  
 }
 .header__buttons {
   width: 45%;

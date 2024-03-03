@@ -1,0 +1,60 @@
+.accent {
+    backdrop-filter: blur(75px);
+    border-radius: 100px;
+    padding: 0 65px 10px;
+  }
+  
+  .animation {
+    display: flex;
+    flex-direction: column;
+    // height: 5.45rem;
+    width: fit-content;
+    transition: all 5s;
+  }
+  
+  .animation > div {
+    width: fit-content;
+    overflow: hidden;
+    //   animation-fill-mode: forwards;
+    height: 130px;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 3s;
+  }
+  .accent > p {
+    animation: text-animation 5s infinite;
+    height: 100%;
+  }
+  
+  .best {
+    color: #00cd9b;
+    background-color: rgba(0, 255, 194, 0.15);
+  }
+  .your {
+    color: #0075ff;
+    background-color: rgba(0, 117, 255, 0.2);
+  }
+  .fun {
+    color: #ffd600;
+    background-color: rgba(255, 214, 0, 0.15);
+  }
+  .new {
+    color: #ff006b;
+    background-color: rgba(255, 0, 107, 0.15);
+  }
+  
+  @keyframes text-animation {
+    0% {
+      transform: translateY(0%);
+    }
+    20% {
+      transform: translateY(-60%);
+    }
+  
+    80% {
+      transform: translateY(-50%);
+    }
+  
+    100% {
+      transform: translateY(-150%);
+    }
+  }
+  
