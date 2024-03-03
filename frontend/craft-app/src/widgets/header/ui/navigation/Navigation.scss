@@ -23,6 +23,9 @@
 .dropdown {
   width: 240px;
   position: relative;
+  @media (max-width: 550px) {
+    width: 180px;
+  }
 }
 
 .navigation__icon {
@@ -33,5 +36,55 @@
 
   &_opened {
     transform: rotate(-180deg);
+  }
+}
+.no-burger {
+  @media (max-width: 550px) {
+    display: none;
+  }
+}
+.burger {
+  display: none;
+  @media (max-width: 550px) {
+    display: flex;
+    padding: 10px;
+    width: 40px;
+    height: 32px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    // border: 1px solid black;
+  }
+  .burger__line {
+    width: 40px;
+    height: 5px;
+    background-color: $color-primary;
+    border-radius: 20px;
+    transition: all 0.5s ease-in-out;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      height: 5px;
+      width: 40px;
+      background-color: $color-primary;
+      border-radius: 20px;
+      transition: all 0.5s ease-in-out;
+    }
+    &::before {
+      transform: translateY(-10px);
+    }
+    &::after {
+      transform: translateY(10px);
+    }
+  }
+  &__open .burger__line {
+    background: transparent;
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
   }
 }
