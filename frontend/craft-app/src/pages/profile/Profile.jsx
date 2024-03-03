@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+import { useAuth } from "../../components/shared/hooks/useAuth";
 import {
   AuditOutlined,
   FileTextOutlined,
@@ -14,6 +16,9 @@ import { ROUTES } from "../../components/shared/consts/routes";
 import UserArticleCard from "./ui/userArticleCard/UserArticleCard";
 
 const Profile = () => {
+  const { isLoggedIn } = useAuth();
+  // const { isLoggedIn } = useContext(StoreContext);
+
   const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
 
   let navigate = useNavigate();
@@ -90,96 +95,99 @@ const Profile = () => {
     setPostsPerPage(pageSize);
   };
 
-  return (
-    <section className="profile">
-      {console.log(userProfile)}
-      <div className="profile__wrapper">
-        <div className="wrapper">
-          <div className="profile__info">
-            <EditOutlined
-              className="icon__edit-profile"
-              title="редактировать профиль"
-              onClick={() => {
-                navigate(ROUTES.PROFILEEDIT);
-                window.scrollTo(0, 0);
-              }}
-            />
-            <div className="profile__user-card">
-              <div className="user-card__img">
-                <img
-                  src={`http://84.38.183.195/${userProfile.avatar}`}
-                  alt="user"
-                />
-              </div>
-              <div className="user-card__info">
-                <div className="user-card__item">
-                  <div className="item__number">
-                    <h3>0</h3>
-                    <SmileOutlined />
-                  </div>
-                  <p className="item__text">подписчиков</p>
-                </div>
-                <div className="user-card__item">
-                  <div className="item__number">
-                    <h3>0</h3>
-                    <AuditOutlined />
-                  </div>
-                  <p className="item__text">подписок</p>
-                </div>
-                <div className="user-card__item">
-                  <div className="item__number">
-                    <h3>{total}</h3>
-                    <FileTextOutlined />
-                  </div>
-                  <p className="item__text">статей</p>
-                </div>
-                <Button
-                  className="button button_colored user-card_btn"
-                  btnText="Добавить статью"
-                  onClick={handleClick}
-                />
-              </div>
-            </div>
-            <div className="user-info">
-              <h3>Имя</h3>
-              <h2 className="user-info__name">{userProfile.first_name}</h2>
-              <h3>Фамилия</h3>
-              <h2 className="user-info__name">{userProfile.last_name}</h2>
-              <h3>Email</h3>
-              <h3>{userProfile.email}</h3>
-              <h3>Логин</h3>
-              <h3>{userProfile.username}</h3>
-              <h3>Пол</h3>
-              <h3>{userProfile.gender === "F" ? "Ж" : "М"}</h3>
-              <h3>О себе</h3>
-              <p className="story__text">{userProfile.bio}</p>
-            </div>
-          </div>
-        </div>
-        {/* {!!total && <h2>Мои статьи</h2>} */}
-        <h2>Мои статьи</h2>
-        <div className="profile__articles">
+  if (!isLoggedIn) {
+    navigate(ROUTES.ENTER);
+  } else
+    return (
+      <section className="profile">
+        {console.log(userProfile)}
+        <div className="profile__wrapper">
           <div className="wrapper">
-            <div className="article-gallery">{displayArticles}</div>
+            <div className="profile__info">
+              <EditOutlined
+                className="icon__edit-profile"
+                title="редактировать профиль"
+                onClick={() => {
+                  navigate(ROUTES.PROFILEEDIT);
+                  window.scrollTo(0, 0);
+                }}
+              />
+              <div className="profile__user-card">
+                <div className="user-card__img">
+                  <img
+                    src={`http://84.38.183.195/${userProfile.avatar}`}
+                    alt="user"
+                  />
+                </div>
+                <div className="user-card__info">
+                  <div className="user-card__item">
+                    <div className="item__number">
+                      <h3>0</h3>
+                      <SmileOutlined />
+                    </div>
+                    <p className="item__text">подписчиков</p>
+                  </div>
+                  <div className="user-card__item">
+                    <div className="item__number">
+                      <h3>0</h3>
+                      <AuditOutlined />
+                    </div>
+                    <p className="item__text">подписок</p>
+                  </div>
+                  <div className="user-card__item">
+                    <div className="item__number">
+                      <h3>{total}</h3>
+                      <FileTextOutlined />
+                    </div>
+                    <p className="item__text">статей</p>
+                  </div>
+                  <Button
+                    className="button button_colored user-card_btn"
+                    btnText="Добавить статью"
+                    onClick={handleClick}
+                  />
+                </div>
+              </div>
+              <div className="user-info">
+                <h3>Имя</h3>
+                <h2 className="user-info__name">{userProfile.first_name}</h2>
+                <h3>Фамилия</h3>
+                <h2 className="user-info__name">{userProfile.last_name}</h2>
+                <h3>Email</h3>
+                <h3>{userProfile.email}</h3>
+                <h3>Логин</h3>
+                <h3>{userProfile.username}</h3>
+                <h3>Пол</h3>
+                <h3>{userProfile.gender === "F" ? "Ж" : "М"}</h3>
+                <h3>О себе</h3>
+                <p className="story__text">{userProfile.bio}</p>
+              </div>
+            </div>
+          </div>
+          {/* {!!total && <h2>Мои статьи</h2>} */}
+          <h2>Мои статьи</h2>
+          <div className="profile__articles">
+            <div className="wrapper">
+              <div className="article-gallery">{displayArticles}</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="pagination">
-        <Pagination
-          onChange={changePage}
-          total={total}
-          pageSize={postsPerPage}
-          current={page}
-          showSizeChanger={false}
-          showQuickJumper
-          locale={{ jump_to: "Перейти на", page: "стр" }}
-          onShowSizeChange={onShowSizeChange}
-          hideOnSinglePage
-        ></Pagination>
-      </div>
-    </section>
-  );
+        <div className="pagination">
+          <Pagination
+            onChange={changePage}
+            total={total}
+            pageSize={postsPerPage}
+            current={page}
+            showSizeChanger={false}
+            showQuickJumper
+            locale={{ jump_to: "Перейти на", page: "стр" }}
+            onShowSizeChange={onShowSizeChange}
+            hideOnSinglePage
+          ></Pagination>
+        </div>
+      </section>
+    );
 };
 
 export default Profile;
