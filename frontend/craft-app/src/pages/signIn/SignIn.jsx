@@ -63,7 +63,7 @@ const SignIn = () =>
       <section className="sign-in">
         <div className=" wrapper sign-in__wrap">
           <div className="sign-in__preview">
-            <h2>У нас много новинок</h2>
+            <h2 className="sign-in_preview__title">У нас много новинок</h2>
             <h2 className="sign-in__preview_text">
               Вдохновляйся работами мастеров.
               <br />
@@ -98,7 +98,7 @@ const SignIn = () =>
                     <Field
                       className="input sif__input"
                       prefix={<UserOutlined className="site-form-item-icon" />}
-                      placeholder="Введите имя пользователя"
+                      placeholder="имя пользователя"
                       name="username"
                     />
                   </label>
@@ -109,7 +109,7 @@ const SignIn = () =>
                     Пароль:
                     <Field
                       className="input sif__input"
-                      placeholder="Введите пароль"
+                      placeholder="пароль"
                       name="password"
                       type="password"
                     />

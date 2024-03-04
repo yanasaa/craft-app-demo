@@ -4,32 +4,57 @@
 
 .sign-in {
   background-color: $color-primary-light-header;
+  // height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  
 }
 .sign-in__wrap {
-  padding: 85px 45px;
+  // padding: 85px 45px;
   display: flex;
+  // height: 70vh;
+  flex-grow: 1;
+  @media (max-width: 1100px) {
+    flex-direction: column-reverse;
+  }
 }
 .sign-in__preview {
+  margin: 5vh;
   padding-top: 45px;
-  padding-bottom: 180px;
+
   background-image: url("../../components/shared/assets/img/ui/sign-n-bg.png");
 
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  @media (max-width: 1100px) {
+    margin: 0;
+    padding: 0;
+  }
+}
+.sign-in_preview__title {
+  padding-bottom: 2vh;
 }
 .sign-in__preview_text {
-  padding: 70px 43px;
+  // padding: 70px 43px;
   color: $color-text-dark-grey;
 }
 .sign-in__form {
   padding: 45px;
   flex-grow: 1;
+  text-align: right;
 }
 .sif__wrapper {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  align-items: center;
+  gap: 5vh;
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 1vh;
+  }
 }
 .sif__register-link {
   display: flex;
@@ -42,11 +67,15 @@
   & > a {
     cursor: pointer;
   }
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
 .sif__input {
   background-color: $color-bg-light;
   margin-left: 15px;
-  width: 360px;
+  // width: 320px;
 }
 .sif__button {
   margin: 0 auto;
