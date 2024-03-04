@@ -23,12 +23,19 @@ function Navigation() {
           className="dropdown__button navigation__link"
           onClick={(e) => setIsActive(!isActive)}
         >
-          Разделы сайта
-          {isActive ? (
-            <span className="icon navigation__icon navigation__icon_opened"></span>
-          ) : (
-            <span className="icon navigation__icon navigation__icon_open_closed"></span>
-          )}
+          <div className="no-burger">
+            <span>Разделы сайта</span>
+            {isActive ? (
+              <span className="icon navigation__icon navigation__icon_opened"></span>
+            ) : (
+              <span className="icon navigation__icon navigation__icon_open_closed"></span>
+            )}
+            
+          </div>
+          <div className={`burger ${isActive && "burger__open"}`}>
+            <div className="burger__line"></div>
+              
+            </div>
         </div>
         {isActive && (
           <DropdownContent

@@ -21,4 +21,7 @@
     color: $color-primary;
     border-right: 3px solid $color-primary;
   }
+  @media (max-width: 550px) {
+    padding: 16px;
+  }
 }
