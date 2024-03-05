@@ -16,7 +16,7 @@ function SearchBar(props) {
         className="search__input"
         value={searchValue}
         type="search"
-        placeholder="Поиск по автору или названию статьи"
+        placeholder="Поиск по автору или названию"
         onChange={(event) => {
           setSearchValue(event.target.value);
         }}
