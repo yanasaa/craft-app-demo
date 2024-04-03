@@ -1,0 +1,23 @@
+.editor {
+  width: 100%;
+  background-color: white;
+  border: 1px solid;
+  border-radius: 5px;
+}
+
+.ql-toolbar.ql-snow {
+  margin-bottom: 0;
+  border: none;
+  border-bottom: 1px solid;
+}
+
+.ql-container.ql-snow {
+  height: 65vh;
+  & * {
+    color: black;
+  }
+}
+
+.ql-editor p img {
+        width: fit-content;
+}

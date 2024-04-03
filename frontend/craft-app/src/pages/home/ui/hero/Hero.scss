@@ -3,18 +3,36 @@
 @import "../../../../sass/abstracts/placeholders";
 
 .hero {
-  background-image: url("../../../../components/shared/assets/img/ui/mainbg-1.png");
+  background-image: url("../../../../components/shared/assets/img/ui/main-bg.jpeg");
   background-size: cover;
   background-position: center;
-  margin-bottom: 100px;
+  min-height: $block-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 40px;
+  margin-bottom: 10vh;
+  @media (max-width: 800px) {
+    background-image: url("../../../../components/shared/assets/img/ui/mainbg-1.png");
+  }
+  @media (max-width: 420px) {
+    padding: 0 2vh;
+  }
 }
 
 .hero__wrapper {
-  padding: 120px 0 150px;
+  width: 100%;
+  max-width: $content-width;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 }
 
 .hero__glass {
   width: fit-content;
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 }
 
 .glass {
@@ -28,42 +46,62 @@
   max-width: 563px;
   text-align: left;
   margin: 0 auto;
+  @media (max-width: 420px) {
+    padding: 0 1vh;
+  }
 }
 .hero__title {
   border-radius: 16px 16px 0 0;
-  padding: 10px 40px;
+  padding: 1vh 4rem;
   margin: 0;
   color: $color-bg-light;
   background: $color-complimentary;
-  width: 100%;
+  @include font(6.5rem, 7.6rem);
+
+  @media (max-width: 680px) {
+    @include font(3.5rem, 4.4rem);
+    letter-spacing: 0.06em;
+    padding: 1vh 2rem;
+  }
+  @media (max-width: 420px) {
+    padding: 0 1vh;
+  }
 }
 
 .hero__text {
   @include font(2.4rem, 3.2rem, $weight: 700);
   color: $color-light;
-  padding: 15px 0 30px;
+  padding: 1vh 0 2vh;
+  margin: 0;
+  @media (max-width: 470px) {
+    @include font(1.8rem, 2.2rem);
+  }
 }
 
 .hero__tags_layout {
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2vh;
   padding-bottom: 20px;
-  min-height: 490px;
 }
 
 .tag {
-  height: 80px;
   display: flex;
   cursor: pointer;
-  padding: 15px 20px;
+  padding: 2vh 20px;
   color: $color-primary;
   background-color: $color-bg-light;
-  border-radius: 5px;
+  // border-radius: 5px;
   box-shadow: 2px 2px 4px 0px rgba(173, 46, 149, 0.25);
   @include font(1.8rem);
   @extend %transition;
   &:hover {
     background-color: $color-primary;
     color: $color-bg-light;
+  }
+  @media (max-width: 470px) {
+    @include font(1.4rem, 2.2rem);
+    padding: 1vh;
   }
 }
 .tag__title {

@@ -6,7 +6,7 @@ function Advantages() {
             <h2>Преимущества сервиса</h2>
             <div className="advantages__wrapper">
                 <div className="wrapper">
-                <div className="advantage-cards layout-2-columns">
+                <div className="advantage-cards">
                     <div className="advantage advantage_author">
                     <div className="">
                         <h3 className="advantage__title">Для Aвторов</h3>

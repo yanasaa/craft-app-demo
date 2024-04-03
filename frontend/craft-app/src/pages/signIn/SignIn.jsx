@@ -72,7 +72,7 @@ const SignIn = () =>
             </h2>
           </div>
           <div className="sign-in__form">
-            <h2>Мы рады вас видеть!</h2>
+            <h2 className="sign-in__form-title">Мы рады вас видеть!</h2>
             <Formik
               validationSchema={validationSchema}
               initialValues={{ username: "", password: "" }}
