@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 import Button from "../../../../components/shared/ui/button/Button";
+import { tempArticles } from "../../../../tempData/articles";
 
 function Articles({
   categoryId,
@@ -18,20 +19,30 @@ function Articles({
     ? `http://84.38.183.195/api/v1/category/${categoryId}`
     : `http://84.38.183.195/api/v1/posts/?search=${searchValue}`;
 
+  // useEffect(() => {
+  //   const getAllArticles = () => {
+  //     fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => {
+  //         setArticles(json.reverse());
+  //         setTotal(json.length);
+  //         setPage(1);
+  //       });
+  //   };
+  //   getAllArticles();
+  // }, [categoryId, searchValue, url]);
+
   useEffect(() => {
     const getAllArticles = () => {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setArticles(json.reverse());
-          setTotal(json.length);
+          setArticles(tempArticles.reverse());
+          setTotal(tempArticles.length);
           setPage(1);
-        });
+     
     };
     getAllArticles();
   }, [categoryId, searchValue, url]);

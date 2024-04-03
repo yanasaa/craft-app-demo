@@ -1,17 +1,22 @@
 import SearchBar from "../../../../components/shared/ui/searchBar/SearchBar";
+import { tempTags } from "../../../../tempData/tags";
 import "./Hero.scss";
 import { useEffect, useState } from "react";
 
 function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
   const [tags, setTags] = useState([]);
+  // useEffect(() => {
+  //   const getAllTags = () => {
+  //     fetch("http://84.38.183.195/api/v1/categories/")
+  //       .then((response) => response.json())
+  //       .then((json) => setTags(json));
+  //   };
+  //   getAllTags();
+  // }, []);
+
   useEffect(() => {
-    const getAllTags = () => {
-      fetch("http://84.38.183.195/api/v1/categories/")
-        .then((response) => response.json())
-        .then((json) => setTags(json));
-    };
-    getAllTags();
-  }, []);
+    setTags(tempTags)
+  })
 
   function getUniqTags(tags) {
     return Array.from(new Set(tags.map((el) => el.tag)));

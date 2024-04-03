@@ -3,17 +3,19 @@
 @import "../../../../sass/abstracts/placeholders";
 
 .hero {
-  background-image: url("../../../../components/shared/assets/img/ui/mainbg-1.png");
+  background-image: url("../../../../components/shared/assets/img/ui/main-bg.jpeg");
   background-size: cover;
   background-position: center;
-  min-height: calc(100vh - 110px);
-  margin-bottom: 100px;
+  min-height: $block-height;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 40px;
+  margin-bottom: 10vh;
+  @media (max-width: 800px) {
+    background-image: url("../../../../components/shared/assets/img/ui/mainbg-1.png");
+  }
   @media (max-width: 420px) {
-    
     padding: 0 2vh;
   }
 }
@@ -45,7 +47,6 @@
   text-align: left;
   margin: 0 auto;
   @media (max-width: 420px) {
-    
     padding: 0 1vh;
   }
 }
@@ -63,7 +64,6 @@
     padding: 1vh 2rem;
   }
   @media (max-width: 420px) {
-    
     padding: 0 1vh;
   }
 }
@@ -79,18 +79,19 @@
 }
 
 .hero__tags_layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2vh;
   padding-bottom: 20px;
-  @include columns(46%);
 }
 
 .tag {
   display: flex;
   cursor: pointer;
-  padding: 1vh 20px;
+  padding: 2vh 20px;
   color: $color-primary;
   background-color: $color-bg-light;
-  border-radius: 5px;
+  // border-radius: 5px;
   box-shadow: 2px 2px 4px 0px rgba(173, 46, 149, 0.25);
   @include font(1.8rem);
   @extend %transition;
