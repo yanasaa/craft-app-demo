@@ -11,7 +11,7 @@ function Onboarding() {
       <h2 className="onboarding__title">Как это работает?</h2>
       <div className="wrapper onboarding__wrapper">
       <img className="onboard__lines onboard__lines_horizon" src={lines} alt="background"/>
-      <img className="onboardVertical" src={vertical} alt="background" srcset="" />
+      <img className="onboardVertical" src={vertical} alt="background" />
         <div className="onboarding__text onboarding__text_article">
           размести статью
         </div>

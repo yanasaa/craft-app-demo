@@ -4,14 +4,14 @@ import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./ProfileEdit.scss";
 import { ROUTES } from "../../components/shared/consts/routes";
 
-const ProfileEdit = () => {
+export const ProfileEdit = () => {
   let navigate = useNavigate();
   function handleCancelClick() {
     navigate(ROUTES.PROFILE);
     window.scrollTo(0, 0);
   }
 
-  const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+  const ACCESS_TOKEN = localStorage.getItem("token");
   const [userProfile, setUserProfile] = useState({});
 
   const [selectedFile, setSelectedFile] = useState();
@@ -36,7 +36,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     const getUserProfile = () => {
-      fetch(`http://84.38.183.195/api/v1/userprofile/me/`, {
+      fetch(`http://84.201.140.115/api/v1/userprofile/me/`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -56,7 +56,7 @@ const ProfileEdit = () => {
     newData[e.target.id] = e.target.value || "";
     setUserProfile(newData);
   }
-  const url = "http://84.38.183.195";
+  const url = "http://84.201.140.115";
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -214,5 +214,3 @@ const ProfileEdit = () => {
     </section>
   );
 };
-
-export default ProfileEdit;

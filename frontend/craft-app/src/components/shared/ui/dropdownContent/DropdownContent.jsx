@@ -1,33 +1,39 @@
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import "./DropdownContent.scss";
-import { ROUTES } from "../../consts/routes";
+import { ROUTE_NAMES } from "../../../../routes/routeNames";
 
 const DropdownContent = ({ className, onClick }) => {
   return (
     <ul className={`dropdown__content ${className}`} onClick={onClick}>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#`}>
+        <HashLink className="dropdown-item" to={`${ROUTE_NAMES.HOME}#`}>
           Виды ремесел
         </HashLink>
       </li>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#advantages`}>
+        <HashLink
+          className="dropdown-item"
+          to={`${ROUTE_NAMES.HOME}#advantages`}
+        >
           Преимущества
         </HashLink>
       </li>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#articles`}>
+        <HashLink className="dropdown-item" to={`${ROUTE_NAMES.HOME}#articles`}>
           Статьи авторов
         </HashLink>
       </li>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#onboarding`}>
+        <HashLink
+          className="dropdown-item"
+          to={`${ROUTE_NAMES.HOME}#onboarding`}
+        >
           Как это работает
         </HashLink>
       </li>
       <li>
-        <HashLink className="dropdown-item" to={`${ROUTES.MAIN}#contacts`}>
+        <HashLink className="dropdown-item" to={`${ROUTE_NAMES.HOME}#contacts`}>
           Контакты
         </HashLink>
       </li>

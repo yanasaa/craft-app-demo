@@ -1,16 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { message } from "antd";
 import { LikeFilled, LikeTwoTone, ShareAltOutlined } from "@ant-design/icons";
 import "./SingleArticle.scss";
 
-import { ROUTES } from "../../components/shared/consts/routes";
-import { useAuth } from "../../components/shared/hooks/useAuth";
+const ACCESS_TOKEN = localStorage.getItem("token");
 
-const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
-
-function SingleArticle() {
-  const { isLoggedIn } = useAuth();
+export const SingleArticle = () => {
   const { slug } = useParams();
   const [article, setArticle] = useState({});
   const [like, setLike] = useState([]);
@@ -18,11 +14,9 @@ function SingleArticle() {
   const [isLiked, setIsLiked] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
-  let navigate = useNavigate();
-
   useEffect(() => {
     const getArticle = () => {
-      fetch(`http://84.38.183.195/api/v1/post/${slug}`)
+      fetch(`http://84.201.140.115/api/v1/post/${slug}`)
         .then((response) => response.json())
         .then((json) => {
           setArticle(json);
@@ -46,7 +40,7 @@ function SingleArticle() {
   //TODO ПЕРЕПИСАТЬ ФУНКЦИЮ ПОСТАВИТЬ ЛАЙК, КОГДА БУДЕТ ГОТОВА АВТОРИЗАЦИЯ /
 
   function onLikeButtonClick() {
-    const res = fetch(`http://84.38.183.195/api/v1/like/unlike/${id}`, {
+    const res = fetch(`http://84.201.140.115/api/v1/like/unlike/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -74,9 +68,6 @@ function SingleArticle() {
     });
   };
 
-  // if (!isLoggedIn) {
-  //   navigate(ROUTES.ENTER);
-  // } else
   return (
     <section className="article">
       <div className="article__wrapper">
@@ -133,6 +124,4 @@ function SingleArticle() {
       <div className="article__line"></div>
     </section>
   );
-}
-
-export { SingleArticle };
+};

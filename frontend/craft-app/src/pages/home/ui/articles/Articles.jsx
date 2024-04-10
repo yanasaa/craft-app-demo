@@ -16,36 +16,36 @@ function Articles({
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const url = categoryId
-    ? `http://84.38.183.195/api/v1/category/${categoryId}`
-    : `http://84.38.183.195/api/v1/posts/?search=${searchValue}`;
-
-  // useEffect(() => {
-  //   const getAllArticles = () => {
-  //     fetch(url, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         setArticles(json.reverse());
-  //         setTotal(json.length);
-  //         setPage(1);
-  //       });
-  //   };
-  //   getAllArticles();
-  // }, [categoryId, searchValue, url]);
+    ? `http://84.201.140.115/api/v1/category/${categoryId}`
+    : `http://84.201.140.115/api/v1/posts/?search=${searchValue}`;
 
   useEffect(() => {
     const getAllArticles = () => {
-          setArticles(tempArticles.reverse());
-          setTotal(tempArticles.length);
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          setArticles(json.reverse());
+          setTotal(json.length);
           setPage(1);
-     
+        });
     };
     getAllArticles();
   }, [categoryId, searchValue, url]);
+
+  // useEffect(() => {
+  //   const getAllArticles = () => {
+  //         setArticles(tempArticles.reverse());
+  //         setTotal(tempArticles.length);
+  //         setPage(1);
+     
+  //   };
+  //   getAllArticles();
+  // }, [categoryId, searchValue, url]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
