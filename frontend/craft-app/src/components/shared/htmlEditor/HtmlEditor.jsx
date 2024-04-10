@@ -1,18 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
 import "./HtmlEditor.scss";
 
 const HtmlEditor = () => {
-  const { quill, quillRef } = useQuill({ modules });
-  const [value, setValue] = useState("");
-  React.useEffect(() => {
-    if (quill) {
-      quill.on("text-change", () => {
-        setValue(quillRef.current.firstChild.innerHTML);
-      });
-    }
-  }, [quill]);
   const modules = {
     toolbar: {
       container: [
@@ -37,6 +28,16 @@ const HtmlEditor = () => {
       matchVisual: false,
     },
   };
+  const { quill, quillRef } = useQuill({ modules });
+  const [value, setValue] = useState("");
+ useEffect(() => {
+    if (quill) {
+      quill.on("text-change", () => {
+        setValue(quillRef.current.firstChild.innerHTML);
+      });
+    }
+  }, [quill]);
+  
 
   function imageHandler() {
     const tooltip = this.quill.theme.tooltip;

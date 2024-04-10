@@ -5,7 +5,7 @@ import ContactUs from "./ui/contactUs/ContactUs";
 import Hero from "./ui/hero/Hero";
 import Onboarding from "./ui/onboarding/Onboarding";
 
-function Home() {
+export const Home = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [searchValue, setSearchValue] = useState("");
 
@@ -32,5 +32,3 @@ function Home() {
     </>
   );
 }
-
-export default Home;

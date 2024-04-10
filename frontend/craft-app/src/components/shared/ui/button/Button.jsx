@@ -1,10 +1,9 @@
 import "./Button.scss";
 
-function Button(props) {
-  const { btnText, onClick, className } = props;
-  return (
-    <button type="submit" className={className} onClick={onClick}>
-      {btnText}
+function Button({ children, onClick, className, ...props }) {
+    return (
+    <button className={className} onClick={onClick} {...props}>
+      {children}
     </button>
   );
 }

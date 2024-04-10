@@ -40,11 +40,12 @@ function ContactUS() {
               <div className="contact-us__button ">
                 <Button
                   onClick={(e) => e.preventDefault()}
-                  btnText="Отправить"
                   type="submit"
                   className="button button_bordered footer__btn"
                   disabled
-                />
+                >
+                  Отправить
+                </Button>
               </div>
             </form>
           </div>

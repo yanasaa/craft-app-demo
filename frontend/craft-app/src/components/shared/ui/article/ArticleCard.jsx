@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { LikeTwoTone } from "@ant-design/icons";
 import { ROUTES } from "../../consts/routes";
 import "./ArticleCard.scss";
+import { ROUTE_NAMES } from "../../../../routes/routeNames";
 
 function ArticleCard(props) {
   const { className, title, body, slug, likes, author, imgSrc, publish } =
     props;
   let navigate = useNavigate();
   function handleClick() {
-    navigate(`${ROUTES.MAIN}${slug}`);
+    navigate(`${ROUTE_NAMES.HOME}${slug}`);
     window.scrollTo(0, 0);
   }
 

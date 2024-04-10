@@ -5,12 +5,12 @@ import { ROUTES } from "../../components/shared/consts/routes";
 import "./CreateArticle.scss";
 import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
 
-function CreateArticle() {
-  const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+export const CreateArticle = () => {
+  const ACCESS_TOKEN = localStorage.getItem("token");
   const filePicker = useRef(null);
   const [categories, setCategories] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
-  const [fileUrl, setFileUrl] = useState('')
+  const [fileUrl, setFileUrl] = useState("");
   let navigate = useNavigate();
   const initialData = {
     title: "",
@@ -23,12 +23,12 @@ function CreateArticle() {
   const [data, setData] = useState({ ...initialData });
 
   useEffect(() => {
-    // const getAllTags = () => {
-    //   fetch("http://84.38.183.195/api/v1/categories/")
-    //     .then((response) => response.json())
-    //     .then((json) => setCategories(json));
-    // };
-    // getAllTags();
+    const getAllTags = () => {
+      fetch("http://84.201.140.115/api/v1/categories/")
+        .then((response) => response.json())
+        .then((json) => setCategories(json));
+    };
+    getAllTags();
   }, []);
 
   function handle(e) {
@@ -39,7 +39,7 @@ function CreateArticle() {
   }
   function handleChange(e) {
     setSelectedFile(e.target.files[0]);
-    setFileUrl(URL.createObjectURL(e.target.files[0]))
+    setFileUrl(URL.createObjectURL(e.target.files[0]));
   }
 
   function handlePick() {
@@ -48,20 +48,14 @@ function CreateArticle() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (
-      !selectedFile ||
-      !data.title ||
-      !data.post_preview ||
-      !data.body ||
-      !data.category
-    ) {
+    if (!selectedFile || !data.title || !data.post_preview || !data.category) {
       alert("Все поля обязательны для заполнения");
       return;
     }
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("post_preview", data.post_preview);
-    formData.append("body", data.body);
+    formData.append("body", data.body || "test");
     formData.append("status", data.status);
     formData.append("category", data.category);
     formData.append("preview", selectedFile);
@@ -84,7 +78,7 @@ function CreateArticle() {
     <section className="new-article">
       <div className="wrapper new-article_wrapper">
         <h2>Новая статья</h2>
-        
+
         <form onSubmit={(e) => handleUpload(e)} className="new-article__form">
           <div className="preview-create_wrapper">
             <div className="preview-create_inputs">
@@ -148,7 +142,7 @@ function CreateArticle() {
                   </>
                 ) : (
                   <>
-                  <img src={fileUrl}/>
+                    <img src={fileUrl} />
                     <span className="load-img__name">{selectedFile.name}</span>
                     <DeleteOutlined
                       className="icon__delete-img"
@@ -175,15 +169,13 @@ function CreateArticle() {
           <div>
             <HtmlEditor></HtmlEditor>
           </div>
-          {/* <textarea
+          <textarea
             className="input input_new-article textarea__new-article"
             placeholder="Основной текст статьи"
             onChange={(event) => handle(event)}
             id="body"
             value={data.body}
-          > */}
-          {/*             
-          </textarea> */}
+          ></textarea>
 
           <div className="new-article__buttons">
             <button
@@ -204,6 +196,4 @@ function CreateArticle() {
       </div>
     </section>
   );
-}
-
-export default CreateArticle;
+};

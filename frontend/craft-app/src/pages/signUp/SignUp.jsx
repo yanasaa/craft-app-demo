@@ -1,34 +1,31 @@
 import { Link, Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { Formik, Field } from "formik";
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTE_NAMES } from "../../routes/routeNames";
-import { loginSelector } from "./selectors";
 import { initialValues } from "./initialValues";
-import "./Signin.scss";
-import { loginThunk } from "./thunks";
+import "./signUp.scss";
 import { FormikField } from "../../components/FormikField/FormikField";
+import AuthService from "../../services/AuthService";
+import { useEffect } from "react";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Введите Ваш логин!"),
   password: yup.string().required("Введите Ваш пароль!"),
 });
 
-export const SignIn = () => {
-  const dispatch = useDispatch();
-  const { isAuth, errors, isLoading } = useSelector(loginSelector);
-
-  if (isAuth) return <Navigate to={ROUTE_NAMES.HOME} />;
-  if (errors) console.log(errors);
+export const SignUp = () => {
 
   const handleSubmit = (values) => {
-     dispatch(loginThunk(values));
+    console.log(values);
+    AuthService.signUp(values).then((data) => console.log(data));
   };
+
+ 
 
   return (
     <section className="sign-in">
-      <div className=" wrapper sign-in__wrap">
+      <div className=" wrapper sign-in__wrap sign-up__wrap">
         <div className="sign-in__preview">
           <h2 className="sign-in_preview__title">У нас много новинок</h2>
           <h2 className="sign-in__preview_text">
@@ -49,8 +46,8 @@ export const SignIn = () => {
               return (
                 <div className="sif__wrapper">
                   <div className="sif__register-link">
-                    <span>Еще нет аккаунта на Craftshare?</span>
-                    <Link to={ROUTE_NAMES.SIGN_UP}>Зарегистрироваться</Link>
+                    <span>Уже есть аккаунт на Craftshare?</span>
+                    <Link to={ROUTE_NAMES.SIGN_IN}>Войти</Link>
                   </div>
 
                   <Field
@@ -70,13 +67,13 @@ export const SignIn = () => {
                     label="Пароль:  "
                     component={FormikField}
                   />
-                  <div>{errors}</div>
+                  {/* <div>{errors}</div> */}
                   <Button
                     className="button button_colored sif__button"
                     type="submit"
-                    disabled={isLoading || !formikProps.isValid}
+                    disabled={!formikProps.isValid}
                     onClick={formikProps.handleSubmit}
-                  >Войти</Button>
+                  >Зарегистрироваться</Button>
                 </div>
               );
             }}
@@ -86,3 +83,4 @@ export const SignIn = () => {
     </section>
   );
 };
+
