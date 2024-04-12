@@ -60,7 +60,7 @@ export const CreateArticle = () => {
     formData.append("category", data.category);
     formData.append("preview", selectedFile);
 
-    const res = await fetch("http://84.38.183.195/api/v1/post/create/", {
+    const res = await fetch("http://84.201.140.115/api/v1/post/create/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${ACCESS_TOKEN}`,
@@ -167,7 +167,7 @@ export const CreateArticle = () => {
             <h3>Содержание статьи</h3>
           </label>
           <div>
-            <HtmlEditor></HtmlEditor>
+            {/* <HtmlEditor></HtmlEditor> */}
           </div>
           <textarea
             className="input input_new-article textarea__new-article"

@@ -1,0 +1,85 @@
+@import "../../sass/abstracts/constants";
+@import "../../sass/abstracts/mixins";
+@import "../../sass/abstracts/placeholders";
+
+.articles {
+  padding-top: 10vh;
+  margin-bottom: 10vh;
+  position: relative;
+}
+
+.articles__wrapper {
+  background-image: url("../shared/assets/img/ui/articlebg.png");
+  background-size: cover;
+  padding: 50px 50px 15px;
+  min-height: 1083px;
+  @media (max-width: 1180px) {
+    padding: 50px 20px 15px;
+  }
+  @media (max-width: 400px) {
+    padding: 0;
+  }
+}
+
+.article-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 358px);
+  align-content: space-around;
+  justify-content: space-between;
+  @media (max-width: 1180px) {
+    grid-template-columns: repeat(2, 358px);
+    justify-content: space-around;
+  }
+  @media (max-width: 760px) {
+    grid-template-columns: repeat(1, 358px);
+  }
+  @media (max-width: 360px) {
+    justify-content: center;
+    align-content: center;
+  }
+}
+.slider {
+  position: relative;
+}
+
+.slider__button {
+  cursor: pointer;
+  position: absolute;
+  padding: 25px;
+  top: 43%;
+  &_left {
+    left: -100px;
+  }
+  &_right {
+    transform: rotate(180deg);
+    right: -100px;
+  }
+}
+
+.pagination {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.articles__filter-btn {
+  position: absolute;
+  top: 195px;
+  left: 140px;
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: $color-bg-light;
+  border: 1px solid $color-text-grey;
+  @include font(1.8rem, 2.4rem);
+  border-radius: 4px;
+  color: $color-primary;
+  &:hover {
+    background-color: $color-bg-light;
+  }
+}
+
+.likes__icon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: baseline;
+}
