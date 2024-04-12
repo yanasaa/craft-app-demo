@@ -1,44 +1,51 @@
-import { Pagination } from "antd";
 import { useEffect, useState } from "react";
-import "./Articles.scss";
-import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
-import Button from "../../../../components/shared/ui/button/Button";
+import { Pagination } from "antd";
+import ArticleCard from "../shared/ui/article/ArticleCard";
+import Button from "../shared/ui/button/Button";
+import { useArticles } from "../../hooks/useArticles";
+import "./ArticlesGallery.scss";
 
-function Articles({
+export const ArticlesGallery = ({
   categoryId,
   onClickCategory,
   searchValue,
-  setSearchValue,
-}) {
-  const [articles, setArticles] = useState([]);
+  posts,
+}) => {
+  const { allArticles, getArticles } = useArticles();
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(6);
   const url = categoryId
     ? `http://84.201.140.115/api/v1/category/${categoryId}`
     : `http://84.201.140.115/api/v1/posts/?search=${searchValue}`;
 
   useEffect(() => {
-    const getAllArticles = () => {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setArticles(json.reverse());
-          setTotal(json.length);
-          setPage(1);
-        });
-    };
-    getAllArticles();
+    getArticles();
   }, [categoryId, searchValue, url]);
+
+  const totalPages = allArticles.length;
+
+  const [postsPerPage, setPostsPerPage] = useState(6);
+
+  // useEffect(() => {
+  //   const getAllArticles = () => {
+  //     fetch(url, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-type": "application/json",
+  //       },
+  //     })
+  //       .then((response) => response.json())
+  //       .then((json) => {
+  //         setTotal(json.length);
+  //         setPage(1);
+  //       });
+  //   };
+  //   getAllArticles();
+  // }, [categoryId, searchValue, url]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
-  const currentPosts = articles.slice(indexOfFirstPage, indexOfLastPage);
+  const currentPosts = allArticles.slice(indexOfFirstPage, indexOfLastPage);
   const displayArticles = currentPosts.map((article) => {
     return (
       <ArticleCard
@@ -63,15 +70,17 @@ function Articles({
     setPostsPerPage(pageSize);
   };
 
+  console.log(allArticles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
       {!!categoryId && (
         <Button
           className="articles__filter-btn"
-          btnText="Отменить фильтр"
           onClick={() => onClickCategory(0)}
-        />
+        >
+          Отменить фильтр
+        </Button>
       )}
       <div className="slider__wrapper">
         <div className="articles__wrapper">
@@ -84,7 +93,7 @@ function Articles({
         <div className="pagination">
           <Pagination
             onChange={changePage}
-            total={total}
+            total={totalPages}
             pageSize={postsPerPage}
             current={page}
             showSizeChanger={false}
@@ -97,6 +106,4 @@ function Articles({
       </div>
     </section>
   );
-}
-
-export default Articles;
+};

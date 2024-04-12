@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import  loginSlice  from "../pages/signIn/slices";
+import loginSlice from "../pages/signIn/slices";
+import articleSlice from "../components/ArticlesGallery/slices/";
 
 // import productsReducer from "../pages/Products/slices";
 // import productInfoSlice from "../pages/ProductInfo/slices"
@@ -8,10 +9,11 @@ import  loginSlice  from "../pages/signIn/slices";
 
 const combineReducer = combineReducers({
   loginPage: loginSlice,
-//   productsPage: productsReducer,
-//   productInfoPage: productInfoSlice,
-//   cartPage: cartSlice,
-//   ordersPage: ordersSlice,
+  articlesPage: articleSlice,
+  //   productsPage: productsReducer,
+  //   productInfoPage: productInfoSlice,
+  //   cartPage: cartSlice,
+  //   ordersPage: ordersSlice,
 });
 
 const rootReducer = (state, action) => {

@@ -5,10 +5,15 @@ const api = axios.create({
   baseURL: BASE_URL,
 });
 
+const ACCESS_TOKEN = localStorage.getItem("token");
+
 api.interceptors.request.use(
   function (config) {
-    config.headers["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
-    console.log(config);
+    if (ACCESS_TOKEN) {
+      config.headers["Authorization"] = `Bearer ${localStorage.getItem(
+        "token"
+      )}`;
+    }
     return config;
   },
   function (error) {
@@ -16,7 +21,7 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.request.use(
+api.interceptors.response.use(
   function (response) {
     return response;
   },
