@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import avatarDefault from "../../components/shared/assets/img/ui/avatar.svg";
 
 import {
   AuditOutlined,
@@ -117,7 +118,11 @@ export const Profile = () => {
             <div className="profile__user-card">
               <div className="user-card__img">
                 <img
-                  src={`http://84.201.140.115/${userProfile.avatar}`}
+                  src={
+                    userProfile.avatar
+                      ? `http://84.201.140.115/${userProfile.avatar}` : 
+                      avatarDefault
+                  }
                   alt="user"
                 />
               </div>

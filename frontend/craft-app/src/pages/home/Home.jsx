@@ -12,13 +12,13 @@ export const Home = () => {
 
   return (
     <>
-      <ArticlesGallery
+      {/* <ArticlesGallery
         categoryId={categoryId}
         onClickCategory={(id) => setCategoryId(id)}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         posts={6}
-      />
+      /> */}
       <Hero
         categoryId={categoryId}
         onClickCategory={(id) => {

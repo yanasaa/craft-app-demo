@@ -8,6 +8,8 @@ import "./signUp.scss";
 import { FormikField } from "../../components/FormikField/FormikField";
 import AuthService from "../../services/AuthService";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { loginSelector } from "../signIn/selectors";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Введите Ваш логин!"),
@@ -15,15 +17,15 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignUp = () => {
+  const { isAuth } = useSelector(loginSelector);
 
   const handleSubmit = (values) => {
-    console.log(values);
     AuthService.signUp(values).then((data) => console.log(data));
   };
 
- 
-
-  return (
+  return isAuth ? (
+    <Navigate to={ROUTE_NAMES.HOME} />
+  ) : (
     <section className="sign-in">
       <div className=" wrapper sign-in__wrap sign-up__wrap">
         <div className="sign-in__preview">
@@ -73,7 +75,9 @@ export const SignUp = () => {
                     type="submit"
                     disabled={!formikProps.isValid}
                     onClick={formikProps.handleSubmit}
-                  >Зарегистрироваться</Button>
+                  >
+                    Зарегистрироваться
+                  </Button>
                 </div>
               );
             }}
@@ -83,4 +87,3 @@ export const SignUp = () => {
     </section>
   );
 };
-

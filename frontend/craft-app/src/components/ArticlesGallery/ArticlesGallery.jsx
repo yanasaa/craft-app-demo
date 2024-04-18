@@ -70,7 +70,6 @@ export const ArticlesGallery = ({
     setPostsPerPage(pageSize);
   };
 
-  console.log(allArticles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>

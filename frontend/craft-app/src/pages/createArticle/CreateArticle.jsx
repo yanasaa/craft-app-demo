@@ -130,7 +130,7 @@ export const CreateArticle = () => {
               />
             </div>
             <div className="new-article__load-img">
-              <h3>Загрузить изображение</h3>
+              <h3>Главное фото</h3>
               <div className="img-loader">
                 {!selectedFile ? (
                   <>
@@ -167,15 +167,21 @@ export const CreateArticle = () => {
             <h3>Содержание статьи</h3>
           </label>
           <div>
-            {/* <HtmlEditor></HtmlEditor> */}
+            <HtmlEditor 
+            value={data.body}
+            onChange={(event) => handle(event)}
+            id="body"
+            placeholder="Основной текст статьи..."
+            >
+            </HtmlEditor>
           </div>
-          <textarea
+          {/* <textarea
             className="input input_new-article textarea__new-article"
             placeholder="Основной текст статьи"
             onChange={(event) => handle(event)}
             id="body"
             value={data.body}
-          ></textarea>
+          ></textarea> */}
 
           <div className="new-article__buttons">
             <button
