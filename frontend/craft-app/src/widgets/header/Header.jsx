@@ -9,6 +9,7 @@ import { ROUTE_NAMES } from "../../routes/routeNames";
 import { useDispatch, useSelector } from "react-redux";
 import { loginSelector } from "../../pages/signIn/selectors";
 import { logout } from "../../pages/signIn/slices";
+import AuthService from "../../services/AuthService";
 
 function Header() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function Header() {
                   <li
                     onClick={() => {
                       setProfileActive(false);
+                      AuthService.logout().then((data) => console.log(data));
                       dispatch(logout());
                     }}
                     className="dropdown-item"

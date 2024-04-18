@@ -13,8 +13,8 @@ const HtmlEditor = () => {
         [{ list: "ordered" }, { list: "bullet" }],
         [{ indent: "-1" }, { indent: "+1" }],
 
-        [{ size: ["small", false, "large", "huge"] }],
-        [{ header: [3, 4, 5, 6, true] }],
+        [{ size: ["small", "large", "huge"] }],
+        [{ header: [3, 4, 5, 6] }],
         ["link", "image", "video"],
         [{ color: [] }, { background: [] }],
 

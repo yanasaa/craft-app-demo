@@ -17,7 +17,7 @@ export const loginSlice = createSlice({
   reducers: {
     logout: (state) => {
       localStorage.removeItem("token");
-      localStorage.removeItem("tokens");
+      localStorage.removeItem("refresh");
       state.isAuth = false;
       state.errors = null;
       state.isLoading = false;
@@ -27,10 +27,9 @@ export const loginSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       const tokens = action.payload;
-      console.log(tokens.access);
       const accessToken= tokens.access;
       localStorage.setItem("token", accessToken);
-      localStorage.setItem("tokens", JSON.stringify(tokens));
+      localStorage.setItem("refresh", tokens.refresh);
       state.isLoading = false;
       state.isAuth = true;
       state.token = accessToken;

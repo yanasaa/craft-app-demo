@@ -1,5 +1,6 @@
 import axios from "axios";
-const BASE_URL = "http://84.201.140.115/api/v1";
+import { REFRESH_ENDPOINT } from "../constants/endpoints";
+export const BASE_URL = "http://84.201.140.115/api/v1";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -8,28 +9,31 @@ const api = axios.create({
 const ACCESS_TOKEN = localStorage.getItem("token");
 
 api.interceptors.request.use(
-  function (config) {
+  (config) => {
     if (ACCESS_TOKEN) {
-      config.headers["Authorization"] = `Bearer ${localStorage.getItem(
-        "token"
-      )}`;
+      config.headers["Authorization"] = `Bearer ${ACCESS_TOKEN}`;
     }
     return config;
   },
-  function (error) {
+  (error) => {
     return Promise.reject(error);
   }
 );
 
 api.interceptors.response.use(
-  function (response) {
-    return response;
+  (config) => {
+    return config;
   },
-  function (error) {
+  async (error) => {
     if (error.response.status === 401) {
-      localStorage.clear();
+      const response = await axios.post(`${BASE_URL}/${REFRESH_ENDPOINT}`, {
+        refresh: localStorage.getItem("refresh"),
+      });
+      localStorage.setItem("token", response.data.access);
 
-      window.location.reload();
+      //  localStorage.clear();
+      
+   
     }
 
     return Promise.reject(error);

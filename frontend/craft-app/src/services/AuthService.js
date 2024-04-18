@@ -7,7 +7,6 @@ class AuthService {
   login(body) {
     return api.post(LOGIN_ENDPOINT, body);
   }
-
  
   signUp(body) {
     return api.post(SIGNUP_ENDPOINT, body);
@@ -16,6 +15,8 @@ class AuthService {
   logout() {
     return api.get(LOGOUT_ENDPOINT);
   }
+
+
 }
 
 export default AuthService.instance;

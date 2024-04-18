@@ -23,10 +23,12 @@ export const SignIn = () => {
   if (errors) console.log(errors);
 
   const handleSubmit = (values) => {
-     dispatch(loginThunk(values));
+    dispatch(loginThunk(values));
   };
 
-  return (
+  return isAuth ? (
+    <Navigate to={ROUTE_NAMES.HOME} />
+  ) : (
     <section className="sign-in">
       <div className=" wrapper sign-in__wrap">
         <div className="sign-in__preview">
@@ -76,7 +78,9 @@ export const SignIn = () => {
                     type="submit"
                     disabled={isLoading || !formikProps.isValid}
                     onClick={formikProps.handleSubmit}
-                  >Войти</Button>
+                  >
+                    Войти
+                  </Button>
                 </div>
               );
             }}
