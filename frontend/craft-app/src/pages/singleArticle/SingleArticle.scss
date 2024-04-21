@@ -6,11 +6,10 @@
 .article__wrapper {
   max-width: 764px;
   margin: 0 auto;
-  text-align: left;
 }
 
 img {
-  width: 100%;
+  object-fit: contain;
 }
 .article__title {
   color: $color-text-dark-grey;
@@ -55,4 +54,34 @@ img {
   height: 16px;
   margin-right: 8px;
   vertical-align: baseline;
+}
+.ql-align-right {
+	text-align: right;
+}
+.ql-align-center {
+	text-align: center;
+}
+.ql-align-left {
+	text-align: left;
+}
+.ql-size-small{
+  font-size: 1.1rem;
+line-height: 1rem;
+}
+
+.ql-size-large{
+  font-size: 2.5rem;
+}
+.ql-size-huge{
+  font-size: 3.5rem;
+}
+blockquote {
+ padding-left: 2rem;
+ font-weight: bold;
+}
+blockquote::before{
+  content: '" ';
+  font-size: 3rem;
+  font-weight: 700;
+  color: $color-primary;
 }

@@ -3,17 +3,18 @@ import { LikeTwoTone, EditOutlined, DeleteOutlined } from "@ant-design/icons";
 
 import "./UserArticleCard.scss";
 import { ROUTES } from "../../../../components/shared/consts/routes";
+import { ROUTE_NAMES } from "../../../../routes/routeNames";
 
 function UserArticleCard(props) {
   const { className, title, body, slug, likes, imgSrc, setTotal } = props;
   let navigate = useNavigate();
   function handleClick() {
-    navigate(`${ROUTES.MAIN}${slug}`);
+    navigate(`${ROUTE_NAMES.ARTICLE}${slug}`);
     window.scrollTo(0, 0);
   }
 
   function deleteArticle() {
-    const res = fetch(`http://84.38.183.195/api/v1/post/${slug}`, {
+    const res = fetch(`http://84.201.140.115/api/v1/post/${slug}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
@@ -59,7 +60,8 @@ function UserArticleCard(props) {
               title="редактировать"
               onClick={() => {
                 navigate(
-                  generatePath(ROUTES.ARTICLEEDIT, { id: String(slug) })
+                  `${ROUTE_NAMES.ARTICLE_EDIT}${slug}`
+                  // generatePath(ROUTE_NAMES.ARTICLE_EDIT, { id: String(slug) })
                 );
                 window.scrollTo(0, 0);
               }}

@@ -12,23 +12,22 @@ import {
   SingleArticle,
 } from "../pages";
 import MainLayout from "./MainLayout";
+import ArticleEdit from "../pages/articleEdit/ArticleEdit";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTE_NAMES.HOME} element={<MainLayout />}>
         <Route index element={<Home />} />
-        <Route path="/:slug" element={<SingleArticle />} />
+        <Route path={`${ROUTE_NAMES.ARTICLE}:slug`} element={<SingleArticle />} />
         <Route path={ROUTE_NAMES.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTE_NAMES.SIGN_UP} element={<SignUp />} />
         <Route path={ROUTE_NAMES.ABOUT_US} element={<About />} />
         <Route element={<PrivateRoute />}>
           <Route path={ROUTE_NAMES.PROFILE} element={<Profile />} />
           <Route path={ROUTE_NAMES.PROFILE_EDIT} element={<ProfileEdit />} />
-          <Route
-            path={ROUTE_NAMES.ARTICLE_CREATE}
-            element={<CreateArticle />}
-          />
+          <Route path={ROUTE_NAMES.ARTICLE_CREATE} element={<CreateArticle />} />
+          <Route path={`${ROUTE_NAMES.ARTICLE_EDIT}:slug`} element={<ArticleEdit />} />
           {/* <Route path={ROUTE_NAMES.PRODUCTS} element={<Products />} />
         <Route path={ROUTE_NAMES.PRODUCT} element={<ProductInfo />} />
          <Route path={ROUTE_NAMES.ACCOUNT} element={<Account />} /> */}

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../components/shared/consts/routes";
 import "./CreateArticle.scss";
 import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
+import ReactQuill from "react-quill";
 
 export const CreateArticle = () => {
   const ACCESS_TOKEN = localStorage.getItem("token");
@@ -12,6 +13,11 @@ export const CreateArticle = () => {
   const [selectedFile, setSelectedFile] = useState();
   const [fileUrl, setFileUrl] = useState("");
   let navigate = useNavigate();
+  const [code, setCode] = useState("");
+  const handleProcedureContentChange = (content) => {
+    setCode(content);
+    
+  };
   const initialData = {
     title: "",
     post_preview: "",
@@ -55,7 +61,7 @@ export const CreateArticle = () => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("post_preview", data.post_preview);
-    formData.append("body", data.body || "test");
+    formData.append("body", data.body || code || 'test');
     formData.append("status", data.status);
     formData.append("category", data.category);
     formData.append("preview", selectedFile);
@@ -143,7 +149,6 @@ export const CreateArticle = () => {
                 ) : (
                   <>
                     <img src={fileUrl} />
-                    <span className="load-img__name">{selectedFile.name}</span>
                     <DeleteOutlined
                       className="icon__delete-img"
                       onClick={() => setSelectedFile()}
@@ -167,22 +172,14 @@ export const CreateArticle = () => {
             <h3>Содержание статьи</h3>
           </label>
           <div>
-            <HtmlEditor 
-            value={data.body}
-            onChange={(event) => handle(event)}
-            id="body"
-            placeholder="Основной текст статьи..."
-            >
-            </HtmlEditor>
-          </div>
-          {/* <textarea
-            className="input input_new-article textarea__new-article"
-            placeholder="Основной текст статьи"
-            onChange={(event) => handle(event)}
-            id="body"
-            value={data.body}
-          ></textarea> */}
 
+          <HtmlEditor
+             value={code}
+             onChange={handleProcedureContentChange}
+            id="body"
+          />
+
+          </div>
           <div className="new-article__buttons">
             <button
               className="button button_bordered new-article__button"

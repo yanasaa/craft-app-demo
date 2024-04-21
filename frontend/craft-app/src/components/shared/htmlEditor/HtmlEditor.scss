@@ -1,8 +1,12 @@
-.editor {
+.quill {
   width: 100%;
   background-color: white;
   border: 1px solid;
   border-radius: 5px;
+}
+
+.ql-editor {
+  font-size: 1.5rem;
 }
 
 .ql-toolbar.ql-snow {
@@ -20,4 +24,11 @@
 
 .ql-editor p img {
         width: fit-content;
+}
+
+.ql-tooltip.ql-editing::before {
+  content: "Добавьте ссылку"!important;
+}
+.ql-action::after{
+  content: "Сохранить"!important;
 }
