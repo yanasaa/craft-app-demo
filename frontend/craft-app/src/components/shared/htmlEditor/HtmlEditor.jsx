@@ -1,53 +1,25 @@
-import { useEffect, useState } from "react";
-import { useQuill } from "react-quilljs";
+import React, { useEffect, useRef, useState } from "react";
+
+import ReactQuill from "react-quill";
 import "quill/dist/quill.snow.css";
 import "./HtmlEditor.scss";
 
-const HtmlEditor = () => {
-  const modules = {
-    toolbar: {
-      container: [
-        ["bold", "italic", "underline", "strike"],
-        [{ align: [] }],
 
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ indent: "-1" }, { indent: "+1" }],
-
-        [{ size: ["small", "large", "huge"] }],
-        [{ header: [3, 4, 5, 6] }],
-        ["link", "image", "video"],
-        [{ color: [] }, { background: [] }],
-
-        ["clean"],
-      ],
-      handlers: {
-        image: imageHandler,
-      },
-    },
-    clipboard: {
-      matchVisual: false,
-    },
-  };
-  const { quill, quillRef } = useQuill({ modules });
-  const [value, setValue] = useState("");
- useEffect(() => {
-    if (quill) {
-      quill.on("text-change", () => {
-        setValue(quillRef.current.firstChild.innerHTML);
-      });
-    }
-  }, [quill]);
+function HtmlEditor({value, onChange}) {
   
+  const quillRef = useRef();
 
-  function imageHandler() {
-    const tooltip = this.quill.theme.tooltip;
+  const insertImageByLink = () => {
+    const editor = quillRef.current.getEditor();
+    
+    const tooltip = editor.theme.tooltip;
     const originalSave = tooltip.save;
     const originalHide = tooltip.hide;
     tooltip.save = function () {
       const range = this.quill.getSelection(true);
       const value = this.textbox.value;
       if (value) {
-        this.quill.insertEmbed(range.index, "image", value, "user");
+        this.quill.insertEmbed(range.index, "image", value);
       }
     };
     tooltip.hide = function () {
@@ -56,15 +28,39 @@ const HtmlEditor = () => {
       tooltip.hide();
     };
     tooltip.edit("image");
-    tooltip.textbox.placeholder = "Ссылка на изображение";
-  }
+    tooltip.textbox.placeholder = "URL изображения";
+    console.log(tooltip.textbox)
+  };
 
-  console.log(value);
+  const modules = {
+    toolbar: {
+      container: [
+        ["bold", "italic", "underline", "strike", "blockquote"],
+        [{ size: [] }],
+        [{ align: [] }],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link"],
+        [{ color: [] }],
+        [{ background: [] }],
+        [{ image: "" }], // Placeholder for the custom image button
+      ],
+    },
+    clipboard: {
+      matchVisual: false,
+    },
+  };
+
+  useEffect(() => {
+    const editor = quillRef.current.getEditor();
+    const toolbar = quillRef.current.getEditor().getModule("toolbar");
+    toolbar.addHandler("image", insertImageByLink);
+  }, []);
+
   return (
-    <div className="editor">
-      <div ref={quillRef} />
-    </div>
+    <>
+      <ReactQuill theme="snow" ref={quillRef} value={value} onChange={onChange} modules={modules} />
+    </>
   );
-};
+}
 
 export default HtmlEditor;

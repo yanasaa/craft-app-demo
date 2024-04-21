@@ -9,7 +9,7 @@ function ArticleCard(props) {
     props;
   let navigate = useNavigate();
   function handleClick() {
-    navigate(`${ROUTE_NAMES.HOME}${slug}`);
+    navigate(`${ROUTE_NAMES.ARTICLE}${slug}`);
     window.scrollTo(0, 0);
   }
 

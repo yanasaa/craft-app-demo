@@ -28,8 +28,9 @@ export const loginSlice = createSlice({
     builder.addCase(loginThunk.fulfilled, (state, action) => {
       const tokens = action.payload;
       const accessToken= tokens.access;
+      const refreshToken= tokens.access;
       localStorage.setItem("token", accessToken);
-      localStorage.setItem("refresh", tokens.refresh);
+      localStorage.setItem("refresh", refreshToken);
       state.isLoading = false;
       state.isAuth = true;
       state.token = accessToken;

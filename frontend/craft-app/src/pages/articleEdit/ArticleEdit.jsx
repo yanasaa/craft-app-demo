@@ -3,19 +3,27 @@ import { useNavigate, useParams } from "react-router-dom";
 import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./ArticleEdit.scss";
 import { ROUTES } from "../../components/shared/consts/routes";
+import { ROUTE_NAMES } from "../../routes/routeNames";
+import ReactQuill from "react-quill";
+import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
 
 function ArticleEdit() {
   let navigate = useNavigate();
   function handleCancelClick() {
-    navigate(ROUTES.ARTICLE);
+    navigate(ROUTE_NAMES.PROFILE);
     window.scrollTo(0, 0);
   }
-  const { id } = useParams();
-  const ACCESS_TOKEN = localStorage.getItem("ACCESS_TOKEN");
+  const { slug } = useParams();
   const [articleInfo, setArticleInfo] = useState({});
   const [categories, setCategories] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
   const filePicker = useRef(null);
+  const [code, setCode] = useState("hellllo");
+  const handleProcedureContentChange = (content) => {
+    setCode(content);
+    
+  };
+
   function handleChange(e) {
     setSelectedFile(e.target.files[0]);
   }
@@ -36,7 +44,7 @@ function ArticleEdit() {
 
   useEffect(() => {
     const getAllTags = () => {
-      fetch("http://84.38.183.195/api/v1/categories/")
+      fetch("http://84.201.140.115/api/v1/categories/")
         .then((response) => response.json())
         .then((json) => setCategories(json));
     };
@@ -47,12 +55,9 @@ function ArticleEdit() {
 
   useEffect(() => {
     const getArticleInfo = () => {
-      fetch(`http://84.38.183.195/api/v1/post/${id}`, {
+      fetch(`http://84.201.140.115/api/v1/post/${slug}`, {
         method: "GET",
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          "Content-type": "application/json",
-        },
+       
       })
         .then((response) => response.json())
         .then((json) => {
@@ -60,8 +65,12 @@ function ArticleEdit() {
         });
     };
     getArticleInfo();
+    
   }, []);
 
+  useEffect(() => {
+    setCode(articleInfo.body)
+  },[articleInfo.body])
   function handle(e) {
     const newData = { ...articleInfo };
 
@@ -72,39 +81,27 @@ function ArticleEdit() {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    if (
-      !selectedFile ||
-      !articleInfo.title ||
-      !articleInfo.post_preview ||
-      !articleInfo.body ||
-      !articleInfo.category
-    ) {
-      alert("Все поля обязательны для заполнения");
-      return;
-    }
+ 
     const formData = new FormData();
     formData.append("title", articleInfo.title);
     formData.append("post_preview", articleInfo.post_preview);
-    formData.append("body", articleInfo.body);
+    formData.append("body", code);
     formData.append("status", articleInfo.status);
     formData.append("category", articleInfo.category);
-    formData.append("preview", selectedFile);
+    formData.append("preview", selectedFile || '');
 
     const res = await fetch(
-      `http://84.38.183.195/api/v1/post/${articleInfo.id}/`,
+      `http://84.201.140.115/api/v1/post/${articleInfo.slug}/`,
       {
         method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-        },
-        body: formData,
+              body: formData,
       }
     );
     const mydata = await res.json();
     console.log(mydata);
     setArticleInfo(initialData);
     window.scrollTo(0, 0);
-    navigate(ROUTES.ARTICLE);
+    navigate(ROUTES.PROFILE);
   };
 
   return (
@@ -162,13 +159,18 @@ function ArticleEdit() {
           <label htmlFor="body">
             <h3>Содержание статьи</h3>
           </label>
-          <textarea
+          <HtmlEditor
+            value={code}
+            onChange={handleProcedureContentChange}
+            id="body"
+          />  
+          {/* <textarea
             className="input input_new-article textarea__new-article"
             placeholder="Основной текст статьи"
             onChange={(event) => handle(event)}
             id="body"
             value={articleInfo.body}
-          ></textarea>
+          ></textarea> */}
           <div className="new-article__load-img">
             {/* <img src={articleInfo.preview} alt="ttt" /> */}
             <h3>Загрузить изображение</h3>

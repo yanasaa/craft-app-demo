@@ -81,9 +81,9 @@ export const SingleArticle = () => {
       </div>
       <div className="article__line"></div>
       <div className="article__wrapper">
-        <div className="article__img">
+        {/* <div className="article__img">
           <img src={article.preview} alt={article.title} />
-        </div>
+        </div> */}
         <article
           className="article__text_full "
           dangerouslySetInnerHTML={{ __html: article.body }}
