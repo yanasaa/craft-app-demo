@@ -1,4 +1,5 @@
-import DropdownContent from "../../components/shared/ui/dropdownContent/DropdownContent";
+
+import DropdownContent from "../header/ui/navigation/dropdownContent/DropdownContent";
 import "./Footer.scss";
 
 function Footer() {
