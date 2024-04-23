@@ -6,10 +6,13 @@
   position: sticky;
   top: 0;
   background-color: $color-primary-light-header;
-  
-  padding: 15px 40px;
-  box-shadow: 0px 2px 4px 0px rgba(236, 179, 217, 0.5);
-  z-index: 5;
+  opacity: 95%;
+  padding: 0 40px;
+  box-shadow: 0 2px 4px 0 rgba(113, 96, 126, 0.5);
+  z-index: 10;
+  @media (max-width: 360px) {
+    padding: 0 1rem;
+  }
 }
 .header__wrapper {
   display: flex;
@@ -17,21 +20,16 @@
   align-items: center;
   position: relative;
 }
-// .header__navigation {
-//   margin-right: auto;
-// }
 .logo {
-position: absolute;
-left: calc(50% - 34px);
-top: 0;
+  position: absolute;
+  left: calc(50% - 51px);
+  top:calc(50% - 18px);;
   display: block;
   background-image: url("../../components/shared/assets/img/logo.svg");
-  width: 67px;
-  height: 87px;
+  width: 102px;
+  height: 36px;
 }
-.logo.header__logo {
-  
-}
+
 .header__buttons {
   width: 45%;
   display: flex;
@@ -40,27 +38,28 @@ top: 0;
 }
 .header__profile-link {
   position: relative;
-  width: 240px;
   justify-content: flex-end;
   text-align: right;
-  padding: 16px 0;
+  
 }
 .profile-link__icon {
   display: inline-block;
   background-color: $color-primary;
   color: $color-bg-light;
-  font-size: 32px;
+  font-size: 22px;
   padding: 10px;
   border-radius: 50%;
 }
 .profile-link__dropdown {
   display: inline-block;
   position: absolute;
-  top: 100%;
+  top: 92%;
   right: 0;
   text-align: left;
   background-color: $color-bg-light;
+
   @include font(1.4rem, 2.4rem, 400);
+  box-shadow: 0 5px 10px -5px rgba(113, 96, 126, 0.5) inset;
 }
 .profile-link__dropdown .dropdown-item {
   display: block;

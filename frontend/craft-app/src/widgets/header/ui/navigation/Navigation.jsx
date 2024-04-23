@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import DropdownContent from "../../../../components/shared/ui/dropdownContent/DropdownContent";
+import DropdownContent from "./dropdownContent/DropdownContent";
 import "./Navigation.scss";
 
-function Navigation() {
+function Navigation({content}) {
   const [isActive, setIsActive] = useState(false);
   const menuRef = useRef();
   useEffect(() => {
@@ -41,6 +41,7 @@ function Navigation() {
           <DropdownContent
             className="navigation__dropdown"
             onClick={() => setIsActive(!isActive)}
+            content={content}
           />
         )}
       </div>

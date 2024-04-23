@@ -5,13 +5,12 @@ import { ROUTES } from "../../components/shared/consts/routes";
 import "./CreateArticle.scss";
 import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
 import ReactQuill from "react-quill";
+import ImageLoader from "../../components/shared/ImageLoader/ImageLoader";
 
 export const CreateArticle = () => {
   const ACCESS_TOKEN = localStorage.getItem("token");
-  const filePicker = useRef(null);
   const [categories, setCategories] = useState([]);
   const [selectedFile, setSelectedFile] = useState();
-  const [fileUrl, setFileUrl] = useState("");
   let navigate = useNavigate();
   const [code, setCode] = useState("");
   const handleProcedureContentChange = (content) => {
@@ -43,15 +42,7 @@ export const CreateArticle = () => {
     setData(newData);
     console.log(newData);
   }
-  function handleChange(e) {
-    setSelectedFile(e.target.files[0]);
-    setFileUrl(URL.createObjectURL(e.target.files[0]));
-  }
-
-  function handlePick() {
-    filePicker.current.click();
-  }
-
+ 
   const handleUpload = async (e) => {
     e.preventDefault();
     if (!selectedFile || !data.title || !data.post_preview || !data.category) {
@@ -135,7 +126,7 @@ export const CreateArticle = () => {
                 value={data.post_preview}
               />
             </div>
-            <div className="new-article__load-img">
+            {/* <div className="new-article__load-img">
               <h3>Главное фото</h3>
               <div className="img-loader">
                 {!selectedFile ? (
@@ -165,7 +156,10 @@ export const CreateArticle = () => {
                   accept="image/* .png, .jpg, .jpeg"
                 />
               </div>
-            </div>
+            </div> */}
+
+
+            <ImageLoader selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
           </div>
 
           <label htmlFor="body">

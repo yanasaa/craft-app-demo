@@ -6,6 +6,7 @@ import { ROUTES } from "../../components/shared/consts/routes";
 import { ROUTE_NAMES } from "../../routes/routeNames";
 import ReactQuill from "react-quill";
 import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
+import ImageLoader from "../../components/shared/ImageLoader/ImageLoader";
 
 function ArticleEdit() {
   let navigate = useNavigate();
@@ -66,11 +67,13 @@ function ArticleEdit() {
     };
     getArticleInfo();
     
-  }, []);
+  }, [slug]);
 
   useEffect(() => {
     setCode(articleInfo.body)
-  },[articleInfo.body])
+    setSelectedFile(articleInfo.preview)
+  },[articleInfo.body, articleInfo.preview])
+
   function handle(e) {
     const newData = { ...articleInfo };
 
@@ -164,13 +167,6 @@ function ArticleEdit() {
             onChange={handleProcedureContentChange}
             id="body"
           />  
-          {/* <textarea
-            className="input input_new-article textarea__new-article"
-            placeholder="Основной текст статьи"
-            onChange={(event) => handle(event)}
-            id="body"
-            value={articleInfo.body}
-          ></textarea> */}
           <div className="new-article__load-img">
             {/* <img src={articleInfo.preview} alt="ttt" /> */}
             <h3>Загрузить изображение</h3>
@@ -211,6 +207,9 @@ function ArticleEdit() {
               />
             </div>
           </div>
+
+          <ImageLoader selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+
           <div className="new-article__buttons">
             <button
               className="button button_bordered"
