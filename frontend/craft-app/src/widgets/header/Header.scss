@@ -10,8 +10,9 @@
   padding: 0 40px;
   box-shadow: 0 2px 4px 0 rgba(113, 96, 126, 0.5);
   z-index: 10;
-  @media (max-width: 360px) {
+  @media (max-width: 420px) {
     padding: 0 1rem;
+    opacity: 100%;
   }
 }
 .header__wrapper {
@@ -26,8 +27,16 @@
   top:calc(50% - 18px);;
   display: block;
   background-image: url("../../components/shared/assets/img/logo.svg");
+  background-repeat: no-repeat;
+  background-position: center;
   width: 102px;
   height: 36px;
+  @media (max-width: 420px) {
+    background-image: url("../../components/shared/assets/img/logo-mobile.svg");
+    width: 40px;
+    left: calc(50% - 20px);
+    
+  }
 }
 
 .header__buttons {

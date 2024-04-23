@@ -1,5 +1,4 @@
 import SearchBar from "../../../../components/shared/ui/searchBar/SearchBar";
-import { tempTags } from "../../../../tempData/tags";
 import "./Hero.scss";
 import { useEffect, useState } from "react";
 
@@ -9,17 +8,14 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
     const getAllTags = () => {
       fetch("http://84.201.140.115/api/v1/categories")
         .then((response) => response.json())
-        .then((json) => setTags(json));
+        .then((json) => setTags(json))
     };
     getAllTags();
   }, []);
 
-  // useEffect(() => {
-  //   setTags(tempTags)
-  // })
-
+  
   function getUniqTags(tags) {
-    return Array.from(new Set(tags.map((el) => el.tag)));
+    return Array.from(new Set(shuffle(tags).map((el) => el.tag)));
   }
 
   function shuffle(arr) {
@@ -40,8 +36,7 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
           <h1 className="hero__title">CRAFTSHARE</h1>
           <div className="hero__content">
             <p className="hero__text">
-              Cервис для ремесленников и для тех, кто хочет научиться чему-то
-              новому
+              Cервис для ремесленников и для тех, кто хочет научиться чему-то новому
             </p>
             <SearchBar
               className="search-bar_hero"
@@ -50,7 +45,7 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
             />
             <div className="hero__tags">
               <div className="hero__tags_layout">
-                {(tags ? shuffle(tags) : shuffle(getUniqTags(tags)))
+                {(tags)
                   .slice(0, 8)
                   .map((el, i) => (
                     <div

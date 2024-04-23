@@ -69,9 +69,8 @@ function Articles({
       {!!categoryId && (
         <Button
           className="articles__filter-btn"
-          btnText="Отменить фильтр"
           onClick={() => onClickCategory(0)}
-        />
+        >Отменить фильтр</Button>
       )}
       <div className="slider__wrapper">
         <div className="articles__wrapper">

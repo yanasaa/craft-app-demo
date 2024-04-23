@@ -16,22 +16,20 @@ const DropdownContent = ({ className, onClick}) => {
   return (
     <ul className={`dropdown__content ${className}`} onClick={onClick}>
       {content.map(link => {
-        return (link.type === 'hashlink') ?  (
-        <li>
-        <HashLink className="dropdown-item" to={`${ROUTE_NAMES.HOME}${link.hash}`}>
-          {link.label}
-        </HashLink>
-        </li> 
-        ) : (
-        <li>
-          <Link className="dropdown-item" to={link.pageRef}>
-            {link.label}
-          </Link>
-        </li>
+        return (
+          <li key={link.label}>
+            {link.type === 'hashlink' ? (
+             <HashLink className="dropdown-item" to={`${ROUTE_NAMES.HOME}${link.hash}`}>
+             {link.label}
+             </HashLink>
+            ) : (
+            <Link className="dropdown-item" to={link.pageRef}>
+              {link.label}
+            </Link>
+            )}
+          </li>
         )
-        })
-        
-      }
+      })}
     </ul>
   );
 };

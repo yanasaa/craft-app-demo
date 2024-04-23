@@ -1,15 +1,14 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {UserOutlined } from "@ant-design/icons";
 import Navigation from "./ui/navigation/Navigation";
 import Button from "../../components/shared/ui/button/Button";
-import { ROUTES } from "../../components/shared/consts/routes";
-import "./Header.scss";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRightOutlined, LoginOutlined, UserOutlined } from "@ant-design/icons";
 import { ROUTE_NAMES } from "../../routes/routeNames";
-import { useDispatch, useSelector } from "react-redux";
 import { loginSelector } from "../../pages/signIn/selectors";
 import { logout } from "../../pages/signIn/slices";
 import AuthService from "../../services/AuthService";
+import "./Header.scss";
 
 function Header() {
   const dispatch = useDispatch();
@@ -51,7 +50,7 @@ function Header() {
                       window.scrollTo(0, 0);
                     }}
                   >
-                    <Link className="dropdown-item" to={ROUTES.PROFILE}>
+                    <Link className="dropdown-item" to={ROUTE_NAMES.PROFILE}>
                       Профиль
                     </Link>
                   </li>
@@ -70,14 +69,14 @@ function Header() {
             </div>
           ) : (
             <Button
-              className="button button_colored button-enter"
+              className={`button button_colored button-enter ${window.location.href.endsWith("/login") && "hidden"}`}
               title="Войти"
               onClick={() => {
                 window.scrollTo(0, 0);
                 navigate(ROUTE_NAMES.SIGN_IN);
               }}
             >
-             <ArrowRightOutlined />
+             Войти
             </Button>
           )}
         </div>
