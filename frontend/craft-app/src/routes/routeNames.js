@@ -8,6 +8,7 @@ export const ROUTE_NAMES = {
 
   PROFILE: "/profile",
   PROFILE_EDIT: "/profile-edit",
+  PROFILE_AUTHOR: '/users/',
 
   ARTICLE: "/articles/",
   ARTICLE_CREATE: "/article-create",
