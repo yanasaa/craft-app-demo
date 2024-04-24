@@ -10,6 +10,7 @@ import {
   CreateArticle,
   ProfileEdit,
   SingleArticle,
+  ProfileAuthor,
 } from "../pages";
 import MainLayout from "./MainLayout";
 import ArticleEdit from "../pages/articleEdit/ArticleEdit";
@@ -28,6 +29,8 @@ const Router = () => {
           <Route path={ROUTE_NAMES.PROFILE_EDIT} element={<ProfileEdit />} />
           <Route path={ROUTE_NAMES.ARTICLE_CREATE} element={<CreateArticle />} />
           <Route path={`${ROUTE_NAMES.ARTICLE_EDIT}:slug`} element={<ArticleEdit />} />
+          <Route path={`${ROUTE_NAMES.PROFILE_AUTHOR}:authorId`} element={<ProfileAuthor />} />
+
           {/* <Route path={ROUTE_NAMES.PRODUCTS} element={<Products />} />
         <Route path={ROUTE_NAMES.PRODUCT} element={<ProductInfo />} />
          <Route path={ROUTE_NAMES.ACCOUNT} element={<Account />} /> */}

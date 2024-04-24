@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import avatarDefault from "../../components/shared/assets/img/ui/avatar.svg";
-
 import {
   AuditOutlined,
   FileTextOutlined,
@@ -14,12 +14,13 @@ import { Pagination } from "antd";
 import { useNavigate } from "react-router-dom";
 import UserArticleCard from "./ui/userArticleCard/UserArticleCard";
 import { ROUTE_NAMES } from "../../routes/routeNames";
+import { profileSelector } from "./selectors";
+import { currentProfileThunk } from "./thunks";
 
 export const Profile = () => {
-  // const { isLoggedIn } = useAuth();
-  // const { isLoggedIn } = useContext(StoreContext);
+  const dispatch = useDispatch()
+  const {errors, isLoading , currentUser} = useSelector(profileSelector)
 
-  const ACCESS_TOKEN = localStorage.getItem("token");
 
   let navigate = useNavigate();
   function handleClick() {
@@ -27,33 +28,21 @@ export const Profile = () => {
     window.scrollTo(0, 0);
   }
 
-  const [userProfile, setUserProfile] = useState({});
   const [userArticles, setUserArticles] = useState([]);
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(9);
 
+
   useEffect(() => {
-    const getUserProfile = () => {
-      fetch(`http://84.201.140.115/api/v1/userprofile/me/`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${ACCESS_TOKEN}`,
-          "Content-type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setUserProfile(json);
-        });
-    };
-    getUserProfile();
-  }, []);
+    dispatch(currentProfileThunk())
+  },[dispatch])
+ 
 
   useEffect(() => {
     const getUserArticles = () => {
       fetch(
-        `http://84.201.140.115/api/v1/posts/?username=${userProfile.slug}`,
+        `http://84.201.140.115/api/v1/posts/?username=${currentUser.slug}`,
         {
           method: "GET",
           headers: {
@@ -68,7 +57,7 @@ export const Profile = () => {
         });
     };
     getUserArticles();
-  }, [userProfile, total]);
+  }, [currentUser, total]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -98,12 +87,8 @@ export const Profile = () => {
     setPostsPerPage(pageSize);
   };
 
-  // if (!isLoggedIn) {
-  //   navigate(ROUTE_NAMES.LOGIN);
-  // } else
   return (
     <section className="profile">
-      {console.log(userProfile)}
       <div className="profile__wrapper">
         <div className="wrapper">
           <div className="profile__info">
@@ -119,8 +104,8 @@ export const Profile = () => {
               <div className="user-card__img">
                 <img
                   src={
-                    userProfile.avatar
-                      ? `http://84.201.140.115/${userProfile.avatar}` : 
+                    (!currentUser.avatar.endsWith('default.png'))
+                      ? `http://84.201.140.115${currentUser.avatar}` : 
                       avatarDefault
                   }
                   alt="user"
@@ -150,7 +135,10 @@ export const Profile = () => {
                 </div>
                 <Button
                   className="button button_colored user-card_btn"
-                  onClick={handleClick}
+                  onClick={() => {
+                    navigate(ROUTE_NAMES.ARTICLE_CREATE);
+                    window.scrollTo(0, 0)
+                  }}
                 >
                   Добавить статью
                 </Button>
@@ -158,21 +146,20 @@ export const Profile = () => {
             </div>
             <div className="user-info">
               <h3>Имя</h3>
-              <h2 className="user-info__name">{userProfile.first_name}</h2>
+              <h2 className="user-info__name">{currentUser.first_name}</h2>
               <h3>Фамилия</h3>
-              <h2 className="user-info__name">{userProfile.last_name}</h2>
+              <h2 className="user-info__name">{currentUser.last_name}</h2>
               <h3>Email</h3>
-              <h3>{userProfile.email}</h3>
+              <h3>{currentUser.email}</h3>
               <h3>Логин</h3>
-              <h3>{userProfile.username}</h3>
+              <h3>{currentUser.username}</h3>
               <h3>Пол</h3>
-              <h3>{userProfile.gender === "F" ? "Ж" : "М"}</h3>
+              <h3>{currentUser.gender === "F" ? "Ж" : "М"}</h3>
               <h3>О себе</h3>
-              <p className="story__text">{userProfile.bio}</p>
+              <p className="story__text">{currentUser.bio}</p>
             </div>
           </div>
         </div>
-        {/* {!!total && <h2>Мои статьи</h2>} */}
         <h2>Мои статьи</h2>
         <div className="profile__articles">
           <div className="wrapper">

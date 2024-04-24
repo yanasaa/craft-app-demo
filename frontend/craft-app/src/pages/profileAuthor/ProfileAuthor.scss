@@ -1,0 +1,12 @@
+.user-card__info_author {
+        display: flex;
+        flex-direction: column;
+        gap: 5vh;
+}
+.user-card__info.user-card__info_author{
+       flex-direction: row;
+       align-items: end;
+}
+.user-info.user-info_author {
+        margin-top: 20vh;
+}
