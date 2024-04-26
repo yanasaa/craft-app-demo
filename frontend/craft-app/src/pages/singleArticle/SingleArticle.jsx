@@ -55,7 +55,6 @@ export const SingleArticle = () => {
         console.log(error);
       });
     setIsLiked(!isLiked);
-    console.log(like);
     return res;
   }
 

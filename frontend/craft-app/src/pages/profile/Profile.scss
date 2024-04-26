@@ -4,9 +4,10 @@
   margin-bottom: 15rem;
 }
 .profile__wrapper {
-  background-image: url("../../components/shared/assets/img/ui/profilebg.png");
+  background-image: url("../../components/shared/assets/img/ui/profilebg.png") ;
   background-repeat: no-repeat;
-  background-color: $color-secondary;
+  background-color: $color-primary-light-header;
+ 
 }
 .profile__info {
   padding-top: 5rem;

@@ -18,10 +18,8 @@ export default function ImageLoader({setSelectedFile, selectedFile}) {
     
 
   return (
-    <div className="new-article__load-img">
-    <h3>Главное фото</h3>
     <div className="img-loader">
-      {selectedFile ? (
+      {!selectedFile ? (
         <>
           <PlusOutlined
             className="icon icon__load-img"
@@ -31,10 +29,11 @@ export default function ImageLoader({setSelectedFile, selectedFile}) {
         </>
       ) : (
         <>
-          <img src={fileUrl} alt="article preview"/>
+          <img className='img-loader_img-preview' src={fileUrl || selectedFile} alt="article preview"/>
           <DeleteOutlined
             className="icon__delete-img"
-            onClick={() => setSelectedFile()}
+            onClick={() => setSelectedFile('')}
+            title='удалить'
           />
         </>
       )}
@@ -48,6 +47,5 @@ export default function ImageLoader({setSelectedFile, selectedFile}) {
         accept="image/* .png, .jpg, .jpeg"
       />
     </div>
-  </div>
   )
 }
