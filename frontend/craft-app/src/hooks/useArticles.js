@@ -7,8 +7,8 @@ export const useArticles = () => {
   const { articles, isLoading, errors } = useSelector(articlesSelector);
   const dispatch = useDispatch();
 
-  const getArticles = useCallback(() => {
-    dispatch(getArticlesThunk());
+  const getArticles = useCallback((searchValue) => {
+    dispatch(getArticlesThunk(searchValue));
   }, [dispatch]);
 
 
@@ -17,6 +17,7 @@ export const useArticles = () => {
     articlesErrors: errors,
     allArticles: articles,
     getArticles: getArticles,
+    articlesQuantity: articles.length,
 
   };
 };

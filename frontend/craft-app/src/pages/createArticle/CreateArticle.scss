@@ -75,3 +75,9 @@
   color: $color-bg-light;
   text-align: center;
 }
+
+.new-article__load-img {
+  & > * {
+    text-align: center;
+  }
+}

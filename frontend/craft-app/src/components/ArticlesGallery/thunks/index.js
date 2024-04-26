@@ -3,9 +3,9 @@ import ArticlesService from "../../../services/ArticlesService";
 
 export const getArticlesThunk = createAsyncThunk(
   "getArticles",
-  async (_, { rejectWithValue }) => {
+  async (searchValue, { rejectWithValue }) => {
     try {
-      const response = await ArticlesService.getArticles();
+      const response = await ArticlesService.getArticles(searchValue);
       return response.data;
     } catch (e) {
       return rejectWithValue(e?.response?.data?.detail || e?.message);

@@ -1,12 +1,8 @@
 @import "../../../sass/abstracts/constants";
 
-.new-article__load-img {
-    & > * {
-      text-align: center;
-    }
-  }
+
   .img-loader {
-    height: 80%;
+    height:25rem;
     width: 19rem;
     background-color: $color-bg-light;
     margin: 0 auto;
@@ -17,12 +13,6 @@
     flex-direction: column;
     align-items: center;
     position: relative;
-    & .load-img__name {
-      width: inherit;
-      overflow-wrap: break-word;
-      padding: 10px;
-      margin-bottom: 0;
-    }
   }
   .icon__load-img {
     font-size: 66px;
@@ -31,10 +21,17 @@
     position: absolute;
     padding: 10px;
     height: 30px;
-    margin-bottom: 0;
-    top: 0;
+    margin-bottom: 1rem!important;
+    bottom: 0;
   }
   
   .hidden {
     display: none;
+  }
+  .img-loader_img-preview {
+    width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+   
   }

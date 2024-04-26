@@ -16,10 +16,13 @@ import UserArticleCard from "./ui/userArticleCard/UserArticleCard";
 import { ROUTE_NAMES } from "../../routes/routeNames";
 import { profileSelector } from "./selectors";
 import { currentProfileThunk } from "./thunks";
+import { ArticlesGallery } from "../../components/ArticlesGallery/ArticlesGallery";
+import { useArticles } from "../../hooks/useArticles";
 
 export const Profile = () => {
   const dispatch = useDispatch()
-  const {errors, isLoading , currentUser} = useSelector(profileSelector)
+  const {errors, isLoading , currentUser} = useSelector(profileSelector);
+  const { articlesQuantity } = useArticles()
 
 
   let navigate = useNavigate();
@@ -128,7 +131,7 @@ export const Profile = () => {
                 </div>
                 <div className="user-card__item">
                   <div className="item__number">
-                    <h3>{total}</h3>
+                    <h3>{articlesQuantity}</h3>
                     <FileTextOutlined />
                   </div>
                   <p className="item__text">статей</p>
@@ -161,11 +164,12 @@ export const Profile = () => {
           </div>
         </div>
         <h2>Мои статьи</h2>
-        <div className="profile__articles">
+        {/* <div className="profile__articles">
           <div className="wrapper">
             <div className="article-gallery">{displayArticles}</div>
           </div>
-        </div>
+        </div> */}
+        <ArticlesGallery searchValue={`?username=${currentUser.slug}`}/>
       </div>
 
       <div className="pagination">

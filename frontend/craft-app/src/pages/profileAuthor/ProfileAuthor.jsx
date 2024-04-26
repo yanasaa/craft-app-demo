@@ -7,15 +7,19 @@ import { getUserProfileThunk } from '../profile/thunks';
 import './ProfileAuthor.scss'
 import { profileSelector } from '../profile/selectors';
 import { useParams } from 'react-router-dom';
+import { ArticlesGallery } from '../../components/ArticlesGallery/ArticlesGallery';
+import { useArticles } from '../../hooks/useArticles';
 
 export const ProfileAuthor = () => {
-        const { authorId } = useParams()
+        const { authorId } = useParams();
+        const { articlesQuantity } = useArticles()
         const {errors, isLoading , profileAuthor} = useSelector(profileSelector)
-        const dispatch = useDispatch();
+               const dispatch = useDispatch();
         useEffect(() => {
                 dispatch(getUserProfileThunk(authorId))
-        },[])
-        
+              
+        },[authorId])
+       
   return (
         <section className="profile">
         <div className="profile__wrapper">
@@ -29,22 +33,22 @@ export const ProfileAuthor = () => {
                   } alt="user avatar" />
                 </div>
                 <div className="user-card__info user-card__info_author">
-                        <div className="user-card__info_author">
-                  <div className="user-card__item">
-                    <div className="item__number">
-                      <h3>0</h3>
-                      <SmileOutlined />
+                  <div className="user-card__info_author">
+                    <div className="user-card__item">
+                      <div className="item__number">
+                        <h3>0</h3>
+                        <SmileOutlined />
+                      </div>
+                      <p className="item__text">подписчиков</p>
                     </div>
-                    <p className="item__text">подписчиков</p>
-                  </div>
-                  <div className="user-card__item">
-                    <div className="item__number">
-                      <h3>10</h3>
-                      <FileTextOutlined />
+                    <div className="user-card__item">
+                      <div className="item__number">
+                        <h3>{articlesQuantity}</h3>
+                        <FileTextOutlined />
+                      </div>
+                      <p className="item__text">статей</p>
                     </div>
-                    <p className="item__text">статей</p>
                   </div>
-                        </div>
                   <Button
                     className="button button_colored user-card_btn"
                     onClick={() => {}}
@@ -64,7 +68,7 @@ export const ProfileAuthor = () => {
             </div>
           </div>
           <h2>Статьи автора </h2>
-       
+          <ArticlesGallery searchValue={`?username=${profileAuthor.slug}`}/>
         </div>
   
       </section>

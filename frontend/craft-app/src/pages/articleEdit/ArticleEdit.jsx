@@ -4,7 +4,6 @@ import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import "./ArticleEdit.scss";
 import { ROUTES } from "../../components/shared/consts/routes";
 import { ROUTE_NAMES } from "../../routes/routeNames";
-import ReactQuill from "react-quill";
 import HtmlEditor from "../../components/shared/htmlEditor/HtmlEditor";
 import ImageLoader from "../../components/shared/ImageLoader/ImageLoader";
 
@@ -17,20 +16,20 @@ function ArticleEdit() {
   const { slug } = useParams();
   const [articleInfo, setArticleInfo] = useState({});
   const [categories, setCategories] = useState([]);
-  const [selectedFile, setSelectedFile] = useState();
-  const filePicker = useRef(null);
+  const [selectedFile, setSelectedFile] = useState('');
+  // const filePicker = useRef(null);
   const [code, setCode] = useState("hellllo");
   const handleProcedureContentChange = (content) => {
     setCode(content);
     
   };
 
-  function handleChange(e) {
-    setSelectedFile(e.target.files[0]);
-  }
-  function handlePick() {
-    filePicker.current.click();
-  }
+  // function handleChange(e) {
+  //   setSelectedFile(e.target.files[0]);
+  // }
+  // function handlePick() {
+  //   filePicker.current.click();
+  // }
 
   const initialData = {
     title: articleInfo.title || "",
@@ -51,8 +50,6 @@ function ArticleEdit() {
     };
     getAllTags();
   }, []);
-
-  console.log(articleInfo);
 
   useEffect(() => {
     const getArticleInfo = () => {
@@ -167,8 +164,7 @@ function ArticleEdit() {
             onChange={handleProcedureContentChange}
             id="body"
           />  
-          <div className="new-article__load-img">
-            {/* <img src={articleInfo.preview} alt="ttt" /> */}
+          {/* <div className="new-article__load-img">
             <h3>Загрузить изображение</h3>
             <div
               className="img-loader"
@@ -178,7 +174,6 @@ function ArticleEdit() {
                   : "",
               }}
             >
-              {console.log(articleInfo.preview)}
               {!selectedFile ? (
                 <>
                   <PlusOutlined
@@ -206,10 +201,10 @@ function ArticleEdit() {
                 accept="image/* .png, .jpg, .jpeg"
               />
             </div>
-          </div>
+          </div> */}
 
           <ImageLoader selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
-
+            {console.log(selectedFile)}
           <div className="new-article__buttons">
             <button
               className="button button_bordered"

@@ -1,12 +1,27 @@
 import { generatePath, useNavigate } from "react-router-dom";
 import { LikeTwoTone, EditOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Modal } from 'antd';
 
 import "./UserArticleCard.scss";
-import { ROUTES } from "../../../../components/shared/consts/routes";
 import { ROUTE_NAMES } from "../../../../routes/routeNames";
+import { useState } from "react";
+import ModalConfirm from "../../../../components/ModalConfirm/ModalConfirm";
+import { confirmMessages } from "../../../../components/ModalConfirm/confirmMessages";
 
 function UserArticleCard(props) {
   const { className, title, body, slug, likes, imgSrc, setTotal } = props;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    deleteArticle()
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   let navigate = useNavigate();
   function handleClick() {
     navigate(`${ROUTE_NAMES.ARTICLE}${slug}`);
@@ -67,10 +82,12 @@ function UserArticleCard(props) {
               }}
             />
             <DeleteOutlined
-              onClick={deleteArticle}
+            onClick={showModal}
+              // onClick={deleteArticle}
               className="icon__user-card_action"
-              title="удалить"
-            />
+              title="Удалить"
+             />
+            <ModalConfirm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} modalAction={deleteArticle} message={confirmMessages.ARICLE_DELETE}></ModalConfirm>
           </div>
         </div>
       </div>

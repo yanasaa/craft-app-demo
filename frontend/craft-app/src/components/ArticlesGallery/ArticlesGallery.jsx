@@ -4,6 +4,8 @@ import ArticleCard from "../shared/ui/article/ArticleCard";
 import Button from "../shared/ui/button/Button";
 import { useArticles } from "../../hooks/useArticles";
 import "./ArticlesGallery.scss";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 export const ArticlesGallery = ({
   categoryId,
@@ -11,17 +13,17 @@ export const ArticlesGallery = ({
   searchValue,
   posts,
 }) => {
-  const { allArticles, getArticles } = useArticles();
+
+  const { authorId } = useParams()
+  const { allArticles, getArticles, articles } = useArticles();
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
-  const url = categoryId
-    ? `http://84.201.140.115/api/v1/category/${categoryId}`
-    : `http://84.201.140.115/api/v1/posts/?search=${searchValue}`;
-
+   
   useEffect(() => {
-    getArticles();
-  }, [categoryId, searchValue, url]);
-
+    getArticles(searchValue);
+   
+  }, [searchValue]);
+  console.log(searchValue);
   const totalPages = allArticles.length;
 
   const [postsPerPage, setPostsPerPage] = useState(6);
@@ -72,7 +74,6 @@ export const ArticlesGallery = ({
 
   return (
     <section className="articles" id="articles">
-      <h2 className="articles__title">Статьи Авторов</h2>
       {!!categoryId && (
         <Button
           className="articles__filter-btn"

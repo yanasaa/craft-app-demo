@@ -126,40 +126,12 @@ export const CreateArticle = () => {
                 value={data.post_preview}
               />
             </div>
-            {/* <div className="new-article__load-img">
-              <h3>Главное фото</h3>
-              <div className="img-loader">
-                {!selectedFile ? (
-                  <>
-                    <PlusOutlined
-                      className="icon icon__load-img"
-                      onClick={handlePick}
-                    />
-                    <p>Загрузите фото</p>
-                  </>
-                ) : (
-                  <>
-                    <img src={fileUrl} />
-                    <DeleteOutlined
-                      className="icon__delete-img"
-                      onClick={() => setSelectedFile()}
-                    />
-                  </>
-                )}
-
-                <input
-                  className="hidden"
-                  type="file"
-                  id="preview"
-                  ref={filePicker}
-                  onChange={handleChange}
-                  accept="image/* .png, .jpg, .jpeg"
-                />
-              </div>
-            </div> */}
-
-
+          
+            <div className="new-article__load-img">
+            <h3>Главное фото</h3>
             <ImageLoader selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+            </div>
+
           </div>
 
           <label htmlFor="body">
@@ -178,6 +150,9 @@ export const CreateArticle = () => {
             <button
               className="button button_bordered new-article__button"
               type="Submit"
+              value={'DF'}
+              onClick={(e) => handle(e)}
+              id="status"
             >
               Сохранить черновик
             </button>
@@ -185,6 +160,9 @@ export const CreateArticle = () => {
             <button
               className="button button_colored new-article__button"
               type="Submit"
+              value={'PB'}
+              onClick={(e) => handle(e)}
+              id="status"
             >
               Опубликовать
             </button>
