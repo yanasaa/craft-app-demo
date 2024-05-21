@@ -14,6 +14,10 @@
   padding: 0 100px 0 140px;
   flex-grow: 1;
   justify-content: start;
+  @media (max-width: 1000px) {
+    padding: 0 5vw 5vh;
+  }
+  
 }
 
 .contact-us__content {
@@ -23,6 +27,11 @@
   max-width: 570px;
   padding-left: 0;
   padding-top: 45px;
+  @media (max-width: 1150px) {
+    text-align: center;
+    margin: auto;
+  }
+  
 }
 .contact-us__form {
   input,
@@ -58,5 +67,8 @@ textarea {
     width: 100%;
     object-fit: cover;
     vertical-align:bottom ;
+  }
+  @media (max-width: 1150px) {
+    display: none;
   }
 }

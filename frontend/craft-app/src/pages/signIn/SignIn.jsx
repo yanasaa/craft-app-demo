@@ -72,7 +72,7 @@ export const SignIn = () => {
                     label="Пароль:  "
                     component={FormikField}
                   />
-                  <div>{errors}</div>
+                  {errors && <div className="request_err_mes">{errors}</div>}
                   <Button
                     className="button button_colored sif__button"
                     type="submit"

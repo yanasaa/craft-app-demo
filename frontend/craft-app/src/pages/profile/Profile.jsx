@@ -164,12 +164,12 @@ export const Profile = () => {
           </div>
         </div>
         <h2>Мои статьи</h2>
-        {/* <div className="profile__articles">
+        <div className="profile__articles">
           <div className="wrapper">
             <div className="article-gallery">{displayArticles}</div>
           </div>
-        </div> */}
-        <ArticlesGallery searchValue={`?username=${currentUser.slug}`}/>
+        </div>
+        {/* <ArticlesGallery searchValue={`?username=${currentUser.slug}`}/> */}
       </div>
 
       <div className="pagination">
