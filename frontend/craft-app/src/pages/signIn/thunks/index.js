@@ -23,6 +23,7 @@ export const checkAuthThunk = createAsyncThunk(
       const response = await axios.get(`${BASE_URL}${REFRESH_ENDPOINT}`, {withCredentials: true});
       return response.data;
     } catch (e) {
+      console.log(e)
       return rejectWithValue(e?.response?.data?.detail || e?.message);
     }
   }

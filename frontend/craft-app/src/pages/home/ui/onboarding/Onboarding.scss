@@ -8,18 +8,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content:center;
   margin-bottom: 10vh;
   height: 100vh;
   @media (max-width: 620px) {
     padding: 0;
+    width: 100vw;
   }
 }
 
 .onboarding__wrapper {
   background: rgba(237, 220, 228, 0.25);
-  height: 600px;
-  text-align: center;
-  flex-grow: 1;
+  height: calc($block-height - 30vh);
   width: 100%;
   border-radius: 16px;
   backdrop-filter: blur(11.875404357910156px);
@@ -58,12 +58,15 @@
     position: relative;
     top: 0;
     left: 0;
-    padding: 7vh;
+    padding: 7vh 0;
+    width: 100%;
   }
 }
 .onboardBg {
   position: absolute;
-  height: 100%;
+  height: $block-height;
+  top: 10vh;
+  width: 100%;
   padding: 3%;
   @media (max-width: 620px) {
     display: none;
@@ -74,6 +77,7 @@
   left: 0;
   top: 30%;
   height: 40%;
+  width: 100%;
   padding: 0 2%;
   @media (max-width: 620px) {
     display: none;
@@ -89,3 +93,4 @@
     display: none;
   }
 }
+

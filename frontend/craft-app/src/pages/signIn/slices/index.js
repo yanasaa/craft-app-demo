@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { signUpThunk } from "../../signUp/thunks";
 import { loginThunk } from "../thunks";
 
 const tokens = localStorage.getItem("tokens");
@@ -9,6 +10,7 @@ const initialState = {
   errors: null,
   token: localStorage.getItem("token") || null,
   tokens: tokens ? JSON.parse(tokens) : {},
+  signUpStatus: false,
 };
 
 export const loginSlice = createSlice({
@@ -43,6 +45,22 @@ export const loginSlice = createSlice({
     builder.addCase(loginThunk.rejected, (state, action) => {
       state.isLoading = false;
       state.errors = action.payload;
+    });
+    builder.addCase(signUpThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.errors = null;
+      state.signUpStatus = action.payload;
+      
+    });
+    builder.addCase(signUpThunk.pending, (state) => {
+      state.isLoading = true;
+      state.errors = null;
+      
+    });
+    builder.addCase(signUpThunk.rejected, (state, action) => {
+      state.isLoading = false;
+      state.errors = action.payload;
+      state.signUpStatus = '';
     });
   },
 });

@@ -1,26 +1,36 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { Formik, Field } from "formik";
+import { message } from "antd";
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTE_NAMES } from "../../routes/routeNames";
 import { initialValues } from "./initialValues";
-import "./signUp.scss";
 import { FormikField } from "../../components/FormikField/FormikField";
-import AuthService from "../../services/AuthService";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { loginSelector } from "../signIn/selectors";
+import { signUpThunk } from "./thunks";
+import { LoadingOutlined } from '@ant-design/icons';
+import "./signUp.scss";
+
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Введите Ваш логин!"),
-  password: yup.string().required("Введите Ваш пароль!"),
+  username: yup.string().required("Вы не ввели имя пользователя"),
+  password: yup.string().required("Вы не ввели пароль"),
 });
 
 export const SignUp = () => {
-  const { isAuth } = useSelector(loginSelector);
+   const { isAuth, errors, isLoading, signUpStatus } = useSelector(loginSelector);
+
+  if (errors) console.log(errors);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (values) => {
-    AuthService.signUp(values).then((data) => console.log(data));
+    dispatch(signUpThunk(values)).then((data) => {
+      if(signUpStatus && data.meta.requestStatus === "fulfilled") {
+        navigate(ROUTE_NAMES.SIGN_IN)
+      }
+    })
   };
 
   return isAuth ? (
@@ -69,14 +79,14 @@ export const SignUp = () => {
                     label="Пароль:  "
                     component={FormikField}
                   />
-                  {/* <div>{errors}</div> */}
+                     {errors && <div className="request_err_mes">{errors}</div>}
                   <Button
                     className="button button_colored sif__button"
                     type="submit"
-                    disabled={!formikProps.isValid}
+                    disabled={isLoading || !formikProps.isValid}
                     onClick={formikProps.handleSubmit}
                   >
-                    Зарегистрироваться
+                   {isLoading ? <LoadingOutlined/> : "Зарегистрироваться"} 
                   </Button>
                 </div>
               );
