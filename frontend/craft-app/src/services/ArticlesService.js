@@ -1,5 +1,5 @@
 import api from "../api/config";
-import { ARTICLE_ENDPOINT, GET_ARTICLES_ENDPOINT } from "../constants/endpoints";
+import { ARTICLE_ENDPOINT, GET_ARTICLES_ENDPOINT, LIKE_ARTICLE } from "../constants/endpoints";
 
 class ArticlesService {
   static instance = new ArticlesService();
@@ -10,9 +10,13 @@ class ArticlesService {
   createArticle(article, articleSlug) {
     return api.post(`${ARTICLE_ENDPOINT}/${articleSlug}`, article);
   }
-//   updateProductInCart(body) {
-//     return api.patch(PRODUCT_CART_ENDPOINT, body);
-//   }
+  getSingleArticle(articleSlug) {
+    return api.get(`${ARTICLE_ENDPOINT}${articleSlug}`);
+  }
+  likeDislikeArticle(articleId) {
+    return api.post(`${LIKE_ARTICLE}${articleId}`);
+  }
+
 //   removeProductFromCart(productId) {
 //     return api.delete(`${PRODUCT_CART_ENDPOINT}/${productId}`);
 //   }

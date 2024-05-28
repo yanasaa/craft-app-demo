@@ -9,6 +9,7 @@ import { initialValues } from "./initialValues";
 import "./Signin.scss";
 import { loginThunk } from "./thunks";
 import { FormikField } from "../../components/FormikField/FormikField";
+import { currentProfileThunk } from "../profile/thunks";
 
 const validationSchema = yup.object().shape({
   username: yup.string().required("Введите Ваш логин!"),
@@ -23,7 +24,9 @@ export const SignIn = () => {
   if (errors) console.log(errors);
 
   const handleSubmit = (values) => {
-    dispatch(loginThunk(values));
+    dispatch(loginThunk(values)).then(() => {
+      dispatch(currentProfileThunk())
+    })
   };
 
   return isAuth ? (

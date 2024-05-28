@@ -1,8 +1,11 @@
 import { Pagination } from "antd";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./Articles.scss";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 import Button from "../../../../components/shared/ui/button/Button";
+import { getArticlesThunk } from "../../../../components/ArticlesGallery/thunks";
+import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
 
 function Articles({
   categoryId,
@@ -10,7 +13,10 @@ function Articles({
   searchValue,
   setSearchValue,
 }) {
-  const [articles, setArticles] = useState([]);
+  
+  const [favourites, setFavourites] = useState([]);
+const dispatch = useDispatch()
+const { articles } = useSelector(articlesSelector)
   const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
@@ -19,21 +25,7 @@ function Articles({
     : `http://84.201.140.115/api/v1/posts/?search=${searchValue}`;
 
   useEffect(() => {
-    const getAllArticles = () => {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setArticles(json.reverse());
-          setTotal(json.length);
-          setPage(1);
-        });
-    };
-    getAllArticles();
+    dispatch(getArticlesThunk(''))
   }, [categoryId, searchValue, url]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
@@ -63,9 +55,16 @@ function Articles({
     setPostsPerPage(pageSize);
   };
 
+  const getFavouriteArticles = () => {
+    const favArticles = articles.filter((article) => article.is_favorited)
+    setFavourites(favArticles)
+
+  }
+
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
+      <button onClick={() => {getFavouriteArticles()}}>избранные</button>
       {!!categoryId && (
         <Button
           className="articles__filter-btn"

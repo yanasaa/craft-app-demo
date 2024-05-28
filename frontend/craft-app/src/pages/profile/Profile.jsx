@@ -169,7 +169,7 @@ export const Profile = () => {
             <div className="article-gallery">{displayArticles}</div>
           </div>
         </div>
-        {/* <ArticlesGallery searchValue={`?username=${currentUser.slug}`}/> */}
+        <ArticlesGallery searchValue={`?username=${currentUser.slug}`}/>
       </div>
 
       <div className="pagination">
