@@ -1,4 +1,5 @@
 import { SearchOutlined } from "@ant-design/icons";
+import { Tooltip } from 'antd';
 import "./SearchBar.scss";
 
 function SearchBar(props) {
@@ -11,8 +12,7 @@ function SearchBar(props) {
   }
   return (
     <div className={className}>
-      {/* {isActive && ( */}
-      <input
+       <input
         className="search__input"
         value={searchValue}
         type="search"
@@ -30,12 +30,13 @@ function SearchBar(props) {
         ></span>
       )}
       <div className="search__icons">
-        <SearchOutlined
-          className="icon search__icon"
-          title="Найти"
-          style={{ fontSize: "32px", color: "#ad2e95" }}
-          onClick={() => window.scrollTo(0, 2150)}
-        />
+        <Tooltip title="Найти статьи" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+          <SearchOutlined
+            className="icon search__icon"
+            style={{ fontSize: "32px", color: "#ad2e95" }}
+            onClick={() => window.scrollTo(0, 2150)}
+          />
+        </Tooltip>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import {
 import "./Profile.scss";
 import Button from "../../components/shared/ui/button/Button";
 
-import { Pagination } from "antd";
+import { Pagination, Tooltip } from "antd";
 import { useNavigate } from "react-router-dom";
 import UserArticleCard from "./ui/userArticleCard/UserArticleCard";
 import { ROUTE_NAMES } from "../../routes/routeNames";
@@ -95,14 +95,15 @@ export const Profile = () => {
       <div className="profile__wrapper">
         <div className="wrapper">
           <div className="profile__info">
-            <EditOutlined
-              className="icon__edit-profile"
-              title="редактировать профиль"
-              onClick={() => {
-                navigate(ROUTE_NAMES.PROFILE_EDIT);
-                window.scrollTo(0, 0);
-              }}
-            />
+            <Tooltip title="Редактировать профиль" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+              <EditOutlined
+                className="icon__edit-profile"
+                  onClick={() => {
+                  navigate(ROUTE_NAMES.PROFILE_EDIT);
+                  window.scrollTo(0, 0);
+                }}
+              />
+            </Tooltip>
             <div className="profile__user-card">
               <div className="user-card__img">
                 <img

@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {UserOutlined } from "@ant-design/icons";
+import { Tooltip } from 'antd';
 import Navigation from "./ui/navigation/Navigation";
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTE_NAMES } from "../../routes/routeNames";
 import { loginSelector } from "../../pages/signIn/selectors";
 import { logout } from "../../pages/signIn/slices";
 import AuthService from "../../services/AuthService";
+
 import "./Header.scss";
 
 function Header() {
@@ -32,9 +34,11 @@ function Header() {
     <header className="header">
       <div className="wrapper header__wrapper">
         <Navigation />
-        <Link to={"."} reloadDocument>
-          <span className="logo header__logo"></span>
-        </Link>
+          <Link to={"."} onClick={() => {window.scroll(0,0)}}>
+            <Tooltip title="Вернуться на главную" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+              <span className="logo header__logo"></span>
+            </Tooltip>
+          </Link>
         <div className="header__buttons" ref={menuRef}>
           {isAuth ? (
             <div className="header__profile-link">
@@ -68,16 +72,15 @@ function Header() {
               )}
             </div>
           ) : (
-            <Button
-              className={`button button_colored button-enter ${window.location.href.endsWith("/login") && "hidden"}`}
-              title="Войти"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                navigate(ROUTE_NAMES.SIGN_IN);
-              }}
-            >
-             Войти
-            </Button>
+              <Button
+                className={`button button_colored button-enter ${window.location.href.endsWith("/login") && "hidden"}`}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  navigate(ROUTE_NAMES.SIGN_IN);
+                }}
+              >
+              Войти
+              </Button>
           )}
         </div>
       </div>
