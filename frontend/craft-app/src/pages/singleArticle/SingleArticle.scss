@@ -40,11 +40,11 @@ img {
   margin-bottom: 50px;
 }
 
-.article__feedback,
-.article__share {
+.article__feedback {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 3vh;
 }
 .article__feedback{
   margin-bottom: 50px;
@@ -52,8 +52,14 @@ img {
     cursor: pointer;
   }
 }
-.share__icon {
+.article__actions {
+  display: flex;
+  flex-direction: column;
+}
+.share__icon, .favourite__icon {
   margin-right: 12px;
+  font-size: "26px";
+   color: "#AD2E95" ;
   
 }
 .likes__icon {
