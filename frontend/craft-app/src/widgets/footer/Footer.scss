@@ -34,14 +34,17 @@
 
 .social-icons {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   padding: 16px 0;
+  gap: 2vh;
 }
 
 .mobile-app__icon {
   width: 162px;
   height: 48px;
-  background-image: url("../../components/shared/assets/img/icons/google-play.svg");
+  background: url("../../components/shared/assets/img/icons/google-play.svg"), #ad2e95;
+  border-radius: 10px;
+
 }
 .social-icon {
   border-radius: 5px;

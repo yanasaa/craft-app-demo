@@ -64,7 +64,6 @@ function Footer() {
           </div>
           <div className="mobile-app">
             <h3 className="footer__title">Скачать мобильное приложение</h3>
-            <Tooltip title="Скачать приложение CraftShare" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
               <div className="mobile-app__button">
                 <a
                   href="https://support.google.com/googleplay/?hl=ru#topic=3364260"
@@ -74,7 +73,6 @@ function Footer() {
                   <span className="icon mobile-app__icon"></span>
                 </a>
               </div>
-            </Tooltip>
           </div>
         </div>
       </div>
