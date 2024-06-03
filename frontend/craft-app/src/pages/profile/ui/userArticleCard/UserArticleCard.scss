@@ -15,6 +15,11 @@
     background: rgba(88, 64, 82, 0.25);
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
   }
+  @media (max-width: 360px) {
+    width: 100%;
+    padding: 1vw;
+    border-radius: 0;
+   }
 }
 .article-preview .card {
   display: flex;
@@ -22,7 +27,10 @@
   justify-content: space-between;
   width: 320px;
   height: 420px;
-  overflow: hidden;
+
+  @media (max-width: 360px) {
+    width: 290px;
+   }
 }
 
 .article-preview__image {

@@ -3,25 +3,39 @@ import { useDispatch, useSelector } from 'react-redux';
 import {FileTextOutlined, SmileOutlined } from '@ant-design/icons';
 import avatarDefault from "../../components/shared/assets/img/ui/avatar.svg";
 import Button from '../../components/shared/ui/button/Button';
-import { getUserProfileThunk } from '../profile/thunks';
+import { currentProfileThunk, getAllUsersProfilesThunk, getUserProfileThunk, subscribeUserThunk } from '../profile/thunks';
 import './ProfileAuthor.scss'
 import { profileSelector } from '../profile/selectors';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { ArticlesGallery } from '../../components/ArticlesGallery/ArticlesGallery';
 import { useArticles } from '../../hooks/useArticles';
+import { ROUTE_NAMES } from '../../routes/routeNames';
+import { Spin } from 'antd';
 
 export const ProfileAuthor = () => {
-        const { authorId } = useParams();
-        const { articlesQuantity } = useArticles()
-        const {errors, isLoading , profileAuthor} = useSelector(profileSelector)
-               const dispatch = useDispatch();
-        useEffect(() => {
-                dispatch(getUserProfileThunk(authorId))
-              
-        },[authorId])
-       
-  return (
-        <section className="profile">
+  const { authorId } = useParams();
+  
+  const { articlesQuantity } = useArticles()
+  const {errors, isLoading , profileAuthor, currentUser, allUsers} = useSelector(profileSelector)
+          const dispatch = useDispatch();
+  useEffect(() => {
+    if (currentUser.id === authorId) {
+      return <Navigate to={ROUTE_NAMES.PROFILE} />
+    }
+    dispatch(getUserProfileThunk(authorId))
+        
+  },[authorId, profileAuthor.is_subscribed])
+
+  const handleSubscribe = () => {
+    dispatch(subscribeUserThunk(profileAuthor.id)).then(() => dispatch(currentProfileThunk()))
+  }
+  
+  console.log(profileAuthor);
+  console.log(currentUser);
+  
+    
+  return isLoading ? <Spin fullscreen/> : (
+      <section className="profile">
         <div className="profile__wrapper">
           <div className="wrapper">
             <div className="profile__info">
@@ -36,7 +50,7 @@ export const ProfileAuthor = () => {
                   <div className="user-card__info_author">
                     <div className="user-card__item">
                       <div className="item__number">
-                        <h3>0</h3>
+                        <h3>{allUsers.filter((user) => user.following.includes(profileAuthor.id)).length}</h3>
                         <SmileOutlined />
                       </div>
                       <p className="item__text">подписчиков</p>
@@ -51,9 +65,9 @@ export const ProfileAuthor = () => {
                   </div>
                   <Button
                     className="button button_colored user-card_btn"
-                    onClick={() => {}}
+                    onClick={handleSubscribe}
                   >
-                    Подписаться
+                    {currentUser.following.includes(profileAuthor.id) ? 'Отписаться' : 'Подписаться'}
                   </Button>
                 </div>
               </div>
@@ -68,7 +82,7 @@ export const ProfileAuthor = () => {
             </div>
           </div>
           <h2>Статьи автора </h2>
-          <ArticlesGallery searchValue={`?username=${profileAuthor.slug}`}/>
+          <ArticlesGallery searchValue={`${profileAuthor.slug}`}/>
         </div>
   
       </section>

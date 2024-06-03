@@ -1,5 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Tooltip } from "antd";
 import * as yup from "yup";
 import { Formik, Field } from "formik";
 import Button from "../../components/shared/ui/button/Button";
@@ -55,7 +56,9 @@ export const SignIn = () => {
                 <div className="sif__wrapper">
                   <div className="sif__register-link">
                     <span>Еще нет аккаунта на Craftshare?</span>
-                    <Link to={ROUTE_NAMES.SIGN_UP}>Зарегистрироваться</Link>
+                    <Tooltip title="Перейти к регистрации" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+                      <Link to={ROUTE_NAMES.SIGN_UP}>Зарегистрироваться</Link>
+                    </Tooltip>
                   </div>
 
                   <Field

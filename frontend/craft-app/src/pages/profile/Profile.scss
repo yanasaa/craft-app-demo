@@ -106,3 +106,29 @@
   background-position: center;
   padding: 30px;
 }
+
+.ant-modal-content {
+  border-radius: 0 !important;
+}
+.followings__avatar {
+  width: 64px;
+  height: 64px;
+}
+
+.followings_item{
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.followings__item_info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.followings__name {
+  font-size: 2.4rem;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 700;
+  margin-left: 2vh;
+}

@@ -1,4 +1,4 @@
-
+import { Tooltip } from 'antd';
 import DropdownContent from "../header/ui/navigation/dropdownContent/DropdownContent";
 import "./Footer.scss";
 
@@ -20,51 +20,59 @@ function Footer() {
               <span className="link-label">Email: </span>craft@gmail.com
             </a>
             <div className="social-icons">
-              <a
-                href="https://www.facebook.com/?locale=ru_RU"
-                className="social-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="icon social-icon social-icon_facebook"></span>
-              </a>
-              <a
-                href="https://www.instagram.com/"
-                className="social-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="icon social-icon social-icon_instagram"></span>
-              </a>
-              <a
-                href="https://t.me/channelname"
-                className="social-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="icon social-icon social-icon_telegram"></span>
-              </a>
-              <a
-                href="https://www.youtube.com/"
-                className="social-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="icon social-icon social-icon_youtube"></span>
-              </a>
+              <Tooltip title="Наша страница в Facebook" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+                <a
+                  href="https://www.facebook.com/?locale=ru_RU"
+                  className="social-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon social-icon social-icon_facebook"></span>
+                </a>
+              </Tooltip>  
+              <Tooltip title="Наша страница в Instagram" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+                <a
+                  href="https://www.instagram.com/"
+                  className="social-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon social-icon social-icon_instagram"></span>
+                </a>
+              </Tooltip>
+              <Tooltip title="Наш Telegram канал" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+                <a
+                  href="https://t.me/channelname"
+                  className="social-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon social-icon social-icon_telegram"></span>
+                </a>
+              </Tooltip>
+              <Tooltip title="Наш YouTube канал" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>              
+                <a
+                  href="https://www.youtube.com/"
+                  className="social-link"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon social-icon social-icon_youtube"></span>
+                </a>
+              </Tooltip>
             </div>
           </div>
           <div className="mobile-app">
             <h3 className="footer__title">Скачать мобильное приложение</h3>
-            <div className="mobile-app__button">
-              <a
-                href="https://support.google.com/googleplay/?hl=ru#topic=3364260"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <span className="icon mobile-app__icon"></span>
-              </a>
-            </div>
+              <div className="mobile-app__button">
+                <a
+                  href="https://support.google.com/googleplay/?hl=ru#topic=3364260"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="icon mobile-app__icon"></span>
+                </a>
+              </div>
           </div>
         </div>
       </div>

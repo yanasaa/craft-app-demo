@@ -11,6 +11,7 @@ export const GET_CATEGORIES = "/categories/";
 
 export const MY_PROFILE_ENDPOINT = '/userprofile/me/'
 export const USER_PROFILE_ENDPOINT = '/userprofile/'
+export const USERS_PROFILE_ENDPOINT = '/userprofiles/'
 
 
 

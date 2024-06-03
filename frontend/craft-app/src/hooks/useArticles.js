@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { articlesSelector } from "../components/ArticlesGallery/selectors";
-import { getArticlesThunk } from "../components/ArticlesGallery/thunks";
+import { getArticlesThunk, getProfileArticlesThunk } from "../components/ArticlesGallery/thunks";
 import { useCallback } from "react";
 
 export const useArticles = () => {
@@ -10,6 +10,9 @@ export const useArticles = () => {
   const getArticles = useCallback((searchValue) => {
     dispatch(getArticlesThunk(searchValue));
   }, [dispatch]);
+  const getProfileArticles = useCallback((userSlug) => {
+    dispatch(getProfileArticlesThunk(userSlug));
+  }, [dispatch]);
 
 
   return {
@@ -18,6 +21,7 @@ export const useArticles = () => {
     allArticles: articles,
     getArticles: getArticles,
     articlesQuantity: articles.length,
+    getProfileArticles: getProfileArticles,
 
   };
 };

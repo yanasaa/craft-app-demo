@@ -1,5 +1,7 @@
+import { Tooltip } from 'antd';
 import Button from "../../../../components/shared/ui/button/Button";
 import contactus from "../../../../components/shared/assets/img/ui/contactus.png";
+
 import "./ContactUs.scss";
 import Image from "../../../../components/shared/ui/image/Image";
 import Input from "../../../../components/shared/ui/input/Input";
@@ -38,14 +40,16 @@ function ContactUS() {
                 className="input contact-us__line"
               ></textarea>
               <div className="contact-us__button ">
+               <Tooltip title="Отправка писем пока недостуна :(" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
                 <Button
-                  onClick={(e) => e.preventDefault()}
-                  type="submit"
-                  className="button button_bordered footer__btn"
-                  disabled
-                >
-                  Отправить
-                </Button>
+                    onClick={(e) => e.preventDefault()}
+                    type="submit"
+                    className="button button_bordered footer__btn"
+                    disabled
+                  >
+                    Отправить
+                  </Button>
+               </Tooltip>
               </div>
             </form>
           </div>

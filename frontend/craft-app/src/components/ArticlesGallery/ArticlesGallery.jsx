@@ -22,7 +22,7 @@ export const ArticlesGallery = ({
   useEffect(() => {
     getArticles(searchValue);
    
-  }, [searchValue]);
+  }, [searchValue, allArticles.length]);
   console.log(searchValue);
   const totalPages = allArticles.length;
 
@@ -74,7 +74,7 @@ export const ArticlesGallery = ({
 
   return (
     <section className="articles" id="articles">
-      {!!categoryId && (
+      {(!!categoryId) && (
         <Button
           className="articles__filter-btn"
           onClick={() => onClickCategory(0)}
@@ -82,6 +82,7 @@ export const ArticlesGallery = ({
           Отменить фильтр
         </Button>
       )}
+    
       <div className="slider__wrapper">
         <div className="articles__wrapper">
           <div className="wrapper">
