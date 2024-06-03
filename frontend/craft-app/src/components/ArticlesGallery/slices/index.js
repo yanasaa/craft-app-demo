@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getArticlesThunk } from "../thunks";
+import { getArticlesThunk, getProfileArticlesThunk } from "../thunks";
 
 const initialState = {
   articles: [],
@@ -12,6 +12,11 @@ const articlesSlice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder.addCase(getArticlesThunk.fulfilled, (state, action) => {
+      state.articles = action.payload;
+      state.isLoading = false;
+      state.errors = null;
+    });
+    builder.addCase(getProfileArticlesThunk.fulfilled, (state, action) => {
       state.articles = action.payload;
       state.isLoading = false;
       state.errors = null;

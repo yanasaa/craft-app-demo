@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { currentProfileThunk, getUserProfileThunk, loginThunk, updateProfileThunk } from "../thunks";
+import { currentProfileThunk, getAllUsersProfilesThunk, getUserProfileThunk, subscribeUserThunk, updateProfileThunk } from "../thunks";
 
 const initialState = {
   isLoading: false,
@@ -15,6 +15,7 @@ const initialState = {
     bio: "",
     avatar: "",
     user: null,
+    following: []
   },
   profileAuthor: {
     id: null,
@@ -27,7 +28,10 @@ const initialState = {
     bio: "",
     avatar: "",
     user: null,
-  }
+    following: [],
+    is_subscribed: ''
+  },
+  allUsers: []
 
 };
 
@@ -78,6 +82,19 @@ export const profileSlice = createSlice({
       state.isLoading = false;
       state.errors = action.payload;
     });
+    builder.addCase(subscribeUserThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.errors = null;
+      state.profileAuthor.is_subscribed = action.payload
+
+    });
+    builder.addCase(getAllUsersProfilesThunk.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.errors = null;
+      state.allUsers = action.payload
+
+    });
+    
   },
 });
 

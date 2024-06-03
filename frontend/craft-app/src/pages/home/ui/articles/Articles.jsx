@@ -17,7 +17,7 @@ function Articles({
   const [favourites, setFavourites] = useState([]);
 const dispatch = useDispatch()
 const { articles } = useSelector(articlesSelector)
-  const [total, setTotal] = useState("");
+  // const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const url = categoryId
@@ -60,7 +60,7 @@ const { articles } = useSelector(articlesSelector)
     setFavourites(favArticles)
 
   }
-
+console.log(articles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
@@ -82,14 +82,15 @@ const { articles } = useSelector(articlesSelector)
         <div className="pagination">
           <Pagination
             onChange={changePage}
-            total={total}
-            pageSize={postsPerPage}
-            current={page}
-            showSizeChanger={false}
+            // total={total}
+            // pageSize={postsPerPage}
+            // current={page}
+            // showSizeChanger={false}
             showQuickJumper
             locale={{ jump_to: "Перейти на", page: "стр" }}
-            onShowSizeChange={onShowSizeChange}
-            hideOnSinglePage
+            // onShowSizeChange={onShowSizeChange}
+            // hideOnSinglePage
+            defaultPageSize={6} total={articles.length} 
           ></Pagination>
         </div>
       </div>

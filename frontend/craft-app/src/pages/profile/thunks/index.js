@@ -38,3 +38,27 @@ export const updateProfileThunk = createAsyncThunk(
     }
   );
 
+  export const getAllUsersProfilesThunk = createAsyncThunk(
+    "getAllUserProfiles",
+    async (_, { rejectWithValue }) => {
+      try {
+        const response = await ProfileService.getAllUsersProfiles();
+        return response.data;
+      } catch (e) {
+        return rejectWithValue(e?.response?.data?.detail || e?.message);
+      }
+    }
+  );
+
+  export const subscribeUserThunk = createAsyncThunk(
+    "subscribeUser",
+    async (userId, { rejectWithValue }) => {
+      try {
+        const response = await ProfileService.subscribeUser(userId);
+        return response.data;
+      } catch (e) {
+        return rejectWithValue(e?.response?.data?.detail || e?.message);
+      }
+    }
+  );
+

@@ -7,6 +7,9 @@ class ArticlesService {
   getArticles(searchValue) {
     return api.get(`${GET_ARTICLES_ENDPOINT}${searchValue}`);
   }
+  getProfileArticles(userSlug) {
+    return api.get(`${GET_ARTICLES_ENDPOINT}?username=${userSlug}`);
+  }
   createArticle(article, articleSlug) {
     return api.post(`${ARTICLE_ENDPOINT}/${articleSlug}`, article);
   }
