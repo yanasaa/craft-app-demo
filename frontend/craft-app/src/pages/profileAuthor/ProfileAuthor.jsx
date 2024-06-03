@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {FileTextOutlined, SmileOutlined } from '@ant-design/icons';
 import avatarDefault from "../../components/shared/assets/img/ui/avatar.svg";
 import Button from '../../components/shared/ui/button/Button';
-import { currentProfileThunk, getUserProfileThunk, subscribeUserThunk } from '../profile/thunks';
+import { currentProfileThunk, getAllUsersProfilesThunk, getUserProfileThunk, subscribeUserThunk } from '../profile/thunks';
 import './ProfileAuthor.scss'
 import { profileSelector } from '../profile/selectors';
 import { Navigate, useParams } from 'react-router-dom';
@@ -16,7 +16,7 @@ export const ProfileAuthor = () => {
   const { authorId } = useParams();
   
   const { articlesQuantity } = useArticles()
-  const {errors, isLoading , profileAuthor, currentUser} = useSelector(profileSelector)
+  const {errors, isLoading , profileAuthor, currentUser, allUsers} = useSelector(profileSelector)
           const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser.id === authorId) {
@@ -50,7 +50,7 @@ export const ProfileAuthor = () => {
                   <div className="user-card__info_author">
                     <div className="user-card__item">
                       <div className="item__number">
-                        <h3>0</h3>
+                        <h3>{allUsers.filter((user) => user.following.includes(profileAuthor.id)).length}</h3>
                         <SmileOutlined />
                       </div>
                       <p className="item__text">подписчиков</p>
@@ -82,7 +82,7 @@ export const ProfileAuthor = () => {
             </div>
           </div>
           <h2>Статьи автора </h2>
-          <ArticlesGallery searchValue={`?username=${profileAuthor.slug}`}/>
+          <ArticlesGallery searchValue={`${profileAuthor.slug}`}/>
         </div>
   
       </section>

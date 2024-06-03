@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { message, Tooltip } from "antd";
 import { LikeFilled, LikeTwoTone, ShareAltOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
@@ -11,6 +11,8 @@ import { loginSelector } from "../signIn/selectors";
 import { setArticleLikeThunk, singleArticleThunk } from "./thunks";
 import { acticleSelector } from "./selectors";
 import { profileSelector } from "../profile/selectors";
+import ModalConfirm from "../../components/ModalConfirm/ModalConfirm";
+import { confirmMessages } from "../../components/ModalConfirm/confirmMessages";
 
 
 
@@ -20,10 +22,21 @@ export const SingleArticle = () => {
   const { isAuth } = useSelector(loginSelector);
   const { article } = useSelector(acticleSelector);
   const { currentUser } = useSelector(profileSelector);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+      setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  let navigate = useNavigate();
 
   const { slug } = useParams();
-  const [like, setLike] = useState([]);
-  const [id, setId] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
 
   const dispatch = useDispatch()
@@ -44,7 +57,7 @@ export const SingleArticle = () => {
 
   function onLikeButtonClick() {
     if(!isAuth) {
-      alert("Перейти на страницу входа?")
+      showModal()
     }
     dispatch(setArticleLikeThunk(article.id))
   }
@@ -85,10 +98,21 @@ const handleAddFavourite = async () => {
         <h2 className="article__title">{article.title}</h2>
         <div className="article__info">
         <Tooltip title="Профиль автора" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
-          <Link className="article__author" to={`${ROUTE_NAMES.PROFILE_AUTHOR}${article.author}`}>
-            {article.author_username}
-          </Link>
+          {isAuth 
+            ?  
+            <Link className="article__author" to={`${ROUTE_NAMES.PROFILE_AUTHOR}${article.author}`}>
+              {article.author_username}
+            </Link> 
+            :
+            <span className="article__author" onClick={showModal}>{article.author_username}</span>
+            
+          }
         </Tooltip>
+        <ModalConfirm 
+          isModalOpen={isModalOpen} 
+          setIsModalOpen={setIsModalOpen} 
+          message={confirmMessages.ACTION_FOR_AUTHORIZED} 
+          modalAction={() => {navigate(ROUTE_NAMES.SIGN_IN)}}></ModalConfirm>
           <p className="article__date">
             {article.publish && getDate(article.publish)}
           </p>

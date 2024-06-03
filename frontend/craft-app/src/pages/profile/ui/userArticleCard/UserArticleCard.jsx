@@ -76,8 +76,7 @@ function UserArticleCard(props) {
               onClick={() => {
                 navigate(
                   `${ROUTE_NAMES.ARTICLE_EDIT}${slug}`
-                  // generatePath(ROUTE_NAMES.ARTICLE_EDIT, { id: String(slug) })
-                );
+                 );
                 window.scrollTo(0, 0);
               }}
             />

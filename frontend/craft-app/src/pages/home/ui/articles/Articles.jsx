@@ -6,6 +6,8 @@ import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 import Button from "../../../../components/shared/ui/button/Button";
 import { getArticlesThunk } from "../../../../components/ArticlesGallery/thunks";
 import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
+import { loginSelector } from "../../../signIn/selectors"
+import { ArticlesGallery } from "../../../../components/ArticlesGallery/ArticlesGallery"
 
 function Articles({
   categoryId,
@@ -16,7 +18,8 @@ function Articles({
   
   const [favourites, setFavourites] = useState([]);
 const dispatch = useDispatch()
-const { articles } = useSelector(articlesSelector)
+const { articles } = useSelector(articlesSelector);
+const { isAuth } = useSelector(loginSelector)
   // const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
@@ -64,7 +67,7 @@ console.log(articles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
-      <button onClick={() => {getFavouriteArticles()}}>избранные</button>
+      {isAuth && <button onClick={() => {getFavouriteArticles()}}>избранные</button>}
       {!!categoryId && (
         <Button
           className="articles__filter-btn"
@@ -72,9 +75,13 @@ console.log(articles);
         >Отменить фильтр</Button>
       )}
       <div className="slider__wrapper">
-        <div className="articles__wrapper">
+      <ArticlesGallery searchValue={searchValue}></ArticlesGallery>
+        {/* <div className="articles__wrapper">
+          
           <div className="wrapper">
+          
             <div className="slider">
+              
               <div className="article-gallery">{displayArticles}</div>
             </div>
           </div>
@@ -92,7 +99,7 @@ console.log(articles);
             // hideOnSinglePage
             defaultPageSize={6} total={articles.length} 
           ></Pagination>
-        </div>
+        </div> */}
       </div>
     </section>
   );

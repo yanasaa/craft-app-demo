@@ -1,12 +1,14 @@
 import { SearchOutlined } from "@ant-design/icons";
 import { Tooltip } from 'antd';
+import { useArticles } from "../../../../hooks/useArticles";
 import "./SearchBar.scss";
 
 function SearchBar(props) {
   const { className, searchValue, setSearchValue } = props;
-  // const [isActive, setIsActive] = useState(false);
+  const {getArticles} = useArticles;
   function handleKeyPress(e) {
     if (searchValue && e.key === "Enter") {
+      getArticles(searchValue);
       window.scrollTo(0, 2150);
     }
   }

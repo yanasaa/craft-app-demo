@@ -5,7 +5,7 @@ class ArticlesService {
   static instance = new ArticlesService();
 
   getArticles(searchValue) {
-    return api.get(`${GET_ARTICLES_ENDPOINT}${searchValue}`);
+    return api.get(`${GET_ARTICLES_ENDPOINT}?search=${searchValue}`);
   }
   getProfileArticles(userSlug) {
     return api.get(`${GET_ARTICLES_ENDPOINT}?username=${userSlug}`);
