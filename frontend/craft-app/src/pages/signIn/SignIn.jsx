@@ -57,7 +57,7 @@ export const SignIn = () => {
                   <div className="sif__register-link">
                     <span>Еще нет аккаунта на Craftshare?</span>
                     <Tooltip title="Перейти к регистрации" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
-                      <Link to={ROUTE_NAMES.SIGN_UP}>Зарегистрироваться</Link>
+                      <Link reloadDocument to={ROUTE_NAMES.SIGN_UP}>Зарегистрироваться</Link>
                     </Tooltip>
                   </div>
 

@@ -27,7 +27,7 @@ export const SignUp = () => {
 
   const handleSubmit = (values) => {
     dispatch(signUpThunk(values)).then((data) => {
-      if(signUpStatus && data.meta.requestStatus === "fulfilled") {
+      if(data.meta.requestStatus === "fulfilled") {
         navigate(ROUTE_NAMES.SIGN_IN)
       }
     })
@@ -48,7 +48,7 @@ export const SignUp = () => {
           </h2>
         </div>
         <div className="sign-in__form">
-          <h2 className="sign-in__form-title">Мы рады вас видеть!</h2>
+          <h2 className="sign-in__form-title">Создать аккаунт</h2>
           <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -56,11 +56,11 @@ export const SignUp = () => {
           >
             {(formikProps) => {
               return (
-                <div className="sif__wrapper">
+                <div className="sif__wrapper sif__wrapper_registration">
                   <div className="sif__register-link">
                     <span>Уже есть аккаунт на Craftshare?</span>
                     <Tooltip title="Перейти к авторизации" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
-                      <Link to={ROUTE_NAMES.SIGN_IN}>Войти</Link>
+                      <Link reloadDocument to={ROUTE_NAMES.SIGN_IN}>Войти</Link>
                     </Tooltip>
                   </div>
 
