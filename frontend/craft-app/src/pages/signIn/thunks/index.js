@@ -11,6 +11,7 @@ export const loginThunk = createAsyncThunk(
       const response = await AuthService.login(body);
       return response.data;
     } catch (e) {
+      console.log(e);
       return rejectWithValue(e?.response?.data?.detail || e?.message);
     }
   }

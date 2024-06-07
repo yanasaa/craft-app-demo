@@ -3,7 +3,7 @@
 @import "../../../../sass/abstracts/placeholders";
 
 .articles {
-  padding-top: 10vh;
+  padding-top: 1vh;
   margin-bottom: 10vh;
   position: relative;
 }
@@ -87,4 +87,13 @@
   height: 16px;
   margin-right: 8px;
   vertical-align: baseline;
+}
+
+.button_colored.button_pink {
+  background-color: #D9A1C6;
+  border-color: #D9A1C6;
+margin-left: 2vh;
+margin-bottom: 2vh;
+margin-right: 2vh;
+  
 }

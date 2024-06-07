@@ -1,4 +1,4 @@
-import { Pagination } from "antd";
+import { Pagination, Select } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Articles.scss";
@@ -15,10 +15,10 @@ function Articles({
   searchValue,
   setSearchValue,
 }) {
-  
+
   const [favourites, setFavourites] = useState([]);
 const dispatch = useDispatch()
-const { articles } = useSelector(articlesSelector);
+const { articles, tags } = useSelector(articlesSelector);
 const { isAuth } = useSelector(loginSelector)
   // const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
@@ -63,11 +63,31 @@ const { isAuth } = useSelector(loginSelector)
     setFavourites(favArticles)
 
   }
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const selectOptions = []
+  tags.map((tag) => {selectOptions.push({value: tag.name, label: tag.name})})
 console.log(articles);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
-      {isAuth && <button onClick={() => {getFavouriteArticles()}}>избранные</button>}
+      {isAuth && <div>
+       
+      <button className='button button_colored' onClick={() => {getFavouriteArticles()}}>избранные</button>
+      <button className='button button_colored button_pink' onClick={() => {getFavouriteArticles()}}>Подписки</button>
+      </div>}
+      <Select
+      allowClear
+      defaultValue="lucy"
+      style={{
+        width: 120,
+      }}
+      onChange={handleChange}
+      options={selectOptions}
+    />
       {!!categoryId && (
         <Button
           className="articles__filter-btn"

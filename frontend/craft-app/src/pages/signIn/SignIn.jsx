@@ -13,8 +13,8 @@ import { FormikField } from "../../components/FormikField/FormikField";
 import { currentProfileThunk } from "../profile/thunks";
 
 const validationSchema = yup.object().shape({
-  username: yup.string().required("Введите Ваш логин!"),
-  password: yup.string().required("Введите Ваш пароль!"),
+  username: yup.string().required("Вы не ввели имя пользователя"),
+  password: yup.string().required("Вы не ввели пароль"),
 });
 
 export const SignIn = () => {

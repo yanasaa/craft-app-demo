@@ -1,17 +1,25 @@
 import SearchBar from "../../../../components/shared/ui/searchBar/SearchBar";
 import "./Hero.scss";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllTagsThunk } from "../../../../components/ArticlesGallery/thunks";
+import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
 
 function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
-  const [tags, setTags] = useState([]);
+  // const [tags, setTags] = useState([]);
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    const getAllTags = () => {
-      fetch("http://84.201.140.115/api/v1/categories")
-        .then((response) => response.json())
-        .then((json) => setTags(json))
-    };
-    getAllTags();
+    dispatch(getAllTagsThunk())
+    // const getAllTags = () => {
+    //   fetch("http://84.201.140.115/api/v1/categories")
+    //     .then((response) => response.json())
+    //     .then((json) => setTags(json))
+    // };
+    // getAllTags();
   }, []);
+
+  const {tags} = useSelector(articlesSelector)
 
   
   function getUniqTags(tags) {
