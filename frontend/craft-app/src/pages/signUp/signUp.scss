@@ -1,5 +1,9 @@
 .wrapper.sign-in__wrap.sign-up__wrap {
   flex-direction: row-reverse;
+  @media (max-width: 550px) {
+    flex-direction: column-reverse;
+    gap: 2vh;
+  }
 }
 
 .request_err_mes {

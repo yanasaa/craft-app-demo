@@ -93,7 +93,8 @@ export const Profile = () => {
   const handleSubscribe = (user) => {
     dispatch(subscribeUserThunk(user.id)).then(() => dispatch(currentProfileThunk()))
   }
- console.log(currentUser)
+ 
+ console.log(localStorage.token)
   return isLoading ? <Spin fullscreen/> :(
     <section className="profile">
       <div className="profile__wrapper">

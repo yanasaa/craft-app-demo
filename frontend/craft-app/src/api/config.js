@@ -25,12 +25,12 @@ api.interceptors.response.use(
     return config;
   },
   async (error) => {
-    if (error.response.status === 401) {
-      const response = await axios.post(`${BASE_URL}/${REFRESH_ENDPOINT}`, {
-        refresh: localStorage.getItem("refresh"),
+    
+    if (error.response.statusText === "Unauthorized") {
+      const response = await axios.post(`${BASE_URL}${REFRESH_ENDPOINT}`, {
+        refresh: localStorage.refresh,
       });
       localStorage.setItem("token", response.data.access);
-      //  localStorage.clear();
     }
     return Promise.reject(error);
   }

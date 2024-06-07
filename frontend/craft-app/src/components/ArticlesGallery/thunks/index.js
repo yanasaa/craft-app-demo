@@ -25,3 +25,16 @@ export const getProfileArticlesThunk = createAsyncThunk(
   }
 );
 
+export const getAllTagsThunk = createAsyncThunk(
+  "getTags",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await ArticlesService.getAllTags();
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e?.response?.data?.detail || e?.message);
+    }
+  }
+);
+
+
