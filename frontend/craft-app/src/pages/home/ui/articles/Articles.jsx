@@ -1,13 +1,14 @@
-import { Pagination, Select } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Articles.scss";
+import { Select } from "antd";
 import ArticleCard from "../../../../components/shared/ui/article/ArticleCard";
 import Button from "../../../../components/shared/ui/button/Button";
-import { getArticlesThunk } from "../../../../components/ArticlesGallery/thunks";
+import { getArticlesByCategoryThunk, getArticlesBySearchThunk, getArticlesThunk } from "../../../../components/ArticlesGallery/thunks";
 import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
 import { loginSelector } from "../../../signIn/selectors"
 import { ArticlesGallery } from "../../../../components/ArticlesGallery/ArticlesGallery"
+import "./Articles.scss";
+import { useArticles } from "../../../../hooks/useArticles";
 
 function Articles({
   categoryId,
@@ -16,20 +17,28 @@ function Articles({
   setSearchValue,
 }) {
 
-  const [favourites, setFavourites] = useState([]);
+const [favourites, setFavourites] = useState([]);
 const dispatch = useDispatch()
+const {getArticles} = useArticles()
 const { articles, tags } = useSelector(articlesSelector);
 const { isAuth } = useSelector(loginSelector)
-  // const [total, setTotal] = useState("");
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
-  const url = categoryId
-    ? `http://84.201.140.115/api/v1/category/${categoryId}`
-    : `http://84.201.140.115/api/v1/posts/?search=${searchValue}`;
-
+  
   useEffect(() => {
-    dispatch(getArticlesThunk(''))
-  }, [categoryId, searchValue, url]);
+    
+  if(categoryId) {
+    dispatch(getArticlesByCategoryThunk(categoryId))
+  } else if (searchValue) {
+    dispatch(getArticlesBySearchThunk(searchValue))
+   } else if (favourites) {
+    getArticles()
+  } else {
+
+    getArticles()
+  }
+  
+  }, [categoryId, searchValue, dispatch]);
 
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
@@ -51,75 +60,57 @@ const { isAuth } = useSelector(loginSelector)
     );
   });
 
-  const changePage = (value) => {
-    setPage(value);
-  };
-  const onShowSizeChange = (curent, pageSize) => {
-    setPostsPerPage(pageSize);
-  };
-
   const getFavouriteArticles = () => {
     const favArticles = articles.filter((article) => article.is_favorited)
     setFavourites(favArticles)
-
   }
 
-  const handleChange = (value) => {
-    console.log(`selected ${value}`);
-  };
+  
 
-  const selectOptions = []
-  tags.map((tag) => {selectOptions.push({value: tag.name, label: tag.name})})
-console.log(articles);
+  const selectOptions = tags.map((tag) => {
+    return {value: tag.id, label: tag.name}
+  })
+  
+  const category = selectOptions.find((tag) => tag.value === categoryId)
+
+  const handleChangeCategory = (value) => { 
+    if (!categoryId) {
+      onClickCategory(0)
+      setSearchValue('')
+    }
+    onClickCategory(value)
+  };
+console.log(category);
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
-      {isAuth && <div>
-       
-      <button className='button button_colored' onClick={() => {getFavouriteArticles()}}>избранные</button>
-      <button className='button button_colored button_pink' onClick={() => {getFavouriteArticles()}}>Подписки</button>
-      </div>}
+      <div>
+        {isAuth && <button className='button button_colored' onClick={() => {getFavouriteArticles()}}>избранные</button>}
+        {isAuth && <button className='button button_colored button_pink' onClick={() => {getFavouriteArticles()}}>подписки</button>}
+        {searchValue && (
+          <button className="button button_bordered articles__search-info-btn">
+            <span>
+              {`поиск по запросу "${searchValue}"`}
+            </span>
+            <span
+              className="icon search-clear__btn"
+              title="Очистить"
+              onClick={() => setSearchValue("")}
+            ></span>
+         </button>)}
+      </div>
       <Select
       allowClear
-      defaultValue="lucy"
-      style={{
-        width: 120,
-      }}
-      onChange={handleChange}
+      placeholder={categoryId ? `${category.label}` : "выбрать категорию"}
+      className="articles__select"
+      onChange={handleChangeCategory}
       options={selectOptions}
+      onClear={() => onClickCategory(0)}
     />
-      {!!categoryId && (
-        <Button
-          className="articles__filter-btn"
-          onClick={() => onClickCategory(0)}
-        >Отменить фильтр</Button>
-      )}
+    
+     
       <div className="slider__wrapper">
       <ArticlesGallery searchValue={searchValue}></ArticlesGallery>
-        {/* <div className="articles__wrapper">
-          
-          <div className="wrapper">
-          
-            <div className="slider">
-              
-              <div className="article-gallery">{displayArticles}</div>
-            </div>
-          </div>
-        </div>
-        <div className="pagination">
-          <Pagination
-            onChange={changePage}
-            // total={total}
-            // pageSize={postsPerPage}
-            // current={page}
-            // showSizeChanger={false}
-            showQuickJumper
-            locale={{ jump_to: "Перейти на", page: "стр" }}
-            // onShowSizeChange={onShowSizeChange}
-            // hideOnSinglePage
-            defaultPageSize={6} total={articles.length} 
-          ></Pagination>
-        </div> */}
       </div>
     </section>
   );

@@ -97,3 +97,13 @@ margin-bottom: 2vh;
 margin-right: 2vh;
   
 }
+
+.ant-select-selection-placeholder,
+.ant-select-selection-item {
+   color: $color-primary !important;
+   font-size: large;
+}
+
+.articles__search-info-btn {
+  display: inline-block;
+}

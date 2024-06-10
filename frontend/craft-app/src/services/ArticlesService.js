@@ -1,15 +1,22 @@
 import api from "../api/config";
-import { ARTICLE_ENDPOINT, GET_ARTICLES_ENDPOINT, LIKE_ARTICLE, GET_CATEGORIES } from "../constants/endpoints";
+import { ARTICLE_ENDPOINT, GET_ARTICLES_ENDPOINT, LIKE_ARTICLE, GET_CATEGORIES, GET_ARTICLES_BY_CATEGORY } from "../constants/endpoints";
 
 class ArticlesService {
   static instance = new ArticlesService();
 
-  getArticles(searchValue) {
-    return api.get(`${GET_ARTICLES_ENDPOINT}?search=${searchValue}`);
+  getArticles() {
+    return api.get(`${GET_ARTICLES_ENDPOINT}`);
   }
   getProfileArticles(userSlug) {
     return api.get(`${GET_ARTICLES_ENDPOINT}?username=${userSlug}`);
   }
+  getArticlesBySearch(searchValue) {
+    return api.get(`${GET_ARTICLES_ENDPOINT}?search=${searchValue}`);
+  }
+  getArticlesByCategory(categoryId) {
+    return api.get(`${GET_ARTICLES_BY_CATEGORY}${categoryId}`);
+  }
+  
   createArticle(article, articleSlug) {
     return api.post(`${ARTICLE_ENDPOINT}/${articleSlug}`, article);
   }

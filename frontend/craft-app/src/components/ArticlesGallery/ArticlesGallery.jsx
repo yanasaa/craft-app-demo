@@ -6,6 +6,7 @@ import { useArticles } from "../../hooks/useArticles";
 import "./ArticlesGallery.scss";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { getArticlesByCategoryThunk } from "./thunks";
 
 export const ArticlesGallery = ({
   categoryId,
@@ -13,41 +14,15 @@ export const ArticlesGallery = ({
   searchValue,
   posts,
 }) => {
-
-  const { authorId } = useParams()
-  const { allArticles, getArticles, articles } = useArticles();
-  const [total, setTotal] = useState("");
+  const { allArticles, getArticles, articlesQuantity} = useArticles();
   const [page, setPage] = useState(1);
-   
-  useEffect(() => {
-    getArticles(searchValue);
-   
-  }, [searchValue, allArticles.length]);
-  console.log(searchValue);
-  const totalPages = allArticles.length;
-
   const [postsPerPage, setPostsPerPage] = useState(6);
-
-  // useEffect(() => {
-  //   const getAllArticles = () => {
-  //     fetch(url, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-type": "application/json",
-  //       },
-  //     })
-  //       .then((response) => response.json())
-  //       .then((json) => {
-  //         setTotal(json.length);
-  //         setPage(1);
-  //       });
-  //   };
-  //   getAllArticles();
-  // }, [categoryId, searchValue, url]);
-
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
   const currentPosts = allArticles.slice(indexOfFirstPage, indexOfLastPage);
+
+  const [favourites, setFavourites] = useState([]);
+
   const displayArticles = currentPosts.map((article) => {
     return (
       <ArticleCard
@@ -72,6 +47,7 @@ export const ArticlesGallery = ({
     setPostsPerPage(pageSize);
   };
 
+
   return (
     <section className="articles" id="articles">
       {(!!categoryId) && (
@@ -93,15 +69,16 @@ export const ArticlesGallery = ({
         </div>
         <div className="pagination">
           <Pagination
+          defaultCurrent={1}
             onChange={changePage}
-            total={totalPages}
+            total={articlesQuantity}
             pageSize={postsPerPage}
             current={page}
             showSizeChanger={false}
             showQuickJumper
             locale={{ jump_to: "Перейти на", page: "стр" }}
             onShowSizeChange={onShowSizeChange}
-            hideOnSinglePage
+
           ></Pagination>
         </div>
       </div>

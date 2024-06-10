@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { getAllTagsThunk, getArticlesThunk, getProfileArticlesThunk } from "../thunks";
+import { getAllTagsThunk, getArticlesByCategoryThunk, getArticlesThunk, getProfileArticlesThunk, getArticlesBySearchThunk } from "../thunks";
 
 const initialState = {
   articles: [],
@@ -28,7 +28,17 @@ const articlesSlice = createSlice({
       state.isLoading = false;
       state.errors = null;
     });
-
+    
+    builder.addCase(getArticlesByCategoryThunk.fulfilled, (state, action) => {
+      state.articles = action.payload;
+      state.isLoading = false;
+      state.errors = null;
+    });
+    builder.addCase(getArticlesBySearchThunk.fulfilled, (state, action) => {
+      state.articles = action.payload;
+      state.isLoading = false;
+      state.errors = null;
+    });
     // builder.addCase(addProductToCartThunk.fulfilled, (state, action) => {
     //   console.log(action.payload);
     //   state.cartInfo = action.payload;

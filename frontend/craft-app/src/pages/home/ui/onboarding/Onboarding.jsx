@@ -2,10 +2,13 @@ import "./Onboarding.scss";
 import bg from "../../../../components/shared/assets/img/ui/onboard-bg.png"
 import lines from "../../../../components/shared/assets/img/ui/onboard-lines.png"
 import vertical from "../../../../components/shared/assets/img/ui/onboard-vertical.png"
+import { useSelector } from "react-redux";
+import { loginSelector } from "../../../signIn/selectors"
 
 function Onboarding() {
-  return (
-    <section className="onboarding" id="onboarding">
+  const {isAuth} = useSelector(loginSelector)
+  
+  return !isAuth && (<section className="onboarding" id="onboarding">
       <img className="onboardBg" src={bg} alt="background" />
       
       <h2 className="onboarding__title">Как это работает?</h2>

@@ -1,7 +1,10 @@
+import { useSelector } from 'react-redux';
+import { loginSelector } from '../../../signIn/selectors';
 import './Advantages.scss'
 
 function Advantages() {
-    return (
+    const {isAuth} = useSelector(loginSelector)
+    return !isAuth && (
         <section className="advantages" id="advantages">
             <h2>Преимущества сервиса</h2>
             <div className="advantages__wrapper">
