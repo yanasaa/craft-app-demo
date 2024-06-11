@@ -1,24 +1,25 @@
 import {useState } from "react";
+import { useSelector } from "react-redux";
 import { Pagination } from "antd";
 import ArticleCard from "../shared/ui/article/ArticleCard";
 import Button from "../shared/ui/button/Button";
 import { useArticles } from "../../hooks/useArticles";
+import { profileSelector } from "../../pages/profile/selectors"
 import "./ArticlesGallery.scss";
 
 export const ArticlesGallery = ({
-  categoryId,
-  onClickCategory,
-  searchValue,
-  showFavorites,
+    showFavorites,
+    showSubsribed
 }) => {
   const { allArticles, articlesQuantity, favoritesArticles} = useArticles();
+  const {currentUser} = useSelector(profileSelector)
+  const subscribedArticles = allArticles.filter((article) => currentUser.following.includes(article.author))
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
-  const currentPosts = (showFavorites ? favoritesArticles : allArticles).slice(indexOfFirstPage, indexOfLastPage);
 
-
+  const currentPosts = (showFavorites ? favoritesArticles : showSubsribed ? subscribedArticles : allArticles).slice(indexOfFirstPage, indexOfLastPage);
   const displayArticles = currentPosts.map((article) => {
     return (
       <ArticleCard
@@ -43,18 +44,9 @@ export const ArticlesGallery = ({
     setPostsPerPage(pageSize);
   };
 
-console.log(showFavorites);
+console.log(subscribedArticles);
   return (
-    <section className="articles" id="articles">
-      {(!!categoryId) && (
-        <Button
-          className="articles__filter-btn"
-          onClick={() => onClickCategory(0)}
-        >
-          Отменить фильтр
-        </Button>
-      )}
-    
+    <section className="articles" id="articles">  
       <div className="slider__wrapper">
         <div className="articles__wrapper">
           <div className="wrapper">

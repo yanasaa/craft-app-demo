@@ -53,37 +53,34 @@ const [ showSubsribed, setShowSubsribed ] = useState(false)
   return (
     <section className="articles" id="articles">
       <h2 className="articles__title">Статьи Авторов</h2>
-      <div>
-        {isAuth && (
-          <Button className='button button_colored' onClick={() => {
-            setShowSubsribed(false)
-            setShowFavorites(!showFavorites);
+      <div className="articles__filtres">
+        <div className="filters__buttons">
+          {isAuth && (
+            <Button className='button button_colored' onClick={() => {
+              setShowSubsribed(false)
+              setShowFavorites(!showFavorites);
+              }}>
+              избранные 
+              {showFavorites && <CloseOutlined style={{margin: ' 3px 4px'}} />}
+            </Button>)
+          }
+          {isAuth && (
+            <Button className='button button_colored button_pink' onClick={() => {
+              setShowFavorites(false);
+              setShowSubsribed(!showSubsribed)
             }}>
-            избранные 
-            {showFavorites && <CloseOutlined style={{position: 'absolute', margin: ' 3px 4px'}} />}
-          </Button>)
-        }
-        {isAuth && (
-          <Button className='button button_colored button_pink' onClick={() => {
-            setShowFavorites(false);
-            setShowSubsribed(!showSubsribed)
-          }}>
-            подписки
-            {showSubsribed && <CloseOutlined style={{position: 'absolute', margin: ' 3px 4px'}} />}
-          </Button>)
-        }
-        {searchValue && (
-          <button className="button button_bordered articles__search-info-btn">
-            <span>
-              {`поиск по запросу "${searchValue}"`}
-            </span>
-            <span
-              className="icon search-clear__btn"
-              title="Очистить"
-              onClick={() => setSearchValue("")}
-            ></span>
-         </button>)}
-      </div>
+              подписки
+              {showSubsribed && <CloseOutlined style={{margin: ' 3px 4px'}} />}
+            </Button>)
+          }
+          {searchValue && (
+            <Button className="button button_bordered articles__search-info-btn">
+              <span>
+                {`поиск "${searchValue}"`}
+              </span>
+              <CloseOutlined onClick={() => setSearchValue("")} style={{margin: ' 3px 4px', color: '#ad2e95'}} />
+          </Button>)}
+        </div>
       <Select
       allowClear
       placeholder={categoryId ? `${category.label}` : "выбрать категорию"}
@@ -92,10 +89,11 @@ const [ showSubsribed, setShowSubsribed ] = useState(false)
       options={selectOptions}
       onClear={() => onClickCategory(0)}
     />
+      </div>
     
      
       <div className="slider__wrapper">
-      <ArticlesGallery searchValue={searchValue} showFavorites={showFavorites} showSubsribed={showSubsribed}></ArticlesGallery>
+      <ArticlesGallery showFavorites={showFavorites} showSubsribed={showSubsribed}></ArticlesGallery>
       </div>
     </section>
   );
