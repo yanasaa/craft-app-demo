@@ -1,27 +1,23 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Pagination } from "antd";
 import ArticleCard from "../shared/ui/article/ArticleCard";
 import Button from "../shared/ui/button/Button";
 import { useArticles } from "../../hooks/useArticles";
 import "./ArticlesGallery.scss";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { getArticlesByCategoryThunk } from "./thunks";
 
 export const ArticlesGallery = ({
   categoryId,
   onClickCategory,
   searchValue,
-  posts,
+  showFavorites,
 }) => {
-  const { allArticles, getArticles, articlesQuantity} = useArticles();
+  const { allArticles, articlesQuantity, favoritesArticles} = useArticles();
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
   const indexOfLastPage = indexOfFirstPage + postsPerPage;
-  const currentPosts = allArticles.slice(indexOfFirstPage, indexOfLastPage);
+  const currentPosts = (showFavorites ? favoritesArticles : allArticles).slice(indexOfFirstPage, indexOfLastPage);
 
-  const [favourites, setFavourites] = useState([]);
 
   const displayArticles = currentPosts.map((article) => {
     return (
@@ -47,7 +43,7 @@ export const ArticlesGallery = ({
     setPostsPerPage(pageSize);
   };
 
-
+console.log(showFavorites);
   return (
     <section className="articles" id="articles">
       {(!!categoryId) && (
@@ -77,7 +73,7 @@ export const ArticlesGallery = ({
             showSizeChanger={false}
             showQuickJumper
             locale={{ jump_to: "Перейти на", page: "стр" }}
-            onShowSizeChange={onShowSizeChange}
+            // onShowSizeChange={onShowSizeChange}
 
           ></Pagination>
         </div>

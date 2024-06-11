@@ -1,11 +1,14 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
 import { getAllTagsThunk, getArticlesByCategoryThunk, getArticlesThunk, getProfileArticlesThunk, getArticlesBySearchThunk } from "../thunks";
 
 const initialState = {
   articles: [],
   isLoading: false,
   errors: null,
-  tags: []
+  tags: [],
+  favorites: [],
+  subscribed: []
 };
 
 const articlesSlice = createSlice({
@@ -14,6 +17,7 @@ const articlesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getArticlesThunk.fulfilled, (state, action) => {
       state.articles = action.payload;
+      state.favorites = action.payload.filter((article) => article.is_favorited)
       state.isLoading = false;
       state.errors = null;
     });
