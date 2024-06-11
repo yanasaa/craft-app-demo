@@ -4,11 +4,11 @@ import { useArticles } from "../../../../hooks/useArticles";
 import "./SearchBar.scss";
 
 function SearchBar(props) {
-  const { className, searchValue, setSearchValue } = props;
+  const { className, searchValue, setSearchValue, setCategoryId } = props;
   const {getArticles} = useArticles;
   function handleKeyPress(e) {
     if (searchValue && e.key === "Enter") {
-      getArticles(searchValue);
+      // getArticles(searchValue);
       window.scrollTo(0, 2150);
     }
   }
@@ -20,6 +20,7 @@ function SearchBar(props) {
         type="search"
         placeholder="Поиск по автору или названию"
         onChange={(event) => {
+          setCategoryId(null);
           setSearchValue(event.target.value);
         }}
         onKeyDown={handleKeyPress}

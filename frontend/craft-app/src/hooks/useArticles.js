@@ -4,11 +4,11 @@ import { getArticlesThunk, getProfileArticlesThunk } from "../components/Article
 import { useCallback } from "react";
 
 export const useArticles = () => {
-  const { articles, isLoading, errors } = useSelector(articlesSelector);
+  const { articles, isLoading, errors, favorites } = useSelector(articlesSelector);
   const dispatch = useDispatch();
 
-  const getArticles = useCallback((searchValue) => {
-    dispatch(getArticlesThunk(searchValue));
+  const getArticles = useCallback(() => {
+    dispatch(getArticlesThunk());
   }, [dispatch]);
   const getProfileArticles = useCallback((userSlug) => {
     dispatch(getProfileArticlesThunk(userSlug));
@@ -22,6 +22,7 @@ export const useArticles = () => {
     getArticles: getArticles,
     articlesQuantity: articles.length,
     getProfileArticles: getProfileArticles,
+    favoritesArticles: favorites,
 
   };
 };

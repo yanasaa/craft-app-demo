@@ -12,6 +12,29 @@ export const getArticlesThunk = createAsyncThunk(
     }
   }
 );
+export const getArticlesByCategoryThunk = createAsyncThunk(
+  "getArticlesByCategory",
+  async (catigoryId, { rejectWithValue }) => {
+    try {
+      const response = await ArticlesService.getArticlesByCategory(catigoryId);
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e?.response?.data?.detail || e?.message);
+    }
+  }
+);
+
+export const getArticlesBySearchThunk = createAsyncThunk(
+  "getArticlesBySearch",
+  async (searchValue, { rejectWithValue }) => {
+    try {
+      const response = await ArticlesService.getArticlesBySearch(searchValue);
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e?.response?.data?.detail || e?.message);
+    }
+  }
+);
 
 export const getProfileArticlesThunk = createAsyncThunk(
   "getProfileArticles",

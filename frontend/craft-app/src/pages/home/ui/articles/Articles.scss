@@ -91,9 +91,38 @@
 
 .button_colored.button_pink {
   background-color: #D9A1C6;
-  border-color: #D9A1C6;
-margin-left: 2vh;
-margin-bottom: 2vh;
-margin-right: 2vh;
-  
+  border-color: #D9A1C6;  
+}
+
+.ant-select-selection-placeholder,
+.ant-select-selection-item {
+   color: $color-primary !important;
+   font-size: large;
+}
+
+.articles__search-info-btn {
+  white-space: nowrap;
+}
+
+.articles__filtres{
+display: flex;
+max-width: calc($content-width + 80px);
+padding: 0 40px;
+margin: 0 auto;
+flex-wrap: wrap;
+gap: 1vh;
+justify-content: space-between;
+   @media (max-width: 400px) {
+    padding: 2vh;
+  }
+}
+
+.filters__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vh;
+}
+
+.articles__select {
+ 
 }

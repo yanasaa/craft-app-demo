@@ -1,41 +1,32 @@
 import SearchBar from "../../../../components/shared/ui/searchBar/SearchBar";
 import "./Hero.scss";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTagsThunk } from "../../../../components/ArticlesGallery/thunks";
 import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
 
-function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
-  // const [tags, setTags] = useState([]);
+function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCategoryId }) {
   const dispatch = useDispatch()
+  const {tags} = useSelector(articlesSelector)
 
   useEffect(() => {
     dispatch(getAllTagsThunk())
-    // const getAllTags = () => {
-    //   fetch("http://84.201.140.115/api/v1/categories")
-    //     .then((response) => response.json())
-    //     .then((json) => setTags(json))
-    // };
-    // getAllTags();
-  }, []);
+   }, [dispatch]);
 
-  const {tags} = useSelector(articlesSelector)
+  //  function getUniqTags(tags) {
+  //   return Array.from(new Set(shuffle(tags).map((el) => el.tag)));
+  // }
 
-  
-  function getUniqTags(tags) {
-    return Array.from(new Set(shuffle(tags).map((el) => el.tag)));
-  }
-
-  function shuffle(arr) {
-    let j, temp;
-    for (let i = arr.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i + 1));
-      temp = arr[j];
-      arr[j] = arr[i];
-      arr[i] = temp;
-    }
-    return arr;
-  }
+  // function shuffle(arr) {
+  //   let j, temp;
+  //   for (let i = arr.length - 1; i > 0; i--) {
+  //     j = Math.floor(Math.random() * (i + 1));
+  //     temp = arr[j];
+  //     arr[j] = arr[i];
+  //     arr[i] = temp;
+  //   }
+  //   return arr;
+  // }
 
   return (
     <section className="hero" id="hero">
@@ -43,13 +34,14 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue }) {
         <div className="glass hero__glass">
           <h1 className="hero__title">CRAFTSHARE</h1>
           <div className="hero__content">
-            <p className="hero__text">
+            <h2 className="hero__text">
               Cервис для ремесленников и для тех, кто хочет научиться чему-то новому
-            </p>
+            </h2>
             <SearchBar
               className="search-bar_hero"
               searchValue={searchValue}
               setSearchValue={setSearchValue}
+              setCategoryId={setCategoryId}
             />
             <div className="hero__tags">
               <div className="hero__tags_layout">

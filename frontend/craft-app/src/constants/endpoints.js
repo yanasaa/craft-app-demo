@@ -8,6 +8,7 @@ export const GET_ARTICLES_ENDPOINT = "/posts/";
 export const ARTICLE_ENDPOINT = "/post/";
 export const LIKE_ARTICLE = "/like/unlike/"
 export const GET_CATEGORIES = "/categories/";
+export const GET_ARTICLES_BY_CATEGORY = "/category/";
 
 export const MY_PROFILE_ENDPOINT = '/userprofile/me/'
 export const USER_PROFILE_ENDPOINT = '/userprofile/'
