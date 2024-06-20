@@ -6,6 +6,7 @@
   padding-top: 1vh;
   margin-bottom: 10vh;
   position: relative;
+  scroll-margin: 5vh;
 }
 
 .articles__wrapper {
@@ -42,20 +43,6 @@
   position: relative;
 }
 
-.slider__button {
-  cursor: pointer;
-  position: absolute;
-  padding: 25px;
-  top: 43%;
-  &_left {
-    left: -100px;
-  }
-  &_right {
-    transform: rotate(180deg);
-    right: -100px;
-  }
-}
-
 .pagination {
   margin: 20px auto;
   text-align: center;
@@ -77,11 +64,6 @@
   }
 }
 
-.slider__icon {
-  width: 14px;
-  height: 44px;
-  background-image: url("../../../../components/shared/assets/img/icons/sliderarrow.svg");
-}
 .likes__icon {
   width: 16px;
   height: 16px;
@@ -121,8 +103,4 @@ justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   gap: 1vh;
-}
-
-.articles__select {
- 
 }

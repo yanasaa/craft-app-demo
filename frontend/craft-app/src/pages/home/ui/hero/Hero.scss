@@ -104,7 +104,7 @@
   padding: 2vh 20px;
   color: $color-primary;
   background-color: $color-bg-light;
-  // border-radius: 5px;
+  text-decoration: none;
   box-shadow: 2px 2px 4px 0px rgba(173, 46, 149, 0.25);
   @include font(1.8rem);
   @extend %transition;

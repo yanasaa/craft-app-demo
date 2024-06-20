@@ -11,8 +11,32 @@ export const loginThunk = createAsyncThunk(
       const response = await AuthService.login(body);
       return response.data;
     } catch (e) {
-      console.log(e);
       return rejectWithValue(e?.response?.data?.detail || e?.message);
+    }
+  }
+);
+
+export const logoutThunk = createAsyncThunk(
+  "logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await AuthService.logout();
+      return response.data;
+    } catch (e) {
+      return rejectWithValue(e?.response?.data?.detail || e?.message);
+    }
+  }
+);
+
+export const signUpThunk = createAsyncThunk(
+  "signUp",
+  async (body, { rejectWithValue }) => {
+    
+    try {
+     let response = await AuthService.signUp(body);
+     return response.data;
+    } catch (e) {
+      return rejectWithValue(e?.response?.data.username || e?.message);
     }
   }
 );
