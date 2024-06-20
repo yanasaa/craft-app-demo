@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate} from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {UserOutlined } from "@ant-design/icons";
 import { Tooltip } from 'antd';
@@ -7,15 +7,12 @@ import Navigation from "./ui/navigation/Navigation";
 import Button from "../../components/shared/ui/button/Button";
 import { ROUTE_NAMES } from "../../routes/routeNames";
 import { loginSelector } from "../../pages/signIn/selectors";
-import { logout } from "../../pages/signIn/slices";
-import AuthService from "../../services/AuthService";
-
+import { logoutThunk } from "../../pages/signIn/thunks";
 import "./Header.scss";
 
 function Header() {
   const dispatch = useDispatch();
   const { isAuth } = useSelector(loginSelector);
-  const navigate = useNavigate();
   const [profileActive, setProfileActive] = useState(false);
   const menuRef = useRef();
   useEffect(() => {
@@ -61,8 +58,7 @@ function Header() {
                   <li
                     onClick={() => {
                       setProfileActive(false);
-                      AuthService.logout().then((data) => console.log(data));
-                      dispatch(logout());
+                      dispatch(logoutThunk())
                     }}
                     className="dropdown-item"
                   >
@@ -72,15 +68,13 @@ function Header() {
               )}
             </div>
           ) : (
+            <Link reloadDocument to={ROUTE_NAMES. SIGN_IN}>
               <Button
                 className={`button button_colored button-enter ${window.location.href.endsWith("/login") && "hidden"}`}
-                onClick={() => {
-                  window.scrollTo(0, 0);
-                  navigate(ROUTE_NAMES.SIGN_IN);
-                }}
               >
-              Войти
+             Войти
               </Button>
+            </Link>
           )}
         </div>
       </div>

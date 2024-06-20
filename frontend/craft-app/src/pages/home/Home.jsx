@@ -15,7 +15,6 @@ export const Home = () => {
         categoryId={categoryId}
         onClickCategory={(id) => {
           setCategoryId(id);
-          window.scrollTo(0, 2150);
         }}
         searchValue={searchValue}
         setSearchValue={setSearchValue}

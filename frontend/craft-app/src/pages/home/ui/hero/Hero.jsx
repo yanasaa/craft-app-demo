@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllTagsThunk } from "../../../../components/ArticlesGallery/thunks";
 import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
+import { HashLink } from "react-router-hash-link";
 
 function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCategoryId }) {
   const dispatch = useDispatch()
@@ -48,13 +49,14 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCat
                 {(tags)
                   .slice(0, 8)
                   .map((el, i) => (
-                    <div
+                    <HashLink
                       className="tag"
                       key={el.id}
                       onClick={() => onClickCategory(el.id)}
+                      to='#articles'
                     >
                       <h3 className="tag__title">{el.name.toLowerCase()}</h3>
-                    </div>
+                    </HashLink>
                   ))}
               </div>
             </div>

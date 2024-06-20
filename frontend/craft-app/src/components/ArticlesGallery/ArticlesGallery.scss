@@ -23,15 +23,16 @@
 
 .article-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 358px);
+  grid-template-columns: repeat(3, 1fr);
   align-content: space-around;
   justify-content: space-between;
+  gap: 2vh;
   @media (max-width: 1180px) {
-    grid-template-columns: repeat(2, 358px);
+    grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
   }
   @media (max-width: 760px) {
-    grid-template-columns: repeat(1, 358px);
+    grid-template-columns: repeat(1, 1fr);
   }
   @media (max-width: 360px) {
     justify-content: center;

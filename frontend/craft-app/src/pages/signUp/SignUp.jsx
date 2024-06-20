@@ -19,7 +19,7 @@ const validationSchema = yup.object().shape({
 });
 
 export const SignUp = () => {
-   const { isAuth, errors, isLoading, signUpStatus } = useSelector(loginSelector);
+   const { isAuth, errors, isLoading } = useSelector(loginSelector);
 
   if (errors) console.log(errors);
   const dispatch = useDispatch();

@@ -15,8 +15,6 @@ class AuthService {
   logout() {
     return api.get(LOGOUT_ENDPOINT);
   }
-
-
 }
 
 export default AuthService.instance;
