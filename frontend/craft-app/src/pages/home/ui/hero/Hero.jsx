@@ -6,7 +6,7 @@ import { getAllTagsThunk } from "../../../../components/ArticlesGallery/thunks";
 import { articlesSelector } from "../../../../components/ArticlesGallery/selectors";
 import { HashLink } from "react-router-hash-link";
 
-function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCategoryId }) {
+function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCategoryId, scrollToArticles }) {
   const dispatch = useDispatch()
   const {tags} = useSelector(articlesSelector)
 
@@ -43,6 +43,7 @@ function Hero({ categoryId, onClickCategory, searchValue, setSearchValue, setCat
               searchValue={searchValue}
               setSearchValue={setSearchValue}
               setCategoryId={setCategoryId}
+              scrollToArticles={scrollToArticles}
             />
             <div className="hero__tags">
               <div className="hero__tags_layout">

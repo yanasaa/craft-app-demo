@@ -68,7 +68,7 @@ function Header() {
               )}
             </div>
           ) : (
-            <Link reloadDocument to={ROUTE_NAMES. SIGN_IN}>
+            <Link reloadDocument to={ROUTE_NAMES.SIGN_IN}>
               <Button
                 className={`button button_colored button-enter ${window.location.href.endsWith("/login") && "hidden"}`}
               >

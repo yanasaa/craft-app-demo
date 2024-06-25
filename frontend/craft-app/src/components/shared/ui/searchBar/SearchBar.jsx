@@ -1,15 +1,15 @@
-import { SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { Tooltip } from 'antd';
+import { HashLink } from "react-router-hash-link";
 import { useArticles } from "../../../../hooks/useArticles";
 import "./SearchBar.scss";
 
 function SearchBar(props) {
-  const { className, searchValue, setSearchValue, setCategoryId } = props;
+  const { className, searchValue, setSearchValue, setCategoryId, scrollToArticles } = props;
   const {getArticles} = useArticles;
   function handleKeyPress(e) {
     if (searchValue && e.key === "Enter") {
-      // getArticles(searchValue);
-      window.scrollTo(0, 2150);
+      scrollToArticles()
     }
   }
   return (
@@ -26,20 +26,21 @@ function SearchBar(props) {
         onKeyDown={handleKeyPress}
       />
       {searchValue && (
-        <span
-          className="icon search-clear__btn"
-          title="Очистить"
-          onClick={() => setSearchValue("")}
-        ></span>
+        <CloseOutlined 
+        className="icon search-clear__btn"
+        title="Очистить"
+        onClick={() => setSearchValue("")}
+        />
       )}
       <div className="search__icons">
-        <Tooltip title="Найти статьи" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
-          <SearchOutlined
-            className="icon search__icon"
-            style={{ fontSize: "32px", color: "#ad2e95" }}
-            onClick={() => window.scrollTo(0, 2150)}
-          />
-        </Tooltip>
+        <HashLink to='#articles'>
+          <Tooltip title="Найти статьи" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
+              <SearchOutlined
+                className="icon search__icon"
+                style={{ fontSize: "32px", color: "#ad2e95" }}
+              />
+          </Tooltip>
+        </HashLink>
       </div>
     </div>
   );
