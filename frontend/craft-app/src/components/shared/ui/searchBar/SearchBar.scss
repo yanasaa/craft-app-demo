@@ -10,8 +10,8 @@
   display: flex;
   margin: 0 auto;
   &_hero {
+    position: relative;
     display: flex;
-    // margin-bottom: 5vh;
     border: 1px solid $color-primary;
     background-color: $color-bg-light;
     justify-content: flex-end;
@@ -38,7 +38,6 @@
     border: none;
     outline: none;
     flex-grow: 1;
-    // padding: 5px 10px;
     @extend %font-sec;
   }
   &_header {
@@ -68,14 +67,10 @@
 }
 
 .search-clear__btn {
-  background-image: url("../../assets/img/icons/closeSearch.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  height: 14px;
-  width: 14px;
+  position: absolute;
+  right: 40px;
   align-self: center;
-  margin-right: 14px;
+  color: $color-secondary;
   &:hover {
     opacity: 0.8;
   }

@@ -76,7 +76,7 @@ const [ showSubsribed, setShowSubsribed ] = useState(false)
           {searchValue && (
             <Button className="button button_bordered articles__search-info-btn">
               <span>
-                {`поиск "${searchValue}"`}
+                {`поиск "${searchValue.length > 10 ? searchValue.slice(0, 11) + '...' : searchValue}"`}
               </span>
               <CloseOutlined onClick={() => setSearchValue("")} style={{margin: ' 3px 4px', color: '#ad2e95'}} />
           </Button>)}

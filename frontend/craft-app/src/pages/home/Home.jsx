@@ -8,7 +8,10 @@ import Onboarding from "./ui/onboarding/Onboarding";
 export const Home = () => {
   const [categoryId, setCategoryId] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  
+  const articlesSection = document.getElementById('articles')
+  const scrollToArticles = () => {
+    articlesSection.scrollIntoView()
+  }
   return (
     <>
       <Hero
@@ -19,6 +22,7 @@ export const Home = () => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
         setCategoryId={setCategoryId}
+        scrollToArticles={scrollToArticles}
       />
       <Advantages />
       <Articles
