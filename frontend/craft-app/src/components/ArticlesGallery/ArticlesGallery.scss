@@ -11,13 +11,13 @@
 .articles__wrapper {
   background-image: url("../shared/assets/img/ui/articlebg.png");
   background-size: cover;
-  padding: 50px 50px 15px;
-  min-height: 1083px;
+  padding: 4vh;
+  // min-height: 500px;
   @media (max-width: 1180px) {
     padding: 50px 20px 15px;
   }
   @media (max-width: 400px) {
-    padding: 0;
+    padding: 1vh 0;
   }
 }
 
@@ -26,12 +26,13 @@
   grid-template-columns: repeat(3, 1fr);
   align-content: space-around;
   justify-content: space-between;
+  justify-items: center;
   gap: 2vh;
   @media (max-width: 1180px) {
     grid-template-columns: repeat(2, 1fr);
     justify-content: space-around;
   }
-  @media (max-width: 760px) {
+  @media (max-width: 620px) {
     grid-template-columns: repeat(1, 1fr);
   }
   @media (max-width: 360px) {
