@@ -3,15 +3,23 @@
 
 .article {
   padding-top: 100px;
+  @media (max-width: 420px) {
+    padding-top: 4vh;
+  }
 }
 .article__wrapper {
-  max-width: 764px;
+  max-width: calc(764px + 80px);
   margin: 0 auto;
+  padding: 0 40px;
+  @media (max-width: 420px) {
+    padding: 0 1vh;
+  }
 }
-
-img {
+.article__text_full p img {
+  max-width: 100%;
   object-fit: contain;
 }
+
 .article__title {
   color: $color-text-dark-grey;
   text-align: left;
@@ -51,6 +59,9 @@ img {
   & >*{
     cursor: pointer;
   }
+  @media (max-width: 330px) {
+    flex-direction: column;
+  }
 }
 .article__actions {
   display: flex;
@@ -61,6 +72,10 @@ img {
   font-size: "26px";
    color: "#AD2E95" ;
   
+}
+.article__likes {
+  display: flex;
+  flex-wrap: nowrap;
 }
 .likes__icon {
   width: 16px;

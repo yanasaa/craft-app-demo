@@ -90,8 +90,6 @@ const handleAddFavourite = async () => {
     return res;
 }
 
-  console.log(article)
-  console.log(currentUser)
   return (
     <section className="article">
       <div className="article__wrapper">
