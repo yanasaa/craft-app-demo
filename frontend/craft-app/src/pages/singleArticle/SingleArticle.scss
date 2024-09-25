@@ -107,7 +107,7 @@ blockquote {
  padding-left: 2rem;
  font-weight: bold;
 }
-blockquote::before{
+.article__text_full blockquote::before{
   content: '" ';
   font-size: 3rem;
   font-weight: 700;

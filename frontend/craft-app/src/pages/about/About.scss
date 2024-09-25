@@ -1,0 +1,10 @@
+@import "../../sass/abstracts/constants";
+
+.about__text {
+      display: flex;
+}
+.about__quote {
+      font-family: "Oleo Script", system-ui;
+      font-weight: 400;
+      color: $color-primary;     
+}
