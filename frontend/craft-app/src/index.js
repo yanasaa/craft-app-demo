@@ -7,9 +7,10 @@ import Router from "./routes/Router";
 import "./sass/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+const basename = process.env.NODE_ENV === "production" ? "/craft-app-demo" : "";
 
 root.render(
-  <BrowserRouter>
+  <BrowserRouter  basename={basename}>
     <Provider store={store}>
       <App>
         <Router />
