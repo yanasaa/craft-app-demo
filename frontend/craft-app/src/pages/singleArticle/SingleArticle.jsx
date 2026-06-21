@@ -125,7 +125,7 @@ const handleAddFavourite = async () => {
         <div className="article__feedback">
           <Tooltip title="Нравится" color={'#ad2e95'} mouseEnterDelay={1} arrow={false}>
             <div className="article__likes">
-              {article.likes.includes(currentUser.id) ? (
+              {article.likes || [].includes(currentUser.id) ? (
                 <LikeFilled
                   className="likes__icon icon likes__icon_liked"
                   style={{ color: "#ad2e95" }}

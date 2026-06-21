@@ -13,7 +13,10 @@ export const ArticlesGallery = ({
 }) => {
   const { allArticles, articlesQuantity, favoritesArticles} = useArticles();
   const {currentUser} = useSelector(profileSelector)
-  const subscribedArticles = allArticles.filter((article) => currentUser.following.includes(article.author))
+  // const subscribedArticles = allArticles.filter((article) => currentUser.following.includes(article.author))
+  const subscribedArticles = allArticles.filter((article) =>
+    (currentUser?.following || []).includes(article.author_username)
+  );
   const [page, setPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(6);
   const indexOfFirstPage = page * postsPerPage - postsPerPage;
@@ -44,7 +47,7 @@ export const ArticlesGallery = ({
     setPostsPerPage(pageSize);
   };
 
-console.log(subscribedArticles);
+// console.log(subscribedArticles);
   return (
     <section className="articles" id="articles">  
       <div className="slider__wrapper">

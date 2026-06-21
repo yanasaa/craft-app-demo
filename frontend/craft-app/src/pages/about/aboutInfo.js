@@ -7,12 +7,16 @@ import img6 from '../../components/shared/assets/img/team/ay.png'
 import img7 from '../../components/shared/assets/img/team/kb.png'
 import img8 from '../../components/shared/assets/img/team/ym.png'
 import img9 from '../../components/shared/assets/img/team/vs.png'
+import volunteer from '../../components/shared/assets/img/icons/volunteer.svg'
+import percent from '../../components/shared/assets/img/icons/percent.svg'
+import cup from '../../components/shared/assets/img/icons/cup.svg'
+import checked from '../../components/shared/assets/img/icons/checked.svg'
 
 export const missions = [
     {
        id: 1,
-       title: '«Craftshare — площадка для вашего творчества»',
-       text: 'Здесь можно реализовать свою продукцию и поделиться навыками.',
+       title: '«CraftShare — площадка для вашего творчества»',
+       text: 'Здесь можно реализовать свою продукцию и поделиться навыками',
     },
     {
         id: 2,
@@ -32,15 +36,17 @@ export const missions = [
 ];
 
 export const values = [
-    {
+    {   icon: volunteer,
         title: 'Ответственность',
         description: 'Мы чувствуем ответсвенность за все, что мы делаем. Будь то ответственность перед нашими клиентами, друг перед другом или перед окружаеющей средой, мы ничего не принимаем как должное и остаемся внимательными к нашим процессам и результатам.',
     },
     {
+        icon: percent,
         title: 'Креативность',
         description: 'Мы всегда найдем новые креативные решения, в любой роли, на любой стадии проекта. Наша команда полна творческих личностей, каждый из которых привносит уникальную перспективу и творческую энергию.',
     },
     {
+        icon: cup,
         title: 'Совершенство',
         description: 'Мы стремимся к совершенству во всем, что мы делаем. Наша работа воплощается в жизнь посредством высоких стандартов, которых мы придерживаемся.',
     },
@@ -48,12 +54,15 @@ export const values = [
 
 export const results = [
     {
+      icon: checked,
        text: 'Запланированный функционал был успешно реализован за 2,5 месяца',
     },
     {
+      icon: checked,
         text: 'Проект оказался в числе проектов, победивших на Хакатоне, организованном ExLab',
      },
      {
+      icon: checked,
         text: 'Приняли решение разрабатывать новые фичи (нести новую ценность)',
      },
 ];

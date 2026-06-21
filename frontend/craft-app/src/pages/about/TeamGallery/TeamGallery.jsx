@@ -10,7 +10,7 @@ const TeamGallery = () => {
             <img src={el.img}/>
          </div>
          <h3>{el.role}</h3>
-         <a href={el.link} target="_blank" rel="noreferrer">{el.name}</a>
+         <a className="team__link" href={el.link} target="_blank" rel="noreferrer">{el.name}</a>
       </div>)}
     </div>
   )

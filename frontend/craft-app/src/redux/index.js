@@ -17,7 +17,6 @@ const combineReducer = combineReducers({
 });
 
 const rootReducer = (state, action) => {
-  console.log(action.type);
   if (action.type === "login/logout") {
     state = {};
   }

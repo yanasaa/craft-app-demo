@@ -113,8 +113,8 @@ export const Profile = () => {
               <div className="user-card__img">
                 <img
                   src={
-                    (!currentUser.avatar.endsWith('default.png'))
-                      ? `http://84.201.140.115${currentUser.avatar}` : 
+                    // (!currentUser.avatar.endsWith('default.png'))
+                    //   ? `http://84.201.140.115${currentUser.avatar}` : 
                       avatarDefault
                   }
                   alt="user"
@@ -130,7 +130,7 @@ export const Profile = () => {
                 </div>
                 <div className="user-card__item" onClick={handleshowFollowings}>
                   <div className="item__number">
-                    <h3>{currentUser.following.length}</h3>
+                    <h3>{(currentUser.following || []).length}</h3>
                     <AuditOutlined />
                   </div>
                   <p className="item__text">подписок</p>
@@ -142,7 +142,7 @@ export const Profile = () => {
                   footer={false}>
                   <div className="followings__container">
                     {allUsers
-                    .filter(user => currentUser.following.includes(user.id))
+                    .filter(user => (currentUser.following || []).includes(user.id))
                     .map(user => <div className='followings_item'>
                       <div className="followings__item_info" onClick={() => {
                         

@@ -1,6 +1,14 @@
+@import "../../../sass/abstracts/constants";
+
 .team__gallery {
    display: grid;
    grid-template-columns: repeat(3, 1fr);
    max-width: 50%;
-   
+   font-size: 20px;
+   gap: 5%;
+}
+
+.team__link {
+   color: $color-text-dark;
+   text-decoration: none;
 }

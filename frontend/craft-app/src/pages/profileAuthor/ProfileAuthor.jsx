@@ -41,9 +41,12 @@ export const ProfileAuthor = () => {
             <div className="profile__info">
               <div className="profile__user-card">
                 <div className="user-card__img">
-                  <img src={profileAuthor.avatar.endsWith('default.png')
-                      ? avatarDefault : 
-                      profileAuthor.avatar 
+                  <img src={
+                    // profileAuthor.avatar.endsWith('default.png')
+                      // ? 
+                      avatarDefault 
+                      // : 
+                      // profileAuthor.avatar 
                   } alt="user avatar" />
                 </div>
                 <div className="user-card__info user-card__info_author">

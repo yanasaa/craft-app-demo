@@ -1,10 +1,57 @@
 @import "../../sass/abstracts/constants";
 
-.about__text {
-      display: flex;
+.about__wrapper {
+      text-align: center;
 }
-.about__quote {
-      font-family: "Oleo Script", system-ui;
-      font-weight: 400;
-      color: $color-primary;     
+
+.mission p{
+   margin: 0 auto;
+   padding-bottom: 40px;
+}
+
+.about__text {
+      font-size: 20px;
+      line-height: 28px;
+      max-width: 750px;
+}
+
+.mission__title {
+      padding: 30px;
+}
+
+.mission:first-child {
+      background: url('../../components/shared/assets/img/ui/aboutBg.png');
+      background-position: center;
+      background-size: cover;
+      color: white;
+      padding: 100px 0 70px;
+
+      & .about__text {
+            max-width: 400px;
+      }
+      
+}
+.mission:first-child h2 {
+      max-width: 400px;
+      padding: 20px 0;
+      margin: 0 auto;
+      color: white;
+}
+.mission:nth-child(3) {
+      background-color: $color-primary-light-header;
+}
+
+.about__values {
+      display: flex;
+      gap: 5%;
+      max-width: 80%;
+      margin: 50px auto;
+      & h3 {
+            color: $color-primary;
+            font-size: 20px;
+      }
+}
+
+.team__gallery{
+      margin: 100px auto;
 }
