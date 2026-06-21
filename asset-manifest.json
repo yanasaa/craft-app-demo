@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/craft-app-demo/static/css/main.e3f5a517.css",
-    "main.js": "/craft-app-demo/static/js/main.6a3aed8e.js",
+    "main.js": "/craft-app-demo/static/js/main.fa844d27.js",
     "static/media/main-bg.jpeg": "/craft-app-demo/static/media/main-bg.c730aa9de47de016c3a1.jpeg",
     "static/media/mainbg-1.png": "/craft-app-demo/static/media/mainbg-1.71f676285fa0ae218887.png",
     "static/media/articlebg.png": "/craft-app-demo/static/media/articlebg.d6586241565352a125c5.png",
@@ -37,10 +37,10 @@
     "static/media/avatar.svg": "/craft-app-demo/static/media/avatar.eaf94280f12579c32184da67946d216e.svg",
     "static/media/navIcon.svg": "/craft-app-demo/static/media/navIcon.634c3ef3c802717d9669.svg",
     "main.e3f5a517.css.map": "/craft-app-demo/static/css/main.e3f5a517.css.map",
-    "main.6a3aed8e.js.map": "/craft-app-demo/static/js/main.6a3aed8e.js.map"
+    "main.fa844d27.js.map": "/craft-app-demo/static/js/main.fa844d27.js.map"
   },
   "entrypoints": [
     "static/css/main.e3f5a517.css",
-    "static/js/main.6a3aed8e.js"
+    "static/js/main.fa844d27.js"
   ]
 }
